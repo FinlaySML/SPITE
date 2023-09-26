@@ -5,7 +5,7 @@
 class SDL_Window;
 class SDL_Renderer;
 
-namespace Grengine {
+namespace Spite {
     class RenderSystem_SDL :
         public RenderSystem
     {

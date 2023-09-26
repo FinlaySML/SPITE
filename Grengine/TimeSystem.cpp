@@ -1,6 +1,6 @@
 
 #include "TimeSystem.h"
-namespace Grengine {
+namespace Spite {
 	TimeSystem::TimeSystem(const int targetFramesPerSecond) : TickTime{ 0 }, TargetFrameTime{ 1000000 / 60 }
 	{		
 		LastUpdateTime = LastTickTime = Clock::now();

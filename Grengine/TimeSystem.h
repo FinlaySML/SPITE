@@ -1,6 +1,6 @@
 #pragma once
 #include <chrono>
-namespace Grengine {
+namespace Spite {
 	using Clock = std::chrono::steady_clock;
 	/// <summary>
 	/// Quick and dirty Time system.

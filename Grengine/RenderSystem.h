@@ -4,7 +4,7 @@
 // Abstract interface into a potential render system
 // The RenderSystem is "A window and a surface that we can draw stuff to"
 // It might make sense to separate the Window and the Renderer, like SFML does
-namespace Grengine {
+namespace Spite {
 
 	struct GR_WindowEvent;
 

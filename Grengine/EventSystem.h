@@ -1,6 +1,6 @@
 #pragma once
 #include "Subsystem.h"
-namespace Grengine {
+namespace Spite {
     /// <summary>
     /// Interface base class to our event system
     /// </summary>

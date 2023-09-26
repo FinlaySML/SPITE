@@ -1,10 +1,10 @@
 #pragma once
-#include <Grengine.h>
+#include <Spite.h>
 
-class Grame : public Grengine::Grapplication
+class Game : public Spite::Application
 {
 public:
-	Grame();
+	Game();
 	void Update(double dt) override final;
 	void Render() override final;
 };

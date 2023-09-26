@@ -8,21 +8,21 @@
 //But maybe you think Globals are bad
 //There might be other ways to approach this.
 #ifdef RENDERSYSTEM_SDL
-    Grengine::EventSystem_SDL grEventSystemSDL;
-    Grengine::EventSystem* Grengine::grEventSystem = &grEventSystemSDL;
+    Spite::EventSystem_SDL grEventSystemSDL;
+    Spite::EventSystem* Spite::grEventSystem = &grEventSystemSDL;
 #endif
 
-int Grengine::EventSystem_SDL::Initialise()
+int Spite::EventSystem_SDL::Initialise()
 {
     return 0;
 }
 
-int Grengine::EventSystem_SDL::Shutdown()
+int Spite::EventSystem_SDL::Shutdown()
 {
     return 0;
 }
 
-int Grengine::EventSystem_SDL::ProcessEvents()
+int Spite::EventSystem_SDL::ProcessEvents()
 {
     SDL_Event e;
     //While application is running
@@ -47,7 +47,7 @@ int Grengine::EventSystem_SDL::ProcessEvents()
             
             break;
         case SDL_WINDOWEVENT:
-            //Here we're converting the SDL event into our generic Grengine event
+            //Here we're converting the SDL event into our generic Spite event
             //so that we can keep things nice and abstract
             GR_WindowEvent we;
             {                
@@ -61,7 +61,7 @@ int Grengine::EventSystem_SDL::ProcessEvents()
                 we.type = e.window.type;
                 we.windowID = e.window.windowID;
             }
-            Grengine::grRenderSystem->HandleWindowEvent(we);
+            Spite::grRenderSystem->HandleWindowEvent(we);
             break;
         }
     }

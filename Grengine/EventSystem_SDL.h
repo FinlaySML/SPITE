@@ -1,7 +1,7 @@
 #pragma once
 #include "EventSystem.h"
 
-namespace Grengine {
+namespace Spite {
     /// <summary>
     /// SDL Implementation to our EventSystem interface
     /// Handles the SDL message loop and dispatches

@@ -3,10 +3,10 @@
 #include "RenderSystem.h"
 #include "EventSystem.h"
 
-namespace Grengine {
+namespace Spite {
 
 	Core::Core(int argc, char** argv) :
-		grApp{Grengine::CreateApp(argc, argv)}, //Create the application layer
+		grApp{Spite::CreateApp(argc, argv)}, //Create the application layer
 		grTimeSystem{ 60 }						//Targeting 60 frames per second
 	{
 		//Initialise Subsystems

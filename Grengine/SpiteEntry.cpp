@@ -4,10 +4,10 @@
 #include <Windows.h>
 #endif
 
-#include "Grengine.h"
+#include "Spite.h"
 
 int main(int argc, char* argv[]) {
-    std::unique_ptr<Grengine::Core> engine(new Grengine::Core(argc, argv));
+    std::unique_ptr<Spite::Core> engine(new Spite::Core(argc, argv));
 
     return engine->Run();
 }

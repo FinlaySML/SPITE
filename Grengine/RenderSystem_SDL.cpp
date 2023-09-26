@@ -6,19 +6,19 @@
 //But maybe you think Globals are bad
 //There might be other ways to approach this.
 #ifdef RENDERSYSTEM_SDL
-    Grengine::RenderSystem_SDL grRenderSystemSDL;
-    Grengine::RenderSystem* Grengine::grRenderSystem = &grRenderSystemSDL;
+    Spite::RenderSystem_SDL grRenderSystemSDL;
+    Spite::RenderSystem* Spite::grRenderSystem = &grRenderSystemSDL;
 #endif
 
-Grengine::RenderSystem_SDL::RenderSystem_SDL()
+Spite::RenderSystem_SDL::RenderSystem_SDL()
 {
 }
 
-Grengine::RenderSystem_SDL::~RenderSystem_SDL()
+Spite::RenderSystem_SDL::~RenderSystem_SDL()
 {
 }
 
-int Grengine::RenderSystem_SDL::Initialise()
+int Spite::RenderSystem_SDL::Initialise()
 {
 	int result = 0;
     //Initialize SDL
@@ -30,7 +30,7 @@ int Grengine::RenderSystem_SDL::Initialise()
     return result;
 }
 
-int Grengine::RenderSystem_SDL::Shutdown()
+int Spite::RenderSystem_SDL::Shutdown()
 {
     //Destroy render systems
     SDL_DestroyRenderer(m_Renderer);
@@ -40,7 +40,7 @@ int Grengine::RenderSystem_SDL::Shutdown()
 	return 0;
 }
 
-int Grengine::RenderSystem_SDL::OpenWindow(int width, int height)
+int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
 {
     int result = 0;
 
@@ -56,7 +56,7 @@ int Grengine::RenderSystem_SDL::OpenWindow(int width, int height)
     return result;
 }
 
-int Grengine::RenderSystem_SDL::CreateRenderer()
+int Spite::RenderSystem_SDL::CreateRenderer()
 {
     int result = 0;
     if (m_Window == nullptr)
@@ -78,15 +78,15 @@ int Grengine::RenderSystem_SDL::CreateRenderer()
     }
 }
 
-void Grengine::RenderSystem_SDL::Clear()
+void Spite::RenderSystem_SDL::Clear()
 {
 }
 
-void Grengine::RenderSystem_SDL::Display()
+void Spite::RenderSystem_SDL::Display()
 {
 }
 
-void Grengine::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
+void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
 {
     switch (e.event) {
     case GR_WINDOWEVENT::WINDOWEVENT_SHOWN:

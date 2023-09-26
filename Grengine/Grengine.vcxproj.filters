@@ -21,10 +21,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Grapplication.cpp">
+    <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GrengineEntry.cpp">
+    <ClCompile Include="SpiteEntry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core.cpp">
@@ -47,10 +47,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Grapplication.h">
+    <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Grengine.h">
+    <ClInclude Include="Spite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core.h">

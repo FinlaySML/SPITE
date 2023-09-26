@@ -1,10 +1,10 @@
 #pragma once
-namespace Grengine {
+namespace Spite {
 	/// <summary>
 	/// Interface to the application layer
 	/// This should be supplied by the Game project
 	/// </summary>
-	class Grapplication
+	class Application
 	{
 	public:
 		/// <summary>
@@ -18,5 +18,5 @@ namespace Grengine {
 		virtual void Render() = 0;
 	};
 	
-	extern Grapplication* CreateApp(int argc, char** argv);
+	extern Application* CreateApp(int argc, char** argv);
 }

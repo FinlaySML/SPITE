@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Grapplication.h"
+#include "Application.h"
 #include "TimeSystem.h"
 #include <memory>
 
-namespace Grengine {
+namespace Spite {
 	class Core
 	{
 	public:
@@ -26,7 +26,7 @@ namespace Grengine {
 		void	Close();
 
 	private:
-		std::unique_ptr<Grengine::Grapplication> grApp;
+		std::unique_ptr<Spite::Application> grApp;
 		TimeSystem grTimeSystem;
 	};
 }

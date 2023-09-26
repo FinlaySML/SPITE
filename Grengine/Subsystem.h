@@ -1,5 +1,5 @@
 #pragma once
-namespace Grengine {
+namespace Spite {
 	/// <summary>
 	/// Abstract interface for any Subsystem
 	/// They need to be initialised and shut down
