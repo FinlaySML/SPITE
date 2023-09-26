@@ -25,38 +25,22 @@ namespace Spite {
 		//Maybe the application layer should be in charge of calling this?
 		OpenWindow(1280, 720);
 
-		//Main loop
-		while (1) {
+		float frameDelta = 1/60.0f;
+		//Frame Loop
+		while (true) {
 			//Events
 			if (ProcessEvents() == -1) {
 				break;
 			}
-
-			//Timing			
-			grTimeSystem.Tick();
-
-			//Work out whether we need to call Update this tick and, if so, how many times (usually 0 or 1)
-			int updateCount = grTimeSystem.GetUpdateCount();
-
-			//Frame
-			if (updateCount > 0) {
-				double dt = 0;	//dt == DeltaTime in seconds: How long since the last Update
-
-				auto deltaTime = grTimeSystem.Update(); //Get Delta Time in nanoseconds
-
-				//Handle the possibility that there are multiple frames to run
-				dt = std::chrono::duration_cast<std::chrono::duration<double, std::chrono::seconds::period>>(deltaTime).count();
-				dt /= updateCount;
-
-				while (updateCount > 0) {
-					//Update on a fixed timescale
-					Update(dt);
-					updateCount--;
-				}
+			//Tick
+			int tickCount = grTimeSystem.GetTickCount();
+			for (int i = 0; i < tickCount; i++) {
+				Update(grTimeSystem.GetTickDelta());
 			}
-
-			//Render as fast as we can
-			Render();
+			//Frame
+			Render(frameDelta);
+			//Get next frames delta
+			frameDelta = grTimeSystem.GetFrameDelta();
 		}
 		Close();
 		return 0;
@@ -69,9 +53,9 @@ namespace Spite {
 	{
 		grApp->Update(dt);
 	}
-	void Core::Render()
+	void Core::Render(double dt)
 	{		
-		//Somebody took my renderer!
+		grApp->Render(dt);
 	}
 	void Core::Close()
 	{

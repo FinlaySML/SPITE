@@ -15,28 +15,31 @@ namespace Spite {
 	public:
 		TimeSystem(const int targetFramesPerSecond);
 		/// <summary>
-		/// Call this when performing a game Update
+		/// Sleeps till the next frame 
 		/// </summary>
-		/// <returns>The time, in nanoseconds, since the last Update</returns>
-		const std::chrono::nanoseconds	Update();
+		/// <returns>The frame delta in seconds</returns>
+		const double GetFrameDelta();
 
 		/// <summary>
-		/// Call this when processing a Tick
+		/// Get the tick delta
 		/// </summary>
-		/// <returns>The time, in nanoseconds, since the last Tick</returns>
-		const std::chrono::nanoseconds	Tick();
+		/// <returns>The tick delta in seconds</returns>
+		const double GetTickDelta();
 
 		/// <summary>
-		/// Used to find out whether we should be performing an Update or not
+		/// Get the number of ticks to execute
 		/// </summary>
-		/// <returns> How many Updates do we need to run.
-		/// Usually 0, sometimes 1. Could be more than 1 if we've stalled.
+		/// <returns> 
+		/// The number of ticks
 		/// </returns>
-		int GetUpdateCount();
+		int GetTickCount();
 	private:
-		std::chrono::time_point<Clock>	LastUpdateTime;
+		std::chrono::time_point<Clock>	LastFrameTime;
 		std::chrono::time_point<Clock>	LastTickTime;
-		std::chrono::nanoseconds		TickTime;
-		std::chrono::microseconds		TargetFrameTime;
+		const std::chrono::duration<double>	TargetFrameTime;
+		const std::chrono::duration<double>	TargetTickTime;
+
+		const int MaxTickCount;
+		const double MaxFrameDelta;
 	};
 }

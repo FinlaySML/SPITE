@@ -21,7 +21,7 @@ namespace Spite {
 		/// <returns>-1 on a Quit event</returns>
 		int		ProcessEvents();
 		void	Update(double dt);
-		void	Render();
+		void	Render(double dt);
 
 		void	Close();
 
