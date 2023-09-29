@@ -1,6 +1,9 @@
 #include "RenderSystem_SDL.h"
-#include <SDL.h>
 #include <iostream>
+
+#include <glew.h>
+#include <SDL.h>
+
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad
@@ -33,9 +36,7 @@ int Spite::RenderSystem_SDL::Initialise()
 int Spite::RenderSystem_SDL::Shutdown()
 {
     //Destroy render systems
-    SDL_DestroyRenderer(m_Renderer);
     SDL_DestroyWindow(m_Window);
-    m_Renderer = nullptr;
     m_Window = nullptr;
 	return 0;
 }
@@ -46,14 +47,15 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
 
     m_ScreenWidth = width;
     m_ScreenHeight = height;
-
-    m_Window = SDL_CreateWindow("My first video grame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_SHOWN);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_OPENGL);
     if (m_Window == nullptr)
     {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        result = -1;
+        return -1;
     }
-    return result;
 }
 
 int Spite::RenderSystem_SDL::CreateRenderer()
@@ -64,18 +66,16 @@ int Spite::RenderSystem_SDL::CreateRenderer()
         printf("There is no window!\n");
         return -1;
     }
+    //Create opengl context
+    SDL_GLContext openglContext = SDL_GL_CreateContext(m_Window);
+    glewExperimental = GL_TRUE;
+    auto init_res = glewInit();
+    if (init_res != GLEW_OK) {
+        std::cout << glewGetErrorString(glewInit()) << std::endl;
+        return -1;
+    }
+    //Create Sprite VBO
 
-    m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
-    if (m_Renderer == NULL)
-    {
-        printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-        result = -1;
-    }
-    else
-    {
-        //Initialize renderer color
-        SDL_SetRenderDrawColor(m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    }
 }
 
 void Spite::RenderSystem_SDL::Clear()

@@ -30,7 +30,6 @@ namespace Spite {
 
 	private:
 		SDL_Window*		m_Window;
-		SDL_Renderer*	m_Renderer;
 		
 		int				m_ScreenWidth;
 		int				m_ScreenHeight;
