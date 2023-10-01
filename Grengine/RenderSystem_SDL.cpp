@@ -98,13 +98,13 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     SDL_GetWindowSize(m_Window, &width, &height);
     glViewport(0, 0, width, height);
     //Vertex data
-    glm::vec3 vertexData[6] = {
-         {0.0f,  0.0f, 0.0f},
-         {1.0f,  0.0f, 0.0f},
-         {0.0f,  1.0f, 0.0f},
-         {0.0f,  1.0f, 0.0f},
-         {1.0f,  1.0f, 0.0f},
-         {1.0f,  0.0f, 0.0f}
+    glm::vec2 vertexData[6] = {
+         {0.0f,  0.0f},
+         {1.0f,  0.0f},
+         {0.0f,  1.0f},
+         {0.0f,  1.0f},
+         {1.0f,  1.0f},
+         {1.0f,  0.0f}
     };
     //VAO
     glGenVertexArrays(1, &VAO);
@@ -114,7 +114,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
     //Attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(0);
     //Shader
     auto vs = LoadShader("basic_vs.glsl", GL_VERTEX_SHADER);
