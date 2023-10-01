@@ -20,9 +20,11 @@ void Game::Update(double dt)
 
 void Game::Render(double dt)
 {
+	Spite::grRenderSystem->Clear();
 	/*static double a{0.0};
 	a += dt;
 	static double b{ 0.0 };
 	b += 1.0;
 	std::cout << a / b << "\n";*/
+	Spite::grRenderSystem->Display();
 }

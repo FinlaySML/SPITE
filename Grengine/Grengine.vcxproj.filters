@@ -45,6 +45,9 @@
     <ClCompile Include="RenderSystem_SDL.cpp">
       <Filter>Source Files\SDL</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -74,5 +77,13 @@
     <ClInclude Include="RenderSystem_SDL.h">
       <Filter>Header Files\SDL</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic_fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="basic_vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

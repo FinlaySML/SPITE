@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderSystem.h"
+#include <string>
 
 //Forward declarations
 class SDL_Window;
@@ -33,6 +34,12 @@ namespace Spite {
 		
 		int				m_ScreenWidth;
 		int				m_ScreenHeight;
+		//OpenGL
+		unsigned int VBO;
+		unsigned int VAO;
+		unsigned int program;
+		unsigned int texture;
+		unsigned int LoadShader(std::string path, int shaderType);
     };
 }
 
