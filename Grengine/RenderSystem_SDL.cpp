@@ -141,6 +141,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //Use Program
     glUseProgram(program);
     //Texture
+    stbi_set_flip_vertically_on_load(true);
     int x, y, n;
     stbi_uc* pixelData = stbi_load("test.png", &x, &y, &n, 3);
     if(pixelData == nullptr) {
@@ -159,7 +160,8 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //Uniforms
     unsigned int viewProjectionLoc = glGetUniformLocation(program, "viewProjection");
     unsigned int transformsLoc = glGetUniformLocation(program, "transforms");
-    unsigned int uvsLoc = glGetUniformLocation(program, "uvs");
+    unsigned int uvOriginsLoc = glGetUniformLocation(program, "uvOrigins");
+    unsigned int uvDimensionsLoc = glGetUniformLocation(program, "uvDimensions");
     glm::mat4 vp = glm::ortho<float>(-2* aspect,2*aspect,-2,2);
     glm::mat4 tfs[4] = {
         glm::translate(glm::identity<glm::mat4>(),{ 0.5, 0.5, 0}),
@@ -167,15 +169,22 @@ int Spite::RenderSystem_SDL::CreateRenderer()
         glm::translate(glm::identity<glm::mat4>(),{ 0.5,-1.5, 0}),
         glm::translate(glm::identity<glm::mat4>(),{-1.5,-1.5, 0})
     };
-    glm::vec4 uvs[4] = {
-        {0,0,1,1},
-        {0,0,1,1},
-        {0,0,1,1},
-        {0,0,1,1}
+    glm::vec2 uvOrigins[4] = {
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0}
+    };
+    glm::vec2 uvDimensions[4] = {
+        {1,1},
+        {1,1},
+        {1,1},
+        {1,1}
     };
     glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
     glUniformMatrix4fv(transformsLoc, 4, GL_FALSE, glm::value_ptr(tfs[0]));
-    glUniform4fv(uvsLoc, 4, glm::value_ptr(uvs[0]));
+    glUniform2fv(uvOriginsLoc, 4, glm::value_ptr(uvOrigins[0]));
+    glUniform2fv(uvDimensionsLoc, 4, glm::value_ptr(uvDimensions[0]));
 }
 
 void Spite::RenderSystem_SDL::Clear()
