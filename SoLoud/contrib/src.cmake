@@ -103,7 +103,9 @@ if (SOLOUD_BACKEND_NULL)
 endif()
 
 if (SOLOUD_BACKEND_SDL2)
-	find_package (SDL2 REQUIRED)
+	set(SDL2_LIBRARY ../../lib/x64/SDL2.lib)
+	set(SDL2_INCLUDE_DIR ../../include/SDL)
+
 	include_directories (${SDL2_INCLUDE_DIR})
 	add_definitions (-DWITH_SDL2_STATIC)
 

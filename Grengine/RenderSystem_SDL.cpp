@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "RenderSystem_SDL.h"
 
+#include "SDL.h"
+#include "glew.h"
+#include "ext.hpp"
+#include "stb_image.h"
+
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad
 //There might be other ways to approach this.

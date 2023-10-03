@@ -1,4 +1,0 @@
-C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/soloud.dir
-C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/INSTALL.dir
-C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/ZERO_CHECK.dir
