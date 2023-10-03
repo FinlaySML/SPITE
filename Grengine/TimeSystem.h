@@ -1,5 +1,5 @@
 #pragma once
-#include <chrono>
+#include "pch.h"
 namespace Spite {
 	using Clock = std::chrono::steady_clock;
 	/// <summary>

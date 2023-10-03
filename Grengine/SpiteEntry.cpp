@@ -1,8 +1,4 @@
-#pragma once
-
-#ifdef _WIN32||_WIN64
-#include <Windows.h>
-#endif
+#include "pch.h"
 
 #include "Spite.h"
 

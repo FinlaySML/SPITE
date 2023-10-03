@@ -1,0 +1,22 @@
+#pragma once
+#include <memory>
+#include <vector>
+#include <string>
+#include <span>
+#include <tuple>
+#include <unordered_map>
+#include <chrono>
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <thread>
+#include <algorithm>
+#include <glew.h>
+#include <SDL.h>
+#include <stb_image.h>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <ext.hpp>
+#ifdef _WIN32||_WIN64
+#include <Windows.h>
+#define NOMINMAX
+#endif

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\48d1fda144a17a721ca72e21065d1a83\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9DDB89D3-8219-3D1D-B553-0B52B00B25FF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

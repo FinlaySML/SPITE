@@ -2,7 +2,7 @@
 
 #include "Application.h"
 #include "TimeSystem.h"
-#include <memory>
+#include "pch.h"
 
 namespace Spite {
 	class Core

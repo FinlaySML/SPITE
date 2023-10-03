@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{05AB29EE-EF5E-3BF2-8375-3F9F58975674}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>soloud</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">soloud.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">soloud</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">soloud.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">soloud</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">soloud.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">soloud</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">soloud.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">soloud</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WITH_NULL;WITH_SDL2_STATIC;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\..\include;C:\Users\2100719\source\repos\FinlaySML\SPITE\include\SDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\bin\cmake.exe -SC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib -BC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build --check-stamp-file C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindThreads.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeSystem.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\Configure.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\FindSDL2.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\Install.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\InstallExport.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\OptionDependentOnPackage.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\PrintOptionStatus.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\src.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\bin\cmake.exe -SC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib -BC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build --check-stamp-file C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindThreads.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeSystem.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\Configure.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\FindSDL2.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\Install.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\InstallExport.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\OptionDependentOnPackage.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\PrintOptionStatus.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\src.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\bin\cmake.exe -SC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib -BC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build --check-stamp-file C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindThreads.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeSystem.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\Configure.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\FindSDL2.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\Install.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\InstallExport.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\OptionDependentOnPackage.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\PrintOptionStatus.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\src.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\bin\cmake.exe -SC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/contrib -BC:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build --check-stamp-file C:/Users/2100719/source/repos/FinlaySML/SPITE/SoLoud/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\FindThreads.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Users\2100719\Downloads\cmake-3.27.6-windows-x86_64\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\3.27.6\CMakeSystem.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\Configure.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\FindSDL2.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\Install.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\InstallExport.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\OptionDependentOnPackage.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\cmake\PrintOptionStatus.cmake;C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\contrib\src.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_audiosource.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_bus.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_3d.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_basicops.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_faderops.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_filterops.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_getters.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_setters.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_voicegroup.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_core_voiceops.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_fader.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_fft.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_fft_lut.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_file.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_filter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_queue.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\core\soloud_thread.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\monotone\soloud_monotone.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\openmpt\soloud_openmpt.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\openmpt\soloud_openmpt_dll.c" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\sfxr\soloud_sfxr.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\speech\darray.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\speech\klatt.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\speech\resonator.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\speech\soloud_speech.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\speech\tts.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\tedsid\sid.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\tedsid\soloud_tedsid.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\tedsid\ted.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\vic\soloud_vic.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\vizsn\soloud_vizsn.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\wav\dr_impl.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\wav\soloud_wav.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\wav\soloud_wavstream.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\audiosource\wav\stb_vorbis.c" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\backend\null\soloud_null.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\backend\sdl2_static\soloud_sdl2_static.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_bassboostfilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_biquadresonantfilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_dcremovalfilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_echofilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_fftfilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_flangerfilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_lofifilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_robotizefilter.cpp" />
+    <ClCompile Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\src\filter\soloud_waveshaperfilter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\2100719\source\repos\FinlaySML\SPITE\SoLoud\build\ZERO_CHECK.vcxproj">
+      <Project>{DE105502-6497-3ADB-9F45-817EC36F025C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

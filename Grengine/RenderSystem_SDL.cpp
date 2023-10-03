@@ -1,17 +1,5 @@
+#include "pch.h"
 #include "RenderSystem_SDL.h"
-#include <iostream>
-#include <array>
-#include <fstream>
-#include <vector>
-#include "stb_image.h"
-
-#include <glew.h>
-#include <SDL.h>
-
-#include <vec3.hpp>
-#include <mat4x4.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad

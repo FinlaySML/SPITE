@@ -1,7 +1,6 @@
-
+#include "pch.h"
 #include "TimeSystem.h"
-#include <thread>
-#include <iostream>
+
 using namespace std::chrono;
 using dsec = duration<double>;
 

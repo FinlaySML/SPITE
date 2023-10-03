@@ -1,8 +1,9 @@
+#include "pch.h"
 #include "EventSystem_SDL.h"
 
 #include "Core.h"  
 #include "RenderSystem.h"
-#include <SDL.h>
+#include "SDL.h"
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad

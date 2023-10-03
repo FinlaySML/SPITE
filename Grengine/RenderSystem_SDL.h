@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderSystem.h"
-#include <string>
+#include "pch.h"
 
 //Forward declarations
 class SDL_Window;
