@@ -11,8 +11,8 @@
 #include <array>
 #include <thread>
 #include <algorithm>
-//#include <glew.h>
-//#include <SDL.h>
+//#include "GL/glew.h"
+//#include <SDL/SDL.h>
 //#include <stb_image.h>
 //#define GLM_ENABLE_EXPERIMENTAL
 //#include <ext.hpp>

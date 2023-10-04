@@ -4,7 +4,7 @@
 #include "Core.h"  
 #include "RenderSystem.h"
 
-#include "SDL.h"
+#include "SDL/SDL.h"
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad

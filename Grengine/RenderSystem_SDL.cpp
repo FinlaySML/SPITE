@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "RenderSystem_SDL.h"
 
-#include "SDL.h"
-#include "glew.h"
-#include "ext.hpp"
+#include "SDL/SDL.h"
+#include "GL/glew.h"
+#include "glm/ext.hpp"
 #include "stb_image.h"
 
 //We're globally instancing our subsystems!
