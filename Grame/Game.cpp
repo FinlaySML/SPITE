@@ -24,7 +24,7 @@ void Game::Render(double dt)
 	Spite::grRenderSystem->Camera().position = { 0, 0 };
 	Spite::grRenderSystem->Camera().unitHeight = 1000.0f;
 	Spite::Sprite sprite{};
-	for(int i = 0; i < 250'000; i+=5){
+	for(int i = 0; i < 250'000; i++){
 		float f = sqrtf(i);
 		sprite.position = {cos(f)*f, sin(f)*f};
 		Spite::grRenderSystem->DrawSprite(sprite);
