@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
     <ClCompile Include="pch.cpp">
@@ -154,10 +155,12 @@
     </ClCompile>
     <ClCompile Include="SpiteEntry.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RenderSystem_SDL.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="TimeSystem.h" />
   </ItemGroup>

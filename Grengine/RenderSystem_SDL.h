@@ -1,6 +1,6 @@
 #pragma once
-#include "RenderSystem.h"
 #include "pch.h"
+#include "RenderSystem.h"
 
 //Forward declarations
 class SDL_Window;
@@ -23,21 +23,37 @@ namespace Spite {
 		int			OpenWindow(int width, int height) final;
 		int			CreateRenderer() final;
 		void		Clear() final;
+		void		DrawSprite(const Sprite& sprite) final;
 		void		Display() final;
 		void		HandleWindowEvent(GR_WindowEvent& e) final;
+		Spite::Camera& Camera() final;
 
 		inline int	GetScreenWidth()		const { return m_ScreenWidth; };
 		inline int	GetScreenHeight()	const { return m_ScreenHeight; };
 
 	private:
+		struct ShaderSpriteData {
+			glm::vec2 translation{ 0,0 };
+			glm::vec2 scale{ 1,1 };
+			float rotation{ 0 };
+			float z{ 0 };
+			glm::vec2 uvOrigin{ 0,0 };
+			glm::vec2 uvDimension{ 1,1 };
+		};
+		std::vector<ShaderSpriteData> spriteBatch;
+
+		Spite::Camera camera;
+
 		SDL_Window*		m_Window;
 		
 		int				m_ScreenWidth;
 		int				m_ScreenHeight;
+		
 		//OpenGL
 		unsigned int VBO;
 		unsigned int VAO;
 		unsigned int program;
+		unsigned int viewProjectionLoc;
 		unsigned int texture;
 		unsigned int LoadShader(std::string path, int shaderType);
     };

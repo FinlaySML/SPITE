@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "RenderSystem_SDL.h"
 
 #include "SDL/SDL.h"
@@ -14,7 +14,7 @@
     Spite::RenderSystem* Spite::grRenderSystem = &grRenderSystemSDL;
 #endif
 
-Spite::RenderSystem_SDL::RenderSystem_SDL()
+Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}
 {
 }
 
@@ -49,7 +49,7 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
     m_ScreenWidth = width;
     m_ScreenHeight = height;
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
     m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_OPENGL);
@@ -66,6 +66,8 @@ void DebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsiz
         (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
         type, severity, message);
 }
+
+
 
 int Spite::RenderSystem_SDL::CreateRenderer()
 {
@@ -92,12 +94,12 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     glViewport(0, 0, width, height);
     //Vertex data
     glm::vec2 vertexData[6] = {
-         {0.0f,  0.0f},
-         {1.0f,  0.0f},
-         {0.0f,  1.0f},
-         {0.0f,  1.0f},
-         {1.0f,  1.0f},
-         {1.0f,  0.0f}
+         {-.5f,-.5f},
+         { .5f,-.5f},
+         {-.5f, .5f},
+         {-.5f, .5f},
+         { .5f, .5f},
+         { .5f,-.5f}
     };
     //VAO
     glGenVertexArrays(1, &VAO);
@@ -142,42 +144,18 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     }
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelData);
+    glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(pixelData);
-    //Window size
-    int w, h;
-    SDL_GetWindowSize(m_Window, &w, &h);
-    float aspect = w/(float)h;
     //Uniforms
-    unsigned int viewProjectionLoc = glGetUniformLocation(program, "viewProjection");
-    unsigned int transformsLoc = glGetUniformLocation(program, "transforms");
-    unsigned int uvOriginsLoc = glGetUniformLocation(program, "uvOrigins");
-    unsigned int uvDimensionsLoc = glGetUniformLocation(program, "uvDimensions");
-    glm::mat4 vp = glm::ortho<float>(-2* aspect,2*aspect,-2,2);
-    glm::mat4 tfs[4] = {
-        glm::translate(glm::identity<glm::mat4>(),{ 0.5, 0.5, 0}),
-        glm::translate(glm::identity<glm::mat4>(),{-1.5, 0.5, 0}),
-        glm::translate(glm::identity<glm::mat4>(),{ 0.5,-1.5, 0}),
-        glm::translate(glm::identity<glm::mat4>(),{-1.5,-1.5, 0})
-    };
-    glm::vec2 uvOrigins[4] = {
-        {0,0},
-        {0,0},
-        {0,0},
-        {0,0}
-    };
-    glm::vec2 uvDimensions[4] = {
-        {1,1},
-        {1,1},
-        {1,1},
-        {1,1}
-    };
-    glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
-    glUniformMatrix4fv(transformsLoc, 4, GL_FALSE, glm::value_ptr(tfs[0]));
-    glUniform2fv(uvOriginsLoc, 4, glm::value_ptr(uvOrigins[0]));
-    glUniform2fv(uvDimensionsLoc, 4, glm::value_ptr(uvDimensions[0]));
+    viewProjectionLoc = glGetUniformLocation(program, "viewProjection");
+    //ssbo
+    GLuint ssbo;
+    glGenBuffers(1, &ssbo);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, ssbo);
 }
 
 void Spite::RenderSystem_SDL::Clear()
@@ -186,10 +164,31 @@ void Spite::RenderSystem_SDL::Clear()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+void Spite::RenderSystem_SDL::DrawSprite(const Sprite& sprite) {
+    spriteBatch.push_back({});
+    spriteBatch.back().translation = sprite.position;
+    spriteBatch.back().scale = sprite.scale;
+    spriteBatch.back().rotation = sprite.rotation;
+    spriteBatch.back().z = sprite.z;
+}
+
 void Spite::RenderSystem_SDL::Display()
 {
-    glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 4);
+    //Window size
+    int w, h;
+    SDL_GetWindowSize(m_Window, &w, &h);
+    float aspect = w / (float)h;
+    //View Projection
+    glm::mat4 vp = glm::ortho<float>(-aspect, aspect, -1, 1);
+    vp = glm::scale(vp, glm::vec3{2/camera.unitHeight});
+    vp = glm::translate(vp, glm::vec3{-camera.position, 0});
+    glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
+    //Send sprite data to GPU
+    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(spriteBatch[0]) * spriteBatch.size(), spriteBatch.data(), GL_STREAM_DRAW);
+    glDrawArraysInstanced(GL_TRIANGLES, 0, 6, spriteBatch.size());
+    //Swap buffers to display the frame
     SDL_GL_SwapWindow(m_Window);
+    spriteBatch.clear();
 }
 
 void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
@@ -252,6 +251,10 @@ void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
             e.windowID, e.event);
         break;
     }
+}
+
+Spite::Camera& Spite::RenderSystem_SDL::Camera() {
+    return camera;
 }
 
 unsigned int Spite::RenderSystem_SDL::LoadShader(std::string path, int shaderType) {

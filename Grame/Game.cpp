@@ -21,10 +21,13 @@ void Game::Update(double dt)
 void Game::Render(double dt)
 {
 	Spite::grRenderSystem->Clear();
-	/*static double a{0.0};
-	a += dt;
-	static double b{ 0.0 };
-	b += 1.0;
-	std::cout << a / b << "\n";*/
+	Spite::grRenderSystem->Camera().position = { 0, 0 };
+	Spite::grRenderSystem->Camera().unitHeight = 1000.0f;
+	Spite::Sprite sprite{};
+	for(int i = 0; i < 250'000; i+=5){
+		float f = sqrtf(i);
+		sprite.position = {cos(f)*f, sin(f)*f};
+		Spite::grRenderSystem->DrawSprite(sprite);
+	}
 	Spite::grRenderSystem->Display();
 }
