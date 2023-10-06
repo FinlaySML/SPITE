@@ -1,11 +1,6 @@
 ﻿#include "pch.h"
 #include "RenderSystem_SDL.h"
 
-#include "SDL/SDL.h"
-#include "GL/glew.h"
-#include "glm/ext.hpp"
-#include "stb_image.h"
-
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad
 //There might be other ways to approach this.
@@ -88,6 +83,8 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //Debug
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(DebugCallback, nullptr);
+    //Texture
+    testTexture.LoadFromFile("test.png");
     //Viewport
     int width, height;
     SDL_GetWindowSize(m_Window, &width, &height);
@@ -135,20 +132,6 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //GLint textureLoc = glGetUniformLocation(program, "texture");
     //Use Program
     glUseProgram(program);
-    //Texture
-    stbi_set_flip_vertically_on_load(true);
-    int x, y, n;
-    stbi_uc* pixelData = stbi_load("test.png", &x, &y, &n, 3);
-    if(pixelData == nullptr) {
-        std::cout << "Image failed to load: test.png" << std::endl;
-    }
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelData);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    stbi_image_free(pixelData);
     //Uniforms
     viewProjectionLoc = glGetUniformLocation(program, "viewProjection");
     //ssbo
@@ -162,6 +145,7 @@ void Spite::RenderSystem_SDL::Clear()
 {
     glClearColor(1.0f,0.5f,0.5f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    spriteBatch.clear();
 }
 
 void Spite::RenderSystem_SDL::DrawSprite(const Sprite& sprite) {
@@ -185,10 +169,11 @@ void Spite::RenderSystem_SDL::Display()
     glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
     //Send sprite data to GPU
     glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(spriteBatch[0]) * spriteBatch.size(), spriteBatch.data(), GL_STREAM_DRAW);
+    //Bind Texture
+    glBindTexture(GL_TEXTURE_2D, testTexture.GetHandle());
     glDrawArraysInstanced(GL_TRIANGLES, 0, 6, spriteBatch.size());
     //Swap buffers to display the frame
     SDL_GL_SwapWindow(m_Window);
-    spriteBatch.clear();
 }
 
 void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)

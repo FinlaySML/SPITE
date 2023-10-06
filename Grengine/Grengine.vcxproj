@@ -157,6 +157,8 @@
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Texture_GL.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +173,8 @@
     <ClInclude Include="RenderSystem_SDL.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Subsystem.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Texture_GL.h" />
     <ClInclude Include="TimeSystem.h" />
   </ItemGroup>
   <ItemGroup>

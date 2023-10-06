@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "RenderSystem.h"
-#include <iostream>
 
 //Create the application layer
 //See Application.h

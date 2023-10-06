@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "RenderSystem.h"
+#include "Texture_GL.h"
 
 //Forward declarations
 class SDL_Window;
@@ -54,7 +55,7 @@ namespace Spite {
 		unsigned int VAO;
 		unsigned int program;
 		unsigned int viewProjectionLoc;
-		unsigned int texture;
+		Spite::Texture_GL testTexture;
 		unsigned int LoadShader(std::string path, int shaderType);
     };
 }

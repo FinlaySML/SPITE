@@ -11,11 +11,11 @@
 #include <array>
 #include <thread>
 #include <algorithm>
-//#include "GL/glew.h"
-//#include <SDL/SDL.h>
-//#include <stb_image.h>
-//#define GLM_ENABLE_EXPERIMENTAL
-//#include <ext.hpp>
+#include <GL/glew.h>
+#include <SDL/SDL.h>
+#include <stb_image.h>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/ext.hpp>
 #ifdef _WIN32||_WIN64
 #define NOMINMAX
 #include <Windows.h>

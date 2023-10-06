@@ -1,5 +1,5 @@
 #pragma once
-#include <glm/vec2.hpp>
+#include "pch.h"
 
 namespace Spite {
 	class Camera {

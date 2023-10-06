@@ -1,5 +1,5 @@
 #pragma once
-#include "glm/vec2.hpp"
+#include "pch.h"
 #include "Subsystem.h"
 #include <cstdint>
 #include "Sprite.h"
@@ -49,7 +49,7 @@ namespace Spite {
 		virtual int		OpenWindow(int width, int height)		= 0;
 		virtual int		CreateRenderer()						= 0;
 		virtual void	Clear()									= 0;
-		virtual void	DrawSprite(const Sprite& sprite)			= 0;
+		virtual void	DrawSprite(const Sprite& sprite)		= 0;
 		virtual void	Display()								= 0;
 		virtual void	HandleWindowEvent(GR_WindowEvent& e)	= 0;
 		virtual Camera& Camera()								= 0;
