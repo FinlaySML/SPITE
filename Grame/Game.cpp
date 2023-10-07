@@ -1,8 +1,7 @@
 #include "Game.h"
 #include "RenderSystem.h"
+#include "SoundSystem.h"
 
-//Create the application layer
-//See Application.h
 Spite::Application* Spite::CreateApp(int argc, char** argv)
 {
 	return new Game();
@@ -10,6 +9,8 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 
 Game::Game()
 {
+	auto id = Spite::sound->LoadSample("coin1.wav");
+	Spite::sound->Play(id);
 }
 
 void Game::Update(double dt)
@@ -19,14 +20,14 @@ void Game::Update(double dt)
 
 void Game::Render(double dt)
 {
-	Spite::grRenderSystem->Clear();
-	Spite::grRenderSystem->Camera().position = { 0, 0 };
-	Spite::grRenderSystem->Camera().unitHeight = 1000.0f;
+	Spite::render->Clear();
+	Spite::render->Camera().position = { 0, 0 };
+	Spite::render->Camera().unitHeight = 1000.0f;
 	Spite::Sprite sprite{};
 	for(int i = 0; i < 250'000; i++){
 		float f = sqrtf(i);
 		sprite.position = {cos(f)*f, sin(f)*f};
-		Spite::grRenderSystem->DrawSprite(sprite);
+		Spite::render->DrawSprite(sprite);
 	}
-	Spite::grRenderSystem->Display();
+	Spite::render->Display();
 }

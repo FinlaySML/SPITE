@@ -56,7 +56,7 @@ namespace Spite {
 	};
 
 	//Global pointer to the RenderSystem
-	extern RenderSystem* grRenderSystem;
+	extern RenderSystem* render;
 
 	/**
 	 * Based on the SDL_WindowEvent

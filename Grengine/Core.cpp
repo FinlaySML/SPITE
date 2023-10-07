@@ -3,21 +3,25 @@
 
 #include "RenderSystem.h"
 #include "EventSystem.h"
+#include "SoundSystem.h"
 
 namespace Spite {
 
 	Core::Core(int argc, char** argv) :
-		grApp{Spite::CreateApp(argc, argv)}, //Create the application layer
-		grTimeSystem{ 60 }						//Targeting 60 frames per second
+		grApp{nullptr}, //Create the application layer
+		grTimeSystem{60}						//Targeting 60 frames per second
 	{
 		//Initialise Subsystems
-		grRenderSystem->Initialise();
-		grEventSystem->Initialise();
+		render->Initialise();
+		event->Initialise();
+		sound->Initialise();
+		//Create App
+		grApp.reset(Spite::CreateApp(argc, argv));
 	}
 
 	void Core::OpenWindow(int ScreenWidth, int ScreenHeight) {
-		grRenderSystem->OpenWindow(ScreenWidth, ScreenHeight);
-		grRenderSystem->CreateRenderer();
+		render->OpenWindow(ScreenWidth, ScreenHeight);
+		render->CreateRenderer();
 	}
 
 	//Our main loop
@@ -48,7 +52,7 @@ namespace Spite {
 	}
 	int Core::ProcessEvents()
 	{
-		return grEventSystem->ProcessEvents();
+		return event->ProcessEvents();
 	}
 	void Core::Update(double dt)
 	{
@@ -60,7 +64,8 @@ namespace Spite {
 	}
 	void Core::Close()
 	{
-		grEventSystem->Shutdown();
-		grRenderSystem->Shutdown();
+		sound->Shutdown();
+		event->Shutdown();
+		render->Shutdown();
 	}
 }

@@ -11,5 +11,5 @@ namespace Spite {
         virtual int ProcessEvents() = 0;
     };
 
-    extern EventSystem* grEventSystem;
+    extern EventSystem* event;
 }

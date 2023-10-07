@@ -9,7 +9,7 @@
 //There might be other ways to approach this.
 #ifdef RENDERSYSTEM_SDL
     Spite::EventSystem_SDL grEventSystemSDL;
-    Spite::EventSystem* Spite::grEventSystem = &grEventSystemSDL;
+    Spite::EventSystem* Spite::event = &grEventSystemSDL;
 #endif
 
 int Spite::EventSystem_SDL::Initialise()
@@ -61,7 +61,7 @@ int Spite::EventSystem_SDL::ProcessEvents()
                 we.type = e.window.type;
                 we.windowID = e.window.windowID;
             }
-            Spite::grRenderSystem->HandleWindowEvent(we);
+            Spite::render->HandleWindowEvent(we);
             break;
         }
     }

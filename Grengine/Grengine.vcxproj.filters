@@ -25,6 +25,12 @@
     <Filter Include="Header Files\GL">
       <UniqueIdentifier>{736289c8-b639-40d1-a7d6-3fcc43fc3be9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SoLoud">
+      <UniqueIdentifier>{7b2403eb-f910-4716-ad8d-bac3acdbc01a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SoLoud">
+      <UniqueIdentifier>{d18ec334-267e-4eec-b194-281edc02bcb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpiteEntry.cpp">
@@ -59,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="Texture_GL.cpp">
       <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem_SoLoud.cpp">
+      <Filter>Source Files\SoLoud</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="Texture_GL.h">
       <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem_SoLoud.h">
+      <Filter>Header Files\SoLoud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

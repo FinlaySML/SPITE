@@ -1,8 +1,8 @@
 #pragma once
 namespace Spite {
 	/// <summary>
-	/// Abstract interface for any Subsystem
-	/// They need to be initialised and shut down
+	/// Abstract interface for any Subsystem.
+	/// They need to be initialised and shut down.
 	/// </summary>
 	class Subsystem {
 	public:

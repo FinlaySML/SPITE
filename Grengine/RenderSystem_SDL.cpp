@@ -6,7 +6,7 @@
 //There might be other ways to approach this.
 #ifdef RENDERSYSTEM_SDL
     Spite::RenderSystem_SDL grRenderSystemSDL;
-    Spite::RenderSystem* Spite::grRenderSystem = &grRenderSystemSDL;
+    Spite::RenderSystem* Spite::render = &grRenderSystemSDL;
 #endif
 
 Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}
@@ -55,11 +55,36 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
     }
 }
 
-
 void DebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
-    fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
-        (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
-        type, severity, message);
+    std::string sourceString = "UNKNOWN";
+    switch(source) {
+        case GL_DEBUG_SOURCE_API: sourceString = "API"; break;
+        case GL_DEBUG_SOURCE_WINDOW_SYSTEM: sourceString = "WINDOW_SYSTEM"; break;
+        case GL_DEBUG_SOURCE_SHADER_COMPILER: sourceString = "COMPILER"; break;
+        case GL_DEBUG_SOURCE_THIRD_PARTY: sourceString = "THIRD_PARTY"; break;
+        case GL_DEBUG_SOURCE_APPLICATION: sourceString = "APPLICATION"; break;
+        case GL_DEBUG_SOURCE_OTHER: sourceString = "OTHER"; break;
+    }
+    std::string typeString = "UNKNOWN";
+    switch(type) {
+        case GL_DEBUG_TYPE_ERROR: typeString = "ERROR"; break;
+        case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: typeString = "DEPRECATED_BEHAVIOR"; break;
+        case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR: typeString = "UNDEFINED_BEHAVIOR"; break;
+        case GL_DEBUG_TYPE_PORTABILITY: typeString = "PORTABILITY"; break;
+        case GL_DEBUG_TYPE_PERFORMANCE: typeString = "PERFORMANCE"; break;
+        case GL_DEBUG_TYPE_OTHER: typeString = "OTHER"; break;
+        case GL_DEBUG_TYPE_MARKER: typeString = "MARKER"; break;
+        case GL_DEBUG_TYPE_PUSH_GROUP: typeString = "PUSH_GROUP"; break;
+        case GL_DEBUG_TYPE_POP_GROUP: typeString = "POP_GROUP"; break;
+    }
+    std::string severityString = "UNKNOWN";
+    switch (severity) {
+        case GL_DEBUG_SEVERITY_HIGH: severityString = "HIGH"; break;
+        case GL_DEBUG_SEVERITY_MEDIUM: severityString = "MEDIUM"; break;
+        case GL_DEBUG_SEVERITY_LOW: severityString = "LOW"; break;
+        case GL_DEBUG_SEVERITY_NOTIFICATION: severityString = "NOTIFICATION"; break;
+    }
+    std::cout << std::format("SOURCE={} TYPE={} SEVERITY={}:\n{}\n", sourceString, typeString, severityString, message) << std::endl;
 }
 
 

@@ -153,6 +153,8 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SoundSystem.cpp" />
+    <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="SpiteEntry.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="SoundSystem_SoLoud.h" />
     <ClInclude Include="Spite.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="RenderSystem.h" />

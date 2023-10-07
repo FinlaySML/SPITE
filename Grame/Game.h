@@ -5,6 +5,6 @@ class Game : public Spite::Application
 {
 public:
 	Game();
-	void Update(double dt) override final;
-	void Render(double dt) override final;
+	void Update(double dt) final;
+	void Render(double dt) final;
 };

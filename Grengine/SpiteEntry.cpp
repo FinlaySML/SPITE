@@ -1,10 +1,8 @@
 #include "pch.h"
-
 #include "Spite.h"
 
 int main(int argc, char* argv[]) {
     std::unique_ptr<Spite::Core> engine(new Spite::Core(argc, argv));
-
     return engine->Run();
 }
 
