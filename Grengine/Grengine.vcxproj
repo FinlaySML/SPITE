@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="Internal.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -165,7 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Core.h" />
+    <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />

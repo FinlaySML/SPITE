@@ -9,8 +9,8 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 
 Game::Game()
 {
-	auto id = Spite::sound->LoadSample("coin1.wav");
-	Spite::sound->Play(id);
+	auto coinSample = Spite::sound->LoadSample("coin1.wav");
+	Spite::sound->Play(coinSample);
 }
 
 void Game::Update(double dt)

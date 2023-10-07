@@ -84,10 +84,8 @@ void DebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsiz
         case GL_DEBUG_SEVERITY_LOW: severityString = "LOW"; break;
         case GL_DEBUG_SEVERITY_NOTIFICATION: severityString = "NOTIFICATION"; break;
     }
-    std::cout << std::format("SOURCE={} TYPE={} SEVERITY={}:\n{}\n", sourceString, typeString, severityString, message) << std::endl;
+    std::cout << std::format("SOURCE={} TYPE={} SEVERITY={}:\n{}", sourceString, typeString, severityString, message) << std::endl;
 }
-
-
 
 int Spite::RenderSystem_SDL::CreateRenderer()
 {

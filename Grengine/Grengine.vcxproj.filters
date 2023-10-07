@@ -36,7 +36,7 @@
     <ClCompile Include="SpiteEntry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core.cpp">
+    <ClCompile Include="Internal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimeSystem.cpp">
@@ -80,7 +80,7 @@
     <ClInclude Include="Spite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core.h">
+    <ClInclude Include="Internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TimeSystem.h">
