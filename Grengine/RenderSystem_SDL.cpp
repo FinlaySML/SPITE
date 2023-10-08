@@ -23,7 +23,8 @@ int Spite::RenderSystem_SDL::Initialise()
     //Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        std::cout << std::format("SDL could not initialize! SDL_Error: {}", SDL_GetError()) << std::endl;
+        
         result = -1;
     }
     return result;
@@ -50,7 +51,7 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
     m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_OPENGL);
     if (m_Window == nullptr)
     {
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        std::cout << std::format("Window could not be created! SDL_Error: {}", SDL_GetError()) << std::endl;
         return -1;
     }
 }
@@ -92,7 +93,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     int result = 0;
     if (m_Window == nullptr)
     {
-        printf("There is no window!\n");
+        std::cout << "There is no window!" << std::endl;
         return -1;
     }
     //Create opengl context
@@ -188,6 +189,7 @@ void Spite::RenderSystem_SDL::Display()
     //View Projection
     glm::mat4 vp = glm::ortho<float>(-aspect, aspect, -1, 1);
     vp = glm::scale(vp, glm::vec3{2/camera.unitHeight});
+    vp = glm::rotate(vp, camera.rotation, glm::vec3{0,0,1});
     vp = glm::translate(vp, glm::vec3{-camera.position, 0});
     glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
     //Send sprite data to GPU

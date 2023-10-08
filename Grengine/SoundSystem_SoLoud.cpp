@@ -38,13 +38,13 @@ namespace Spite {
         return StreamID();
     }
 
-    void SoundSystem_SoLoud::Play(SampleID sampleId) {
+    void SoundSystem_SoLoud::Play(SampleID sampleId, float volume) {
         auto it = samples.find(sampleId.val);
         if(it == samples.end()) {
             std::cout << std::format("Could not find sample with ID {}", sampleId.val) << std::endl;
             return;
         }
-        engine.play(*it->second);
+        engine.play(*it->second, volume);
     }
 
     std::string SoundSystem_SoLoud::GetSoLoudErrorString(SoLoud::result errorCode) {
