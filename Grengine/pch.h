@@ -11,6 +11,7 @@
 #include <array>
 #include <thread>
 #include <algorithm>
+#include <ranges>
 #include <GL/glew.h>
 #include <SDL/SDL.h>
 #include <stb_image.h>

@@ -27,10 +27,14 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 		//Tick
 		int tickCount = grTimeSystem.GetTickCount();
 		for (int i = 0; i < tickCount; i++) {
+			event->UpdateStart();
 			app->Update(grTimeSystem.GetTickDelta());
+			event->UpdateEnd();
 		}
 		//Frame
+		event->RenderStart();
 		app->Render(frameDelta);
+		event->RenderEnd();
 		//Get next frames delta
 		frameDelta = grTimeSystem.GetFrameDelta();
 	}

@@ -21,6 +21,8 @@ out vec2 uv;
 void main()
 {
     SpriteData data = spriteData[gl_InstanceID];
-    gl_Position =  viewProjection * vec4(aPos * data.scale + data.translation, data.z, 1);
+    vec2 p = aPos * data.scale;
+    p = vec2(p.x*cos(data.rotation)+p.y*sin(data.rotation), p.y*cos(data.rotation)-p.x*sin(data.rotation));
+    gl_Position =  viewProjection * vec4(p + data.translation, data.z, 1);
     uv = data.uvOrigin + data.uvDimension * (aPos+0.5);
 }

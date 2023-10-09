@@ -9,7 +9,7 @@
     Spite::RenderSystem* Spite::render = &grRenderSystemSDL;
 #endif
 
-Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}
+Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}, backgroundColour{0,0,0}
 {
 }
 
@@ -167,7 +167,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
 
 void Spite::RenderSystem_SDL::Clear()
 {
-    glClearColor(1.0f,0.5f,0.5f,1.0f);
+    glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     spriteBatch.clear();
 }
@@ -265,6 +265,10 @@ void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
 
 Spite::Camera& Spite::RenderSystem_SDL::Camera() {
     return camera;
+}
+
+glm::vec3& Spite::RenderSystem_SDL::BackgroundColour() {
+    return backgroundColour;
 }
 
 unsigned int Spite::RenderSystem_SDL::LoadShader(std::string path, int shaderType) {

@@ -28,6 +28,7 @@ namespace Spite {
 		void		Display() final;
 		void		HandleWindowEvent(GR_WindowEvent& e) final;
 		Spite::Camera& Camera() final;
+		glm::vec3& BackgroundColour() final;
 
 		inline int	GetScreenWidth()		const { return m_ScreenWidth; };
 		inline int	GetScreenHeight()	const { return m_ScreenHeight; };
@@ -56,6 +57,7 @@ namespace Spite {
 		unsigned int program;
 		unsigned int viewProjectionLoc;
 		Spite::Texture_GL testTexture;
+		glm::vec3 backgroundColour;
 		unsigned int LoadShader(std::string path, int shaderType);
     };
 }
