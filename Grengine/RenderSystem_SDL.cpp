@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "RenderSystem_SDL.h"
+#include "SpriteBatch_GL.h"
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad
@@ -107,96 +108,20 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //Debug
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(DebugCallback, nullptr);
-    //Texture
-    testTexture.LoadFromFile("test.png");
-    //Viewport
-    int width, height;
-    SDL_GetWindowSize(m_Window, &width, &height);
-    glViewport(0, 0, width, height);
-    //Vertex data
-    glm::vec2 vertexData[6] = {
-         {-.5f,-.5f},
-         { .5f,-.5f},
-         {-.5f, .5f},
-         {-.5f, .5f},
-         { .5f, .5f},
-         { .5f,-.5f}
-    };
-    //VAO
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-    //VBO
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    //Attributes
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    glEnableVertexAttribArray(0);
-    //Shader
-    auto vs = LoadShader("basic_vs.glsl", GL_VERTEX_SHADER);
-    auto fs = LoadShader("basic_fs.glsl", GL_FRAGMENT_SHADER);
-    program = glCreateProgram();
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    //Link
-    int i = 0;
-    glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &i);
-    if (i == GL_FALSE) {
-        std::cout << "Program failed linking!" << std::endl;
-    }
-    //Validate
-    glValidateProgram(program);
-    glGetProgramiv(program, GL_VALIDATE_STATUS, &i);
-    if(i == GL_FALSE) {
-        std::cout << "Program failed validation!" << std::endl;
-    }
-    //GLint textureLoc = glGetUniformLocation(program, "texture");
-    //Use Program
-    glUseProgram(program);
-    //Uniforms
-    viewProjectionLoc = glGetUniformLocation(program, "viewProjection");
-    //ssbo
-    GLuint ssbo;
-    glGenBuffers(1, &ssbo);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, ssbo);
 }
 
 void Spite::RenderSystem_SDL::Clear()
 {
     glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    spriteBatch.clear();
 }
 
-void Spite::RenderSystem_SDL::DrawSprite(const Sprite& sprite) {
-    spriteBatch.push_back({});
-    spriteBatch.back().translation = sprite.position;
-    spriteBatch.back().scale = sprite.scale;
-    spriteBatch.back().rotation = sprite.rotation;
-    spriteBatch.back().z = sprite.z;
+std::unique_ptr<Spite::SpriteBatch> Spite::RenderSystem_SDL::CreateSpriteBatch() {
+    return std::make_unique<Spite::SpriteBatch_GL>(this);
 }
 
 void Spite::RenderSystem_SDL::Display()
 {
-    //Window size
-    int w, h;
-    SDL_GetWindowSize(m_Window, &w, &h);
-    float aspect = w / (float)h;
-    //View Projection
-    glm::mat4 vp = glm::ortho<float>(-aspect, aspect, -1, 1);
-    vp = glm::scale(vp, glm::vec3{2/camera.unitHeight});
-    vp = glm::rotate(vp, camera.rotation, glm::vec3{0,0,1});
-    vp = glm::translate(vp, glm::vec3{-camera.position, 0});
-    glUniformMatrix4fv(viewProjectionLoc, 1, GL_FALSE, glm::value_ptr(vp));
-    //Send sprite data to GPU
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(spriteBatch[0]) * spriteBatch.size(), spriteBatch.data(), GL_STREAM_DRAW);
-    //Bind Texture
-    glBindTexture(GL_TEXTURE_2D, testTexture.GetHandle());
-    glDrawArraysInstanced(GL_TRIANGLES, 0, 6, spriteBatch.size());
     //Swap buffers to display the frame
     SDL_GL_SwapWindow(m_Window);
 }
@@ -271,28 +196,19 @@ glm::vec3& Spite::RenderSystem_SDL::BackgroundColour() {
     return backgroundColour;
 }
 
-unsigned int Spite::RenderSystem_SDL::LoadShader(std::string path, int shaderType) {
-    //https://stackoverflow.com/a/2912614
-    std::ifstream ifs(path);
-    if(!ifs.is_open()) {
-        std::cout << "Could not open file: " + path << std::endl;
-    }
-    std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
-    const char* pContent = content.c_str();
-
-    unsigned int shader = glCreateShader(shaderType);
-    glShaderSource(shader, 1, &pContent, nullptr);
-    glCompileShader(shader);
-    int i = 0;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &i);
-    if(i == GL_FALSE) {
-        GLint maxLength = 0;
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-        std::vector<GLchar> errorLog(maxLength);
-        glGetShaderInfoLog(shader, maxLength, &maxLength, &errorLog[0]);
-        std::cout << errorLog.data();
-    }
-    return shader;
+glm::mat4x4 Spite::RenderSystem_SDL::CalculateCameraMatrix() {
+    //Window size
+    int w, h;
+    SDL_GetWindowSize(m_Window, &w, &h);
+    float aspect = w / (float)h;
+    //View Projection
+    glm::mat4 vp = glm::ortho<float>(-aspect, aspect, -1, 1);
+    vp = glm::scale(vp, glm::vec3{ 2 / camera.unitHeight });
+    vp = glm::rotate(vp, camera.rotation, glm::vec3{ 0,0,1 });
+    vp = glm::translate(vp, glm::vec3{ -camera.position, 0 });
+    return vp;
 }
+
+
 
 

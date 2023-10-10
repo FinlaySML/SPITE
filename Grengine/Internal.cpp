@@ -10,12 +10,11 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	event->Initialise();
 	sound->Initialise();
 
-	Spite::TimeSystem grTimeSystem{ 60 };
-	std::unique_ptr<Spite::Application> app{ Spite::CreateApp(argc, argv) };
-
-	//Maybe the application layer should be in charge of calling this?
 	render->OpenWindow(1280, 720);
 	render->CreateRenderer();
+
+	Spite::TimeSystem grTimeSystem{ 60 };
+	std::unique_ptr<Spite::Application> app{ Spite::CreateApp(argc, argv) };
 
 	float frameDelta = 1 / 60.0f;
 	//Frame Loop

@@ -75,6 +75,9 @@
     <ClCompile Include="SpriteBatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteBatch_GL.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -128,12 +131,15 @@
     <ClInclude Include="SpriteBatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteBatch_GL.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basic_fs.glsl">
+    <None Include="sprite_batch_ssbo_fs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="basic_vs.glsl">
+    <None Include="sprite_batch_ssbo_vs.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

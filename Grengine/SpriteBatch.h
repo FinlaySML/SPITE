@@ -5,13 +5,9 @@ namespace Spite {
 	class SpriteBatch
 	{
 	public:
-		SpriteBatch(const Texture&);
-		virtual void AddSprite(const Sprite&);
-		virtual void Draw();
-		SpriteBatch(SpriteBatch&) = delete;
-		SpriteBatch& operator=(SpriteBatch&) = delete;
-		virtual SpriteBatch(SpriteBatch&&);
-		virtual SpriteBatch& operator=(SpriteBatch&&);
+		virtual ~SpriteBatch();
+		virtual void Add(const Sprite&) = 0;
+		virtual void Draw() = 0;
 	};
 }
 

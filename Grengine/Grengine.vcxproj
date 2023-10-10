@@ -159,6 +159,7 @@
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
+    <ClCompile Include="SpriteBatch_GL.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Texture_GL.cpp" />
@@ -178,14 +179,15 @@
     <ClInclude Include="RenderSystem_SDL.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
+    <ClInclude Include="SpriteBatch_GL.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Texture_GL.h" />
     <ClInclude Include="TimeSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="basic_fs.glsl" />
-    <None Include="basic_vs.glsl" />
+    <None Include="sprite_batch_ssbo_fs.glsl" />
+    <None Include="sprite_batch_ssbo_vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
