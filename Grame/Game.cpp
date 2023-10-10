@@ -10,14 +10,15 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 
 Game::Game()
 {
-	auto coinSample = Spite::sound->LoadSample("coin1.wav");
-	Spite::sound->Play(coinSample, 1.0f);
+	coinSample = Spite::sound->LoadSample("coin1.wav");
 	Spite::render->Camera().unitHeight = 30.0f;
 	Spite::render->BackgroundColour() = {0.6,0.6,1};
+	Spite::sound->Play(coinSample, 1.0f);
 }
 
 void Game::Update(double dt)
 {
+	
 }
 
 void Game::Render(double dt)
