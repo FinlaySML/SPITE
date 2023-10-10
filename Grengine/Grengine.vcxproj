@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Entry_SDL.cpp" />
     <ClCompile Include="Internal.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
     <ClCompile Include="pch.cpp">
@@ -155,7 +156,6 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
-    <ClCompile Include="SpiteEntry.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stb_image.cpp" />

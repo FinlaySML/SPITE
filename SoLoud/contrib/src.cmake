@@ -107,11 +107,13 @@ if (SOLOUD_BACKEND_SDL2)
 	set(SDL2_INCLUDE_DIR ../../include/SDL)
 
 	include_directories (${SDL2_INCLUDE_DIR})
-	add_definitions (-DWITH_SDL2_STATIC)
+	add_definitions (-DWITH_SDL2)
 
 	set (BACKENDS_SOURCES
 		${BACKENDS_SOURCES}
-		${BACKENDS_PATH}/sdl2_static/soloud_sdl2_static.cpp
+		${BACKENDS_PATH}/sdl/soloud_sdl2.cpp
+		${BACKENDS_PATH}/sdl/soloud_sdl2_dll.c
+
 	)
 
 	set (LINK_LIBRARIES
