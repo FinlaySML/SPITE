@@ -30,7 +30,6 @@ void Game::Update(double dt)
 
 void Game::Render(double dt)
 {
-	std::cout << (int)std::floor(1.0f/dt) << std::endl;
 	Spite::render->Clear();
 	testBatch->Draw();
 	Spite::render->Display();
