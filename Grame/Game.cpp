@@ -12,7 +12,7 @@ Game::Game() : worldBatch{Spite::render->CreateSpriteBatch()}, spriteBatch{ Spit
 {
 	coinSample = Spite::sound->LoadSample("coin1.wav");
 	Spite::render->Camera().unitHeight = 15.0f;
-	Spite::render->BackgroundColour() = {0.6,0.6,1};
+	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	Spite::sound->Play(coinSample, 1.0f);
 	//Sprites
 	Spite::Sprite sprite{};
@@ -43,6 +43,7 @@ void Game::Update(double dt)
 	}
 	if(glm::length(moveDir) > 0) {
 		moveDir = glm::normalize(moveDir);
+		playerSprite.rotation = std::atan2(moveDir.x, moveDir.y);
 	}
 	moveDir *= 3.0f;
 	playerSprite.position += moveDir * dt;
