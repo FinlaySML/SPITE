@@ -11,6 +11,7 @@ namespace Spite {
 		glm::vec2 scale;
 		float rotation;
 		float z;
+		glm::vec4 colour;
 	};
 
 }

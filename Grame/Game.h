@@ -11,5 +11,8 @@ public:
 	void Render(double dt) final;
 private:
 	Spite::SoundSystem::SampleID coinSample;
-	std::unique_ptr<Spite::SpriteBatch> testBatch;
+	Spite::Sprite playerSprite;
+	std::unique_ptr<Spite::SpriteBatch> worldBatch;
+	std::unique_ptr<Spite::SpriteBatch> spriteBatch;
+
 };

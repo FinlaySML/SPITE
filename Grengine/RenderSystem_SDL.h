@@ -25,6 +25,8 @@ namespace Spite {
 		std::unique_ptr<SpriteBatch> CreateSpriteBatch() final;
 		void		Display() final;
 		void		HandleWindowEvent(GR_WindowEvent& e) final;
+		void SetFullscreen(bool) final;
+		bool GetFullscreen() final;
 		Spite::Camera& Camera() final;
 		glm::vec3& BackgroundColour() final;
 

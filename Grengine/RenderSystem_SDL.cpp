@@ -49,7 +49,7 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-    m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_OPENGL);
+    m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (m_Window == nullptr)
     {
         std::cout << std::format("Window could not be created! SDL_Error: {}", SDL_GetError()) << std::endl;
@@ -108,6 +108,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     //Debug
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(DebugCallback, nullptr);
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 }
 
 void Spite::RenderSystem_SDL::Clear()
@@ -147,6 +148,7 @@ void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
         SDL_Log("Window %d resized to %dx%d",
             e.windowID, e.data1,
             e.data2);
+        glViewport(0, 0, e.data1, e.data2);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_SIZE_CHANGED:
         SDL_Log("Window %d size changed to %dx%d",
@@ -186,6 +188,14 @@ void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
             e.windowID, e.event);
         break;
     }
+}
+
+void Spite::RenderSystem_SDL::SetFullscreen(bool value) {
+    SDL_SetWindowFullscreen(m_Window, value ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
+bool Spite::RenderSystem_SDL::GetFullscreen() {
+    return SDL_GetWindowFlags(m_Window) & SDL_WINDOW_FULLSCREEN_DESKTOP;
 }
 
 Spite::Camera& Spite::RenderSystem_SDL::Camera() {

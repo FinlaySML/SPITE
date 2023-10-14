@@ -8,6 +8,7 @@ namespace Spite {
 		SpriteBatch_GL(RenderSystem_SDL*);
 		~SpriteBatch_GL() final;
 		void Add(const Sprite&) final;
+		void Clear() final;
 		void Draw() final;
 	private:
 		RenderSystem_SDL* renderSystem;
@@ -16,8 +17,11 @@ namespace Spite {
 			glm::vec2 scale{ 1,1 };
 			float rotation{ 0 };
 			float z{ 0 };
+			glm::vec2 padding{ 0, 0 };
 			glm::vec2 uvOrigin{ 0,0 };
 			glm::vec2 uvDimension{ 1,1 };
+			glm::vec4 colour{ 1,1,1,1 };
+			
 		};
 		std::vector<ShaderSpriteData> spriteBatch;
 		unsigned int ssbo;

@@ -17,7 +17,7 @@
 #include <stb_image.h>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/ext.hpp>
-#ifdef _WIN32||_WIN64
+#if defined(_WIN32) || defined(_WIN64)
 #define NOMINMAX
 #include <Windows.h>
 #endif

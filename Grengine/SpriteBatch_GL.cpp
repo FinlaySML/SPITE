@@ -106,11 +106,20 @@ void Spite::SpriteBatch_GL::Add(const Sprite& sprite) {
     spriteBatch.back().scale = sprite.scale;
     spriteBatch.back().rotation = sprite.rotation;
     spriteBatch.back().z = sprite.z;
+    spriteBatch.back().colour = sprite.colour;
+    dataChanged = true;
+}
+
+void Spite::SpriteBatch_GL::Clear() {
+    spriteBatch.clear();
     dataChanged = true;
 }
 
 void Spite::SpriteBatch_GL::Draw() {
     if (programCreationFailed) {
+        return;
+    }
+    if(spriteBatch.size() == 0) {
         return;
     }
     //Use Program

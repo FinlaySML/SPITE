@@ -53,6 +53,8 @@ namespace Spite {
 		virtual std::unique_ptr<SpriteBatch> CreateSpriteBatch() = 0;
 		virtual void Display() = 0;
 		virtual void HandleWindowEvent(GR_WindowEvent& e) = 0;
+		virtual void SetFullscreen(bool) = 0;
+		virtual bool GetFullscreen() = 0;
 		virtual Camera& Camera() = 0;
 		virtual glm::vec3& BackgroundColour() = 0;
 	};

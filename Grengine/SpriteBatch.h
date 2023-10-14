@@ -7,6 +7,7 @@ namespace Spite {
 	public:
 		virtual ~SpriteBatch();
 		virtual void Add(const Sprite&) = 0;
+		virtual void Clear() = 0;
 		virtual void Draw() = 0;
 	};
 }
