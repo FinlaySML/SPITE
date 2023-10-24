@@ -16,7 +16,7 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	Spite::TimeSystem grTimeSystem{ 60 };
 	std::unique_ptr<Spite::Application> app{ Spite::CreateApp(argc, argv) };
 
-	float frameDelta = 1 / 60.0f;
+	double frameDelta = 1.0 / 60.0;
 	//Frame Loop
 	while (true) {
 		//Events
