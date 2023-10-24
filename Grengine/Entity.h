@@ -29,7 +29,7 @@ namespace Spite {
 			static_assert(std::is_base_of<Component, T>::value, "GetComponents<T>() requires T be derived from Component");
 			std::vector<T*> vec;
 			for (auto& c : components) {
-				if (typeid(ptr.get()) == typeid(T)) {
+				if (typeid(c.get()) == typeid(T)) {
 					vec.push_back(c.get());
 				}
 			}
