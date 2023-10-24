@@ -1,19 +1,17 @@
 #pragma once
 #include "pch.h"
+#include "TextureRegion.h"
+
 namespace Spite {
 	class Texture {
 	public:
-		Texture(const std::string& file);
-		Texture();
-		void LoadFromFile(const std::string& file);
-		virtual ~Texture();
-		bool IsLoaded();
-	private:
-		bool loaded;
-	protected:
-		void SetLoaded(bool l);
-		virtual bool GetShouldFlipTextures() = 0;
-		virtual void SendToGPU(stbi_uc* pixelData, int x, int y) = 0;
+		virtual ~Texture() {};
+		virtual void LoadFromFile(const std::string& file) = 0;
+		virtual void LoadFromData(std::span<unsigned char> data, unsigned x, unsigned y) = 0;
+		virtual void Resize(glm::ivec2 newDimensions) = 0;
+		virtual void Blit(TextureRegion source, glm::ivec2 destination) = 0;
+		virtual bool IsLoaded() = 0;
+		virtual glm::ivec2 GetDimensions() = 0;
 	};
 }
 

@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "RenderSystem_SDL.h"
 #include "SpriteBatch_GL.h"
+#include "Atlas_GL.h"
 
 //We're globally instancing our subsystems!
 //But maybe you think Globals are bad
@@ -9,6 +10,7 @@
     Spite::RenderSystem_SDL grRenderSystemSDL;
     Spite::RenderSystem* Spite::render = &grRenderSystemSDL;
 #endif
+
 
 Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}, backgroundColour{0,0,0}
 {
@@ -119,6 +121,14 @@ void Spite::RenderSystem_SDL::Clear()
 
 std::unique_ptr<Spite::SpriteBatch> Spite::RenderSystem_SDL::CreateSpriteBatch() {
     return std::make_unique<Spite::SpriteBatch_GL>(this);
+}
+
+std::unique_ptr<Spite::Texture> Spite::RenderSystem_SDL::CreateTexture() {
+    return std::make_unique<Spite::Texture_GL>();
+}
+
+std::unique_ptr<Spite::Atlas> Spite::RenderSystem_SDL::CreateAtlas() {
+    return std::make_unique<Spite::Atlas_GL>();
 }
 
 void Spite::RenderSystem_SDL::Display()

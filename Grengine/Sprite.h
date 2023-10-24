@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "TextureRegion.h"
 
 namespace Spite {
 
@@ -12,6 +13,7 @@ namespace Spite {
 		float rotation;
 		float z;
 		glm::vec4 colour;
+		std::optional<TextureRegion> textureRegion;
 	};
 
 }

@@ -14,5 +14,7 @@ private:
 	Spite::Sprite playerSprite;
 	std::unique_ptr<Spite::SpriteBatch> worldBatch;
 	std::unique_ptr<Spite::SpriteBatch> spriteBatch;
-
+	std::unique_ptr<Spite::Texture> testTexture;
+	std::unique_ptr<Spite::Texture> testTexture2;
+	std::unique_ptr<Spite::Texture> testTexture3;
 };

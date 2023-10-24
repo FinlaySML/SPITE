@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderSystem_SDL.h"
 #include "SpriteBatch.h"
+#include "Atlas_GL.h"
 
 namespace Spite {
 	class SpriteBatch_GL : public SpriteBatch {
@@ -11,6 +12,7 @@ namespace Spite {
 		void Clear() final;
 		void Draw() final;
 	private:
+		Atlas_GL atlas;
 		RenderSystem_SDL* renderSystem;
 		struct ShaderSpriteData {
 			glm::vec2 translation{ 0,0 };
@@ -21,7 +23,6 @@ namespace Spite {
 			glm::vec2 uvOrigin{ 0,0 };
 			glm::vec2 uvDimension{ 1,1 };
 			glm::vec4 colour{ 1,1,1,1 };
-			
 		};
 		std::vector<ShaderSpriteData> spriteBatch;
 		unsigned int ssbo;

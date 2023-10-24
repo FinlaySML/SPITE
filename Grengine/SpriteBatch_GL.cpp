@@ -18,8 +18,6 @@ unsigned int spriteVBO{0};
 unsigned int program{0};
 bool programCreationFailed{false};
 
-Spite::Texture_GL texture;
-
 unsigned int LoadShader(std::string path, int shaderType) {
     //https://stackoverflow.com/a/2912614
     std::ifstream ifs(path);
@@ -45,7 +43,7 @@ unsigned int LoadShader(std::string path, int shaderType) {
     return shader;
 }
 
-Spite::SpriteBatch_GL::SpriteBatch_GL(Spite::RenderSystem_SDL* render) : dataChanged{false}, renderSystem{render} {
+Spite::SpriteBatch_GL::SpriteBatch_GL(Spite::RenderSystem_SDL* render) : dataChanged{false}, renderSystem{render}, ssbo{0} {
     if (programCreationFailed) {
         std::cout << "Can't create sprite batch, shader program creation failed!" << std::endl;
         return;
@@ -90,15 +88,12 @@ Spite::SpriteBatch_GL::SpriteBatch_GL(Spite::RenderSystem_SDL* render) : dataCha
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
     }
-    if(!texture.IsLoaded()) {
-        //Texture
-        texture.LoadFromFile("test.png");
-    }
     //SSBO
     glGenBuffers(1, &ssbo);
 }
 
 Spite::SpriteBatch_GL::~SpriteBatch_GL() {}
+
 
 void Spite::SpriteBatch_GL::Add(const Sprite& sprite) {
     spriteBatch.push_back({});
@@ -107,6 +102,11 @@ void Spite::SpriteBatch_GL::Add(const Sprite& sprite) {
     spriteBatch.back().rotation = sprite.rotation;
     spriteBatch.back().z = sprite.z;
     spriteBatch.back().colour = sprite.colour;
+    if(sprite.textureRegion) {
+        auto region = atlas.ConvertRegion(sprite.textureRegion.value());
+        spriteBatch.back().uvOrigin = region.origin;
+        spriteBatch.back().uvDimension = region.dimensions;
+    }
     dataChanged = true;
 }
 
@@ -132,7 +132,7 @@ void Spite::SpriteBatch_GL::Draw() {
     if(dataChanged) glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(spriteBatch[0]) * spriteBatch.size(), spriteBatch.data(), GL_STREAM_DRAW);
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, ssbo);
     //Texture
-    glBindTexture(GL_TEXTURE_2D, texture.GetHandle());
+    glBindTexture(GL_TEXTURE_2D, atlas.GetTextureGL());
     //VAO
     glBindVertexArray(spriteVAO);
     //Draw

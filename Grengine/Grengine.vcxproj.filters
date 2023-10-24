@@ -57,14 +57,8 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Texture_GL.cpp">
       <Filter>Source Files\GL</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SoundSystem_SoLoud.cpp">
       <Filter>Source Files\SoLoud</Filter>
@@ -72,10 +66,13 @@
     <ClCompile Include="Entry_SDL.cpp">
       <Filter>Source Files\SDL</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteBatch.cpp">
+    <ClCompile Include="SpriteBatch_GL.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureRegion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteBatch_GL.cpp">
+    <ClCompile Include="Atlas_GL.cpp">
       <Filter>Source Files\GL</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,6 +129,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpriteBatch_GL.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Atlas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Atlas_GL.h">
       <Filter>Header Files\GL</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,8 @@
 #include "Sprite.h"
 #include "Camera.h"
 #include "SpriteBatch.h"
+#include "Atlas.h"
+
 // Abstract interface into a potential render system
 // The RenderSystem is "A window and a surface that we can draw stuff to"
 // It might make sense to separate the Window and the Renderer, like SFML does
@@ -51,6 +53,8 @@ namespace Spite {
 		virtual int CreateRenderer() = 0;
 		virtual void Clear() = 0;
 		virtual std::unique_ptr<SpriteBatch> CreateSpriteBatch() = 0;
+		virtual std::unique_ptr<Texture> CreateTexture() = 0;
+		virtual std::unique_ptr<Atlas> CreateAtlas() = 0;
 		virtual void Display() = 0;
 		virtual void HandleWindowEvent(GR_WindowEvent& e) = 0;
 		virtual void SetFullscreen(bool) = 0;

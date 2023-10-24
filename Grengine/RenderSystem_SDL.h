@@ -23,6 +23,8 @@ namespace Spite {
 		int			CreateRenderer() final;
 		void		Clear() final;
 		std::unique_ptr<SpriteBatch> CreateSpriteBatch() final;
+		std::unique_ptr<Texture> CreateTexture() final;
+		std::unique_ptr<Atlas> CreateAtlas() final;
 		void		Display() final;
 		void		HandleWindowEvent(GR_WindowEvent& e) final;
 		void SetFullscreen(bool) final;

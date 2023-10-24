@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Atlas_GL.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entry_SDL.cpp" />
     <ClCompile Include="Internal.cpp" />
@@ -154,18 +155,18 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="SpriteBatch_GL.cpp" />
     <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureRegion.cpp" />
     <ClCompile Include="Texture_GL.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Atlas.h" />
+    <ClInclude Include="Atlas_GL.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="SpriteBatch_GL.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureRegion.h" />
     <ClInclude Include="Texture_GL.h" />
     <ClInclude Include="TimeSystem.h" />
   </ItemGroup>

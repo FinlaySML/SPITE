@@ -8,20 +8,31 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 	return new Game();
 }
 
-Game::Game() : worldBatch{Spite::render->CreateSpriteBatch()}, spriteBatch{ Spite::render->CreateSpriteBatch() }
+Game::Game() : worldBatch{Spite::render->CreateSpriteBatch()}, spriteBatch{ Spite::render->CreateSpriteBatch() }, 
+testTexture{ Spite::render->CreateTexture() },
+testTexture2{ Spite::render->CreateTexture() },
+testTexture3{ Spite::render->CreateTexture() }
 {
+	testTexture->LoadFromFile("test.png");
+	testTexture2->LoadFromFile("test2.png");
+	testTexture3->LoadFromFile("test4.png");
 	coinSample = Spite::sound->LoadSample("coin1.wav");
 	Spite::render->Camera().unitHeight = 15.0f;
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	Spite::sound->Play(coinSample, 1.0f);
 	//Sprites
 	Spite::Sprite sprite{};
+	sprite.textureRegion.emplace(testTexture.get());
 	for (int i = 0; i < 50'000; i++) {
 		float f = sqrtf(i * 12.0f);
 		sprite.position = { sin(f) * f * 0.2f, cos(f) * f * 0.2f };
 		sprite.rotation = f;
 		worldBatch->Add(sprite);
 	}
+	sprite.textureRegion.emplace(testTexture2.get());
+	worldBatch->Add(sprite);
+	sprite.textureRegion.emplace(testTexture3.get());
+	worldBatch->Add(sprite);
 	playerSprite.colour = {1,0,0,1};
 }
 
