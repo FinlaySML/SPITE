@@ -122,6 +122,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)SoLoud\include;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,7 +150,9 @@
   <ItemGroup>
     <ClCompile Include="Atlas_GL.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entry_SDL.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Internal.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
     <ClCompile Include="pch.cpp">
@@ -168,6 +171,8 @@
     <ClInclude Include="Atlas.h" />
     <ClInclude Include="Atlas_GL.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />

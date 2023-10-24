@@ -12,6 +12,8 @@
 #include <thread>
 #include <algorithm>
 #include <ranges>
+#include <typeinfo>
+#include <type_traits>
 #include <GL/glew.h>
 #include <SDL/SDL.h>
 #include <stb_image.h>
