@@ -1,17 +1,14 @@
 #pragma once
 #include "pch.h"
 #include "TextureRegion.h"
+#include "Component.h"
 
 namespace Spite {
-
-	class Sprite {
+	class Sprite : public Component {
 	public:
-		Sprite(glm::vec2 position, float z);
-		Sprite();
-		glm::vec2 position;
-		glm::vec2 scale;
-		float rotation;
-		float z;
+		Sprite(Entity&);
+		void Update(double dt) override;
+		void Draw(double dt) override;
 		glm::vec4 colour;
 		std::optional<TextureRegion> textureRegion;
 	};

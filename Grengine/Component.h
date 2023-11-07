@@ -4,14 +4,15 @@ namespace Spite {
 	class Entity;
 	class Component
 	{
+		friend class Entity;
 	private:
-		Entity* parent;
+		Entity& parent;
 	public:
-		Component(Entity*);
+		Component(Entity&);
 		virtual ~Component();
 		virtual void Update(double dt) = 0;
 		virtual void Draw(double dt) = 0;
-		Entity* GetParent();
+		Entity& GetParent() const;
 	};
 }
 

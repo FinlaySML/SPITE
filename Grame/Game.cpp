@@ -9,34 +9,19 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 }
 
 Game::Game() : 
-	worldBatch{ Spite::render->CreateSpriteBatch() },
 	spriteBatch{ Spite::render->CreateSpriteBatch() },
-	testTexture{ Spite::render->CreateTexture() },
-	testTexture2{ Spite::render->CreateTexture() },
-	testTexture3{ Spite::render->CreateTexture() }
+	testTexture{ Spite::render->CreateTexture() }
 {
 	testTexture->LoadFromFile("test.png");
-	testTexture2->LoadFromFile("test2.png");
-	testTexture3->LoadFromFile("test4.png");
 	coinSample = Spite::sound->LoadSample("coin1.wav");
 
 	Spite::render->Camera().unitHeight = 15.0f;
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	Spite::sound->Play(coinSample, 1.0f);
-	//Sprites
-	Spite::Sprite sprite{};
-	sprite.textureRegion.emplace(testTexture.get());
-	for (int i = 0; i < 1'000; i++) {
-		float f = sqrtf(i * 12.0f);
-		sprite.position = { sin(f) * f * 0.2f, cos(f) * f * 0.2f };
-		sprite.rotation = f;
-		worldBatch->Add(sprite);
-	}
-	sprite.textureRegion.emplace(testTexture2.get());
-	worldBatch->Add(sprite);
-	sprite.textureRegion.emplace(testTexture3.get());
-	worldBatch->Add(sprite);
-	playerSprite.colour = {1,0,0,1};
+	//Test
+	testEntity.AddComponent<Spite::Sprite>().textureRegion.emplace(testTexture.get());
+	//Player
+	playerEntity.AddComponent<Spite::Sprite>().colour = {1,0,0,1};
 }
 
 void Game::Update(double dt)
@@ -57,12 +42,13 @@ void Game::Update(double dt)
 	}
 	if(glm::length(moveDir) > 0) {
 		moveDir = glm::normalize(moveDir);
-		playerSprite.rotation = std::atan2(moveDir.x, moveDir.y);
+		playerEntity.rotation = std::atan2(moveDir.x, moveDir.y);
 	}
 	moveDir *= 3.0f;
-	playerSprite.position += moveDir * dt;
-	spriteBatch->Add(playerSprite);
-	Spite::render->Camera().position = playerSprite.position;
+	playerEntity.position += moveDir * dt;
+	spriteBatch->Add(testEntity.GetComponent<Spite::Sprite>());
+	spriteBatch->Add(playerEntity.GetComponent<Spite::Sprite>());
+	Spite::render->Camera().position = playerEntity.position;
 	//Toggle fullscreen
 	if(Spite::event->GetDownCount(Spite::KeyValue::KV_F11) % 2 == 1){
 		Spite::render->SetFullscreen(!Spite::render->GetFullscreen());
@@ -72,7 +58,6 @@ void Game::Update(double dt)
 void Game::Render(double dt)
 {
 	Spite::render->Clear();
-	worldBatch->Draw();
 	spriteBatch->Draw();
 	Spite::render->Display();
 }

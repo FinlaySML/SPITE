@@ -2,6 +2,7 @@
 #include <Spite.h>
 #include "SoundSystem.h"
 #include "SpriteBatch.h"
+#include "Entity.h"
 
 class Game : public Spite::Application
 {
@@ -11,10 +12,8 @@ public:
 	void Render(double dt) final;
 private:
 	Spite::SoundSystem::SampleID coinSample;
-	Spite::Sprite playerSprite;
-	std::unique_ptr<Spite::SpriteBatch> worldBatch;
+	Spite::Entity playerEntity;
+	Spite::Entity testEntity;
 	std::unique_ptr<Spite::SpriteBatch> spriteBatch;
 	std::unique_ptr<Spite::Texture> testTexture;
-	std::unique_ptr<Spite::Texture> testTexture2;
-	std::unique_ptr<Spite::Texture> testTexture3;
 };

@@ -14,11 +14,13 @@
 #include <ranges>
 #include <typeinfo>
 #include <type_traits>
+#include <stdexcept>
 #include <GL/glew.h>
 #include <SDL/SDL.h>
 #include <stb_image.h>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/ext.hpp>
+#include <glm/gtx/matrix_transform_2d.hpp>
 #if defined(_WIN32) || defined(_WIN64)
 #define NOMINMAX
 #include <Windows.h>

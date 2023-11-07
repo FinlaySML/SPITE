@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SpriteBatch_GL.h"
 #include "RenderSystem_SDL.h"
+#include "Entity.h"
 
 //Vertex data
 glm::vec2 spriteVertexData[6] = {
@@ -94,13 +95,13 @@ Spite::SpriteBatch_GL::SpriteBatch_GL(Spite::RenderSystem_SDL* render) : dataCha
 
 Spite::SpriteBatch_GL::~SpriteBatch_GL() {}
 
-
 void Spite::SpriteBatch_GL::Add(const Sprite& sprite) {
     spriteBatch.push_back({});
-    spriteBatch.back().translation = sprite.position;
-    spriteBatch.back().scale = sprite.scale;
-    spriteBatch.back().rotation = sprite.rotation;
-    spriteBatch.back().z = sprite.z;
+    glm::mat3x3 t = glm::translate(glm::mat3x3{ 1.0 }, sprite.GetParent().position);
+    spriteBatch.back().transformRow0 = glm::row(t, 0);
+    spriteBatch.back().transformRow1 = glm::row(t, 1);
+    spriteBatch.back().transformRow2 = glm::row(t, 2);
+    spriteBatch.back().z = sprite.GetParent().z;
     spriteBatch.back().colour = sprite.colour;
     if(sprite.textureRegion) {
         auto region = atlas.ConvertRegion(sprite.textureRegion.value());
