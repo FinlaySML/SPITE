@@ -97,7 +97,10 @@ Spite::SpriteBatch_GL::~SpriteBatch_GL() {}
 
 void Spite::SpriteBatch_GL::Add(const Sprite& sprite) {
     spriteBatch.push_back({});
-    glm::mat3x3 t = glm::translate(glm::mat3x3{ 1.0 }, sprite.GetParent().position);
+    glm::mat3x3 t = glm::mat3x3{ 1.0 };
+    t = glm::translate(t, sprite.GetParent().position);
+    t = glm::rotate(t, -sprite.GetParent().rotation);
+    t = glm::scale(t, sprite.GetParent().scale);
     spriteBatch.back().transformRow0 = glm::row(t, 0);
     spriteBatch.back().transformRow1 = glm::row(t, 1);
     spriteBatch.back().transformRow2 = glm::row(t, 2);

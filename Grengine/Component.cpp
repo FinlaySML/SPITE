@@ -7,6 +7,14 @@ Spite::Component::~Component()
 {
 }
 
+void Spite::Component::Update(double dt) {
+
+}
+
+void Spite::Component::Draw(double dt) {
+
+}
+
 Spite::Entity& Spite::Component::GetParent() const
 {
     return parent;

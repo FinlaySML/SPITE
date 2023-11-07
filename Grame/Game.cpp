@@ -2,10 +2,24 @@
 #include "RenderSystem.h"
 #include "SoundSystem.h"
 #include "EventSystem.h"
+#include "PlayerComponent.h"
 
 Spite::Application* Spite::CreateApp(int argc, char** argv)
 {
 	return new Game();
+}
+
+void TestFactory(Spite::Entity& e, Spite::Texture* tex) {
+	auto& pSprite = e.AddComponent<Spite::Sprite>();
+	pSprite.textureRegion.emplace(tex);
+}
+
+void PlayerFactory(Spite::Entity& e, Spite::Texture* tex) {
+	auto& pSprite = e.AddComponent<Spite::Sprite>();
+	pSprite.colour = { 1,0,0,1 };
+	pSprite.textureRegion.emplace(tex);
+	e.scale.y = 0.7;
+	e.AddComponent<PlayerComponent>();
 }
 
 Game::Game() : 
@@ -18,37 +32,15 @@ Game::Game() :
 	Spite::render->Camera().unitHeight = 15.0f;
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	Spite::sound->Play(coinSample, 1.0f);
-	//Test
-	testEntity.AddComponent<Spite::Sprite>().textureRegion.emplace(testTexture.get());
-	//Player
-	playerEntity.AddComponent<Spite::Sprite>().colour = {1,0,0,1};
+
+	TestFactory(testEntity, testTexture.get());
+	PlayerFactory(playerEntity, testTexture.get());
 }
 
 void Game::Update(double dt)
 {
-	spriteBatch->Clear();
-	glm::vec2 moveDir{0, 0};
-	if(Spite::event->IsPressed(Spite::KeyValue::KV_D)) {
-		moveDir.x++;
-	}
-	if(Spite::event->IsPressed(Spite::KeyValue::KV_A)) {
-		moveDir.x--;
-	}
-	if (Spite::event->IsPressed(Spite::KeyValue::KV_W)) {
-		moveDir.y++;
-	}
-	if (Spite::event->IsPressed(Spite::KeyValue::KV_S)) {
-		moveDir.y--;
-	}
-	if(glm::length(moveDir) > 0) {
-		moveDir = glm::normalize(moveDir);
-		playerEntity.rotation = std::atan2(moveDir.x, moveDir.y);
-	}
-	moveDir *= 3.0f;
-	playerEntity.position += moveDir * dt;
-	spriteBatch->Add(testEntity.GetComponent<Spite::Sprite>());
-	spriteBatch->Add(playerEntity.GetComponent<Spite::Sprite>());
-	Spite::render->Camera().position = playerEntity.position;
+	testEntity.Update(dt);
+	playerEntity.Update(dt);
 	//Toggle fullscreen
 	if(Spite::event->GetDownCount(Spite::KeyValue::KV_F11) % 2 == 1){
 		Spite::render->SetFullscreen(!Spite::render->GetFullscreen());
@@ -58,6 +50,9 @@ void Game::Update(double dt)
 void Game::Render(double dt)
 {
 	Spite::render->Clear();
+	spriteBatch->Clear();
+	spriteBatch->Add(testEntity.GetComponent<Spite::Sprite>());
+	spriteBatch->Add(playerEntity.GetComponent<Spite::Sprite>());
 	spriteBatch->Draw();
 	Spite::render->Display();
 }

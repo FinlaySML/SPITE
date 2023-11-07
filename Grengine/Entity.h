@@ -6,12 +6,20 @@ namespace Spite {
 	{
 	public:
 		Entity();
+		Entity(Entity&) = delete;
+		Entity& operator=(Entity&) = delete;
+		Entity(Entity&&) = delete;
+		Entity& operator=(Entity&&) = delete;
 		void Update(double dt);
 		void Draw(double dt);
 		glm::vec2 position;
 		glm::vec2 scale;
 		float rotation;
 		float z;
+		//Tree Management
+		const std::optional<Entity*>& GetParent();
+		const std::vector<Entity*>& GetChildren();
+		void AddChild(std::unique_ptr<Entity>&& child);
 		//Component Management
 		template <class T>
 		T& AddComponent() {
@@ -44,6 +52,8 @@ namespace Spite {
 		void RemoveComponent(Component&);
 	private:
 		std::vector<std::unique_ptr<Component>> components;
+		std::vector<std::unique_ptr<Entity>> children;
+		std::optional<Entity*> parent;
 	};
 
 }

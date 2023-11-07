@@ -10,8 +10,8 @@ namespace Spite {
 	public:
 		Component(Entity&);
 		virtual ~Component();
-		virtual void Update(double dt) = 0;
-		virtual void Draw(double dt) = 0;
+		virtual void Update(double dt);
+		virtual void Draw(double dt);
 		Entity& GetParent() const;
 	};
 }

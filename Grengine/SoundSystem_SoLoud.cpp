@@ -9,7 +9,7 @@ namespace Spite {
     }
 
     int SoundSystem_SoLoud::Initialise() {
-        auto result = engine.init();
+        auto result = engine.init(1, SoLoud::Soloud::NULLDRIVER);
         if (result != 0) {
             std::cout << std::format("Could not init SDL2 sound driver for SoLoud: {}", GetSoLoudErrorString(result)) << std::endl;
             result = engine.init(1, SoLoud::Soloud::NULLDRIVER);
