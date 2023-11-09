@@ -111,12 +111,17 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(DebugCallback, nullptr);
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
+
+    if(!defaultSpriteBatch) {
+        defaultSpriteBatch.reset(new SpriteBatch_GL(this));
+    }
 }
 
 void Spite::RenderSystem_SDL::Clear()
 {
     glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    defaultSpriteBatch->Clear();
 }
 
 std::unique_ptr<Spite::SpriteBatch> Spite::RenderSystem_SDL::CreateSpriteBatch() {
@@ -133,6 +138,7 @@ std::unique_ptr<Spite::Atlas> Spite::RenderSystem_SDL::CreateAtlas() {
 
 void Spite::RenderSystem_SDL::Display()
 {
+    defaultSpriteBatch->Draw();
     //Swap buffers to display the frame
     SDL_GL_SwapWindow(m_Window);
 }
@@ -210,6 +216,10 @@ bool Spite::RenderSystem_SDL::GetFullscreen() {
 
 Spite::Camera& Spite::RenderSystem_SDL::Camera() {
     return camera;
+}
+
+Spite::SpriteBatch* Spite::RenderSystem_SDL::GetDefaultSpriteBatch() {
+    return defaultSpriteBatch.get();
 }
 
 glm::vec3& Spite::RenderSystem_SDL::BackgroundColour() {

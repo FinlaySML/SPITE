@@ -60,6 +60,7 @@ namespace Spite {
 		virtual void SetFullscreen(bool) = 0;
 		virtual bool GetFullscreen() = 0;
 		virtual Camera& Camera() = 0;
+		virtual SpriteBatch* GetDefaultSpriteBatch() = 0;
 		virtual glm::vec3& BackgroundColour() = 0;
 	};
 

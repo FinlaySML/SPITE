@@ -18,8 +18,10 @@ namespace Spite {
 		float z;
 		//Tree Management
 		const std::optional<Entity*>& GetParent();
-		const std::vector<Entity*>& GetChildren();
-		void AddChild(std::unique_ptr<Entity>&& child);
+		const std::vector<std::unique_ptr<Entity>>& GetChildren();
+		void MoveChild(Spite::Entity* child);
+		Entity* AddChild(std::unique_ptr<Spite::Entity>&& child);
+		std::unique_ptr<Spite::Entity> RemoveChild(Spite::Entity* child);
 		//Component Management
 		template <class T>
 		T& AddComponent() {

@@ -1,9 +1,9 @@
 #pragma once
-#include "RenderSystem_SDL.h"
 #include "SpriteBatch.h"
 #include "Atlas_GL.h"
 
 namespace Spite {
+	class RenderSystem_SDL;
 	class SpriteBatch_GL : public SpriteBatch {
 	public:
 		SpriteBatch_GL(RenderSystem_SDL*);

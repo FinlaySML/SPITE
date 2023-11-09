@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "RenderSystem.h"
 #include "Texture_GL.h"
+#include "SpriteBatch_GL.h"
 
 //Forward declarations
 class SDL_Window;
@@ -30,6 +31,7 @@ namespace Spite {
 		void SetFullscreen(bool) final;
 		bool GetFullscreen() final;
 		Spite::Camera& Camera() final;
+		SpriteBatch* GetDefaultSpriteBatch() final;
 		glm::vec3& BackgroundColour() final;
 
 		glm::mat4x4 CalculateCameraMatrix();
@@ -51,6 +53,7 @@ namespace Spite {
 		unsigned int program;
 		unsigned int viewProjectionLoc;
 		Spite::Texture_GL testTexture;
+		std::unique_ptr<Spite::SpriteBatch_GL> defaultSpriteBatch;
 		glm::vec3 backgroundColour;
     };
 }

@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "Sprite.h"
+#include "RenderSystem.h"
 
 namespace Spite {
 	Sprite::Sprite(Entity& entity) : Component(entity), colour{1,1,1,1} {
 	}
-	void Sprite::Draw(double dt) {}
+	void Sprite::Draw(double dt) {
+		Spite::render->GetDefaultSpriteBatch()->Add(*this);
+	}
 }

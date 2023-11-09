@@ -13,6 +13,5 @@ public:
 private:
 	Spite::SoundSystem::SampleID coinSample;
 	Spite::Entity root;
-	std::unique_ptr<Spite::SpriteBatch> spriteBatch;
 	std::unique_ptr<Spite::Texture> testTexture;
 };
