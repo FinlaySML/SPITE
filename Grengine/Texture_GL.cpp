@@ -32,6 +32,7 @@ void Spite::Texture_GL::LoadFromFile(const std::string& file) {
     stbi_image_free(pixelData);
     dimensions = { x, y };
     loaded = true;
+    path = file;
 }
 
 void Spite::Texture_GL::LoadFromData(std::span<unsigned char> data, unsigned x, unsigned y) {
@@ -84,6 +85,10 @@ bool Spite::Texture_GL::IsLoaded() {
 
 glm::ivec2 Spite::Texture_GL::GetDimensions() {
     return dimensions;
+}
+
+const std::optional<std::string>& Spite::Texture_GL::Path() {
+    return path;
 }
 
 Spite::Texture_GL::~Texture_GL() {

@@ -15,6 +15,7 @@
 #include <typeinfo>
 #include <type_traits>
 #include <stdexcept>
+#include <functional>
 #include <GL/glew.h>
 #include <SDL/SDL.h>
 #include <stb_image.h>

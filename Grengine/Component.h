@@ -1,8 +1,9 @@
 #pragma once
+#include "Serialisable.h"
 
 namespace Spite {
 	class Entity;
-	class Component
+	class Component : public Serialisable
 	{
 		friend class Entity;
 	private:
@@ -13,6 +14,9 @@ namespace Spite {
 		virtual void Update(double dt);
 		virtual void Draw(double dt);
 		Entity& GetParent() const;
+		virtual const std::string& GetComponentName() = 0;
+		void Serialise(YAML::Emitter&) override;
+		void Deserialise(const YAML::Node&) override;
 	};
 }
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "Component.h"
+#include "Serialisable.h"
 
 namespace Spite {
-	class Entity
+	class Entity : public Serialisable
 	{
 	public:
 		Entity();
@@ -16,6 +17,10 @@ namespace Spite {
 		glm::vec2 scale;
 		float rotation;
 		float z;
+		std::string name;
+		//Serialisation
+		void Serialise(YAML::Emitter&) override;
+		void Deserialise(const YAML::Node&) override;
 		//Tree Management
 		const std::optional<Entity*>& GetParent();
 		const std::vector<std::unique_ptr<Entity>>& GetChildren();

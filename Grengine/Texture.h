@@ -11,6 +11,7 @@ namespace Spite {
 		virtual void Resize(glm::ivec2 newDimensions) = 0;
 		virtual void Blit(const TextureRegion& source, glm::ivec2 destination) = 0;
 		virtual bool IsLoaded() = 0;
+		virtual const std::optional<std::string>& Path() = 0;
 		virtual glm::ivec2 GetDimensions() = 0;
 	};
 }

@@ -2,6 +2,7 @@
 #include "RenderSystem.h"
 #include "SoundSystem.h"
 #include "EventSystem.h"
+#include "CoreSystem.h"
 #include "PlayerComponent.h"
 
 Spite::Application* Spite::CreateApp(int argc, char** argv)
@@ -13,8 +14,8 @@ std::unique_ptr<Spite::Entity> TestFactory() {
 	auto e = std::make_unique<Spite::Entity>();
 	auto& pSprite = e->AddComponent<Spite::Sprite>();
 	pSprite.textureRegion.emplace(Spite::render->GetTexture("test.png"));
-	e->position.x = (rand() / (float)RAND_MAX) * 32.0f - 16.0f;
-	e->position.y = (rand() / (float)RAND_MAX) * 32.0f - 16.0f;
+	e->position.x = (rand() / (float)RAND_MAX) * 4.0f - 2.0f;
+	e->position.y = (rand() / (float)RAND_MAX) * 4.0f - 2.0f;
 	e->rotation = (rand() / (float)RAND_MAX) * glm::two_pi<float>();
 	return e;
 }
@@ -31,16 +32,20 @@ std::unique_ptr<Spite::Entity> PlayerFactory() {
 
 Game::Game()
 {
+	Spite::core->Register<PlayerComponent>();
 	coinSample = Spite::sound->LoadSample("coin1.wav");
 
 	Spite::render->Camera().unitHeight = 15.0f;
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	
 	Spite::sound->Play(coinSample, 1.0f);
-	for(int i = 0; i < 1000; i++) {
+	for(int i = 0; i < 5; i++) {
 		root.AddChild(TestFactory());
 	}
 	root.AddChild(PlayerFactory());
+	YAML::Emitter out;
+	root.Serialise(out);
+	std::cout << out.c_str() << std::endl;
 }
 
 void Game::Update(double dt)

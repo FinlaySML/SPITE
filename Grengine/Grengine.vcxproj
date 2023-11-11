@@ -116,10 +116,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>RENDERSYSTEM_SDL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;RENDERSYSTEM_SDL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)SoLoud\include;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)yaml-cpp\include;$(SolutionDir)SoLoud\include;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -127,8 +127,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>soloud.lib;OpenGL32.lib;glew32.lib;SDL2.lib;SDL2main.lib;Grame.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\lib\x64;$(SolutionDir)\SoLoud\contrib\out\build\x64-Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yaml-cppd.lib;soloud.lib;OpenGL32.lib;glew32.lib;SDL2.lib;SDL2main.lib;Grame.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\lib\x64;$(SolutionDir)\SoLoud\contrib\out\build\x64-Debug;$(SolutionDir)\yaml-cpp\build\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,6 +151,7 @@
     <ClCompile Include="Atlas_GL.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="CoreSystem.cpp" />
     <ClCompile Include="Entry_SDL.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Internal.cpp" />
@@ -159,6 +160,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Serialisable.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -173,12 +175,14 @@
     <ClInclude Include="Atlas_GL.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="CoreSystem.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Serialisable.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SoundSystem_SoLoud.h" />
     <ClInclude Include="Spite.h" />

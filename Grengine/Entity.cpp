@@ -23,6 +23,44 @@ void Spite::Entity::Draw(double dt)
     }
 }
 
+void Spite::Entity::Serialise(YAML::Emitter& out) {
+    out << YAML::BeginMap;
+    out << YAML::Key << "Entity";
+    out << YAML::Value << YAML::BeginMap;
+    out << YAML::Key << "Position" << YAML::Value << YAML::Flow << YAML::BeginSeq << position.x << position.y << YAML::EndSeq;
+    out << YAML::Key << "Scale" << YAML::Value << YAML::Flow << YAML::BeginSeq << scale.x << scale.y << YAML::EndSeq;
+    out << YAML::Key << "Rotation" << YAML::Value << rotation;
+    out << YAML::Key << "Z" << YAML::Value << z;
+    out << YAML::Key << "Components";
+    if (components.size() > 0) {
+        out << YAML::Value << YAML::BeginSeq;
+    } else {
+        out << YAML::Value << YAML::Flow << YAML::BeginSeq;
+    }
+    //Components
+    for (auto& c : components) {
+        c->Serialise(out);
+    }
+    out << YAML::EndSeq;
+    out << YAML::Key << "Children";
+    if (children.size() > 0) {
+        out << YAML::Value << YAML::BeginSeq;
+    } else {
+        out << YAML::Value << YAML::Flow << YAML::BeginSeq;
+    }
+    //Children
+    for (auto& c : children) {
+        c->Serialise(out);
+    }
+    out << YAML::EndSeq;
+    out << YAML::EndMap;
+    out << YAML::EndMap;
+}
+
+void Spite::Entity::Deserialise(const YAML::Node&) {
+
+}
+
 const std::optional<Spite::Entity*>& Spite::Entity::GetParent()
 {
     return parent;
