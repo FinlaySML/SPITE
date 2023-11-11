@@ -4,10 +4,6 @@
 #include "Texture_GL.h"
 #include "SpriteBatch_GL.h"
 
-//Forward declarations
-class SDL_Window;
-class SDL_Renderer;
-
 namespace Spite {
     class RenderSystem_SDL :
         public RenderSystem
@@ -33,6 +29,7 @@ namespace Spite {
 		Spite::Camera& Camera() final;
 		SpriteBatch* GetDefaultSpriteBatch() final;
 		glm::vec3& BackgroundColour() final;
+		std::shared_ptr<Texture> GetTexture(const std::string& path) final;
 
 		glm::mat4x4 CalculateCameraMatrix();
 
@@ -52,7 +49,7 @@ namespace Spite {
 		unsigned int VAO;
 		unsigned int program;
 		unsigned int viewProjectionLoc;
-		Spite::Texture_GL testTexture;
+		std::unordered_map<std::string, std::weak_ptr<Texture_GL>> textures;
 		std::unique_ptr<Spite::SpriteBatch_GL> defaultSpriteBatch;
 		glm::vec3 backgroundColour;
     };

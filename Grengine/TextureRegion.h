@@ -1,10 +1,11 @@
 #pragma once
+#include "Texture.h"
+
 namespace Spite {
-	class Texture;
 	struct TextureRegion {
-		TextureRegion(Texture* texture, glm::ivec2 origin, glm::ivec2 dimensions);
-		TextureRegion(Texture* texture);
-		Texture* texture;
+		TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2 origin, glm::ivec2 dimensions);
+		TextureRegion(std::shared_ptr<Texture> texture);
+		std::shared_ptr<Texture> texture;
 		glm::ivec2 origin;
 		glm::ivec2 dimensions;
 	};

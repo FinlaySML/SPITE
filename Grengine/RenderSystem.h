@@ -62,6 +62,7 @@ namespace Spite {
 		virtual Camera& Camera() = 0;
 		virtual SpriteBatch* GetDefaultSpriteBatch() = 0;
 		virtual glm::vec3& BackgroundColour() = 0;
+		virtual std::shared_ptr<Texture> GetTexture(const std::string& path) = 0;
 	};
 
 	//Global pointer to the RenderSystem

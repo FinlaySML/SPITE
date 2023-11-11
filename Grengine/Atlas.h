@@ -7,7 +7,6 @@ namespace Spite {
 	public:
 		virtual ~Atlas() {};
 		virtual TextureRegion ConvertRegion(const TextureRegion&) = 0;
-		virtual Texture* GetTexture() = 0;
 	};
 }
 

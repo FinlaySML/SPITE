@@ -8,7 +8,7 @@ namespace Spite {
         void LoadFromFile(const std::string& file) final;
         void LoadFromData(std::span<unsigned char> data, unsigned x, unsigned y) final;
         void Resize(glm::ivec2 newDimensions) final;
-        void Blit(TextureRegion source, glm::ivec2 offset) final;
+        void Blit(const TextureRegion& source, glm::ivec2 offset) final;
         bool IsLoaded() final;
         glm::ivec2 GetDimensions() final;
         unsigned int GetHandle();

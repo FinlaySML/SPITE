@@ -57,6 +57,7 @@ int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
         std::cout << std::format("Window could not be created! SDL_Error: {}", SDL_GetError()) << std::endl;
         return -1;
     }
+    return 0;
 }
 
 void DebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
@@ -115,6 +116,7 @@ int Spite::RenderSystem_SDL::CreateRenderer()
     if(!defaultSpriteBatch) {
         defaultSpriteBatch.reset(new SpriteBatch_GL(this));
     }
+    return 0;
 }
 
 void Spite::RenderSystem_SDL::Clear()
@@ -224,6 +226,17 @@ Spite::SpriteBatch* Spite::RenderSystem_SDL::GetDefaultSpriteBatch() {
 
 glm::vec3& Spite::RenderSystem_SDL::BackgroundColour() {
     return backgroundColour;
+}
+
+std::shared_ptr<Spite::Texture> Spite::RenderSystem_SDL::GetTexture(const std::string& path) {
+    auto it = textures.find(path);
+    if(it != textures.end() && !it->second.expired()) {
+        return it->second.lock();
+    }
+    std::shared_ptr<Spite::Texture_GL> texture = std::make_shared<Spite::Texture_GL>();
+    texture->LoadFromFile(path);
+    textures.insert({path, std::weak_ptr(texture)});
+    return texture;
 }
 
 glm::mat4x4 Spite::RenderSystem_SDL::CalculateCameraMatrix() {

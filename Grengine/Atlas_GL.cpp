@@ -3,9 +3,9 @@
 
 unsigned int maxAtlasSize{4096};
 
-Spite::Atlas_GL::Atlas_GL() : atlasSize{32} {
-	std::vector<unsigned char> data(atlasSize * atlasSize *4, 0xff);
-	texture.LoadFromData(data, atlasSize, atlasSize);
+Spite::Atlas_GL::Atlas_GL() : atlasSize{32}, texture{std::make_shared<Spite::Texture_GL>()} {
+	std::vector<unsigned char> data(atlasSize * atlasSize * 4, 0xff);
+	texture->LoadFromData(data, atlasSize, atlasSize);
 }
 
 Spite::Atlas_GL::~Atlas_GL() {}
@@ -14,7 +14,7 @@ Spite::TextureRegion Spite::Atlas_GL::ConvertRegion(const TextureRegion& region)
     glm::ivec2 texDim = region.texture->GetDimensions();
     //Get offset in atlas
     glm::ivec2 offset{ 0, 0 };
-    auto it = atlasOffsets.find(region.texture);
+    auto it = atlasOffsets.find(region.texture.get());
     if (it != atlasOffsets.end()) {
         offset = it->second;
     } else {
@@ -22,27 +22,23 @@ Spite::TextureRegion Spite::Atlas_GL::ConvertRegion(const TextureRegion& region)
         while (!opt) {
             if(atlasSize == maxAtlasSize) {
                 std::cout << "Max atlas size reached, can't make room" << std::endl;
-                return { &texture, region.origin, region.dimensions };
+                return { texture, region.origin, region.dimensions };
             }
             //Could not find free space in the atlas, make it bigger
             atlasSize *= 2;
-            texture.Resize(glm::ivec2{ atlasSize, atlasSize });
+            texture->Resize(glm::ivec2{ atlasSize, atlasSize });
             //Don't need to check, as long as there are no bugs it should be able to find a free region big enough
             opt = FindFreeAtlasRegion(texDim);
         }
         offset = opt.value();
-        texture.Blit({region.texture}, offset);
-        atlasOffsets.insert({ region.texture, offset });
+        texture->Blit({region.texture}, offset);
+        atlasOffsets.insert({ region.texture.get(), offset});
     }
-	return { &texture, region.origin + offset, region.dimensions };
-}
-
-Spite::Texture* Spite::Atlas_GL::GetTexture() {
-	return &texture;
+	return { texture, region.origin + offset, region.dimensions };
 }
 
 unsigned int Spite::Atlas_GL::GetTextureGL() {
-    return texture.GetHandle();
+    return texture->GetHandle();
 }
 
 std::optional<glm::vec2> Spite::Atlas_GL::FindFreeAtlasRegion(glm::vec2 dimensions) {

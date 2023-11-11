@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Texture_GL.h"
+#include "TextureRegion.h"
 
 unsigned int CreateGLTexture(unsigned char* pixelData, unsigned x, unsigned y) {
     unsigned int tex{0};
@@ -65,7 +66,7 @@ void Spite::Texture_GL::Resize(glm::ivec2 newDimensions) {
     glDeleteTextures(1, &oldHandle);
 }
 
-void Spite::Texture_GL::Blit(TextureRegion source, glm::ivec2 offset) {
+void Spite::Texture_GL::Blit(const TextureRegion& source, glm::ivec2 offset) {
     if (!IsLoaded()) {
         std::cout << "Cannot blit to a texture before it has been loaded!" << std::endl;
         return;
@@ -74,7 +75,7 @@ void Spite::Texture_GL::Blit(TextureRegion source, glm::ivec2 offset) {
         std::cout << "Cannot blit from a texture before it has been loaded!" << std::endl;
         return;
     }
-    glCopyImageSubData(((Texture_GL*)source.texture)->handle, GL_TEXTURE_2D, 0, source.origin.x, source.origin.y, 0, handle, GL_TEXTURE_2D, 0, offset.x, offset.y, 0, source.dimensions.x, source.dimensions.y, 1);
+    glCopyImageSubData(((Texture_GL*)source.texture.get())->handle, GL_TEXTURE_2D, 0, source.origin.x, source.origin.y, 0, handle, GL_TEXTURE_2D, 0, offset.x, offset.y, 0, source.dimensions.x, source.dimensions.y, 1);
 }
 
 bool Spite::Texture_GL::IsLoaded() {

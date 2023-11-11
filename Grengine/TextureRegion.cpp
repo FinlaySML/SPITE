@@ -2,11 +2,7 @@
 #include "TextureRegion.h"
 #include "Texture.h"
 
-Spite::TextureRegion::TextureRegion(Texture* texture, glm::ivec2 origin, glm::ivec2 dimensions) {
-	if(texture == nullptr) {
-		std::cout << "Cannot create texture region, texture is nullptr" << std::endl;
-		return;
-	}
+Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2 origin, glm::ivec2 dimensions) : texture{texture}, origin{origin}, dimensions{dimensions} {
 	if(!texture->IsLoaded()) {
 		std::cout << "Cannot create texture region, texture is not loaded" << std::endl;
 		return;
@@ -20,9 +16,6 @@ Spite::TextureRegion::TextureRegion(Texture* texture, glm::ivec2 origin, glm::iv
 		std::cout << "Cannot create texture region, origin plus dimension is greater than texture size" << std::endl;
 		return;
 	}
-	this->texture = texture;
-	this->origin = origin;
-	this->dimensions = dimensions;
 }
 
-Spite::TextureRegion::TextureRegion(Texture* texture) : TextureRegion{texture, {0,0}, texture->GetDimensions()} {}
+Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture) : TextureRegion{texture, {0,0}, texture->GetDimensions()} {}
