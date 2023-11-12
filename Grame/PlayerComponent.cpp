@@ -32,11 +32,10 @@ void PlayerComponent::Update(double dt)
 }
 
 void PlayerComponent::Serialise(YAML::Emitter& out) {
-	out << name;
 }
 
 const std::string PlayerComponent::name = "PlayerComponent";
 
-const std::string& PlayerComponent::GetComponentName() {
+const std::string& PlayerComponent::GetName() {
 	return name;
 }

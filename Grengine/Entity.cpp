@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Entity.h"
 
-Spite::Entity::Entity() : position{0.0f, 0.0f}, scale{ 1.0f, 1.0f }, rotation{ 0.0f }, z{0.0f} {}
+Spite::Entity::Entity() : position{0.0f, 0.0f}, scale{ 1.0f, 1.0f }, rotation{ 0.0f }, z{0.0f}, name{"Entity"} {}
 
 void Spite::Entity::Update(double dt)
 {
@@ -23,37 +23,34 @@ void Spite::Entity::Draw(double dt)
     }
 }
 
+const std::string& Spite::Entity::GetName() {
+    return name;
+}
+
 void Spite::Entity::Serialise(YAML::Emitter& out) {
-    out << YAML::BeginMap;
-    out << YAML::Key << "Entity";
-    out << YAML::Value << YAML::BeginMap;
     out << YAML::Key << "Position" << YAML::Value << YAML::Flow << YAML::BeginSeq << position.x << position.y << YAML::EndSeq;
     out << YAML::Key << "Scale" << YAML::Value << YAML::Flow << YAML::BeginSeq << scale.x << scale.y << YAML::EndSeq;
     out << YAML::Key << "Rotation" << YAML::Value << rotation;
     out << YAML::Key << "Z" << YAML::Value << z;
-    out << YAML::Key << "Components";
-    if (components.size() > 0) {
-        out << YAML::Value << YAML::BeginSeq;
-    } else {
-        out << YAML::Value << YAML::Flow << YAML::BeginSeq;
-    }
     //Components
+    out << YAML::Key << "Components";
+    out << YAML::Value << YAML::BeginMap;
     for (auto& c : components) {
+        out << YAML::Key << c->GetName();
+        out << YAML::Value << YAML::BeginMap;
         c->Serialise(out);
+        out << YAML::EndMap;
     }
-    out << YAML::EndSeq;
-    out << YAML::Key << "Children";
-    if (children.size() > 0) {
-        out << YAML::Value << YAML::BeginSeq;
-    } else {
-        out << YAML::Value << YAML::Flow << YAML::BeginSeq;
-    }
-    //Children
-    for (auto& c : children) {
-        c->Serialise(out);
-    }
-    out << YAML::EndSeq;
     out << YAML::EndMap;
+    //Children
+    out << YAML::Key << "Children";
+    out << YAML::Value << YAML::BeginMap;
+    for (auto& c : children) {
+        out << YAML::Key << c->GetName();
+        out << YAML::Value << YAML::BeginMap;
+        c->Serialise(out);
+        out << YAML::EndMap;
+    }
     out << YAML::EndMap;
 }
 

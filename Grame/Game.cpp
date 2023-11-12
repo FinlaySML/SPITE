@@ -44,7 +44,13 @@ Game::Game()
 	}
 	root.AddChild(PlayerFactory());
 	YAML::Emitter out;
+	out << YAML::Auto;
+	out << YAML::BeginMap;
+	out << YAML::Key << "Root";
+	out << YAML::Value << YAML::BeginMap;
 	root.Serialise(out);
+	out << YAML::EndMap;
+	out << YAML::EndMap;
 	std::cout << out.c_str() << std::endl;
 }
 

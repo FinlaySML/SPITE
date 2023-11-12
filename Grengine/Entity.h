@@ -17,7 +17,7 @@ namespace Spite {
 		glm::vec2 scale;
 		float rotation;
 		float z;
-		std::string name;
+		const std::string& GetName();
 		//Serialisation
 		void Serialise(YAML::Emitter&) override;
 		void Deserialise(const YAML::Node&) override;
@@ -61,6 +61,7 @@ namespace Spite {
 		std::vector<std::unique_ptr<Component>> components;
 		std::vector<std::unique_ptr<Entity>> children;
 		std::optional<Entity*> parent;
+		std::string name;
 	};
 
 }

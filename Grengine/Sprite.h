@@ -8,7 +8,7 @@ namespace Spite {
 	public:
 		Sprite(Entity&);
 		void Draw(double dt) override;
-		const std::string& GetComponentName() override;
+		const std::string& GetName() override;
 		void Serialise(YAML::Emitter&) override;
 		glm::vec4 colour;
 		std::optional<TextureRegion> textureRegion;

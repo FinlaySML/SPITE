@@ -7,7 +7,7 @@ public:
 	PlayerComponent(Spite::Entity&);
 	void Update(double dt) override;
 	void Serialise(YAML::Emitter&) override;
-	const std::string& GetComponentName() override;
+	const std::string& GetName() override;
 	static const std::string name;
 };
 
