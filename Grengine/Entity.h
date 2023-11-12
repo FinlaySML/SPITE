@@ -7,6 +7,7 @@ namespace Spite {
 	{
 	public:
 		Entity();
+		Entity(std::uint32_t id);
 		Entity(Entity&) = delete;
 		Entity& operator=(Entity&) = delete;
 		Entity(Entity&&) = delete;
@@ -17,9 +18,10 @@ namespace Spite {
 		glm::vec2 scale;
 		float rotation;
 		float z;
-		const std::string& GetName();
+		std::string name;
+		std::uint32_t id;
 		//Serialisation
-		void Serialise(YAML::Emitter&) override;
+		void Serialise(YAML::Emitter&) const override;
 		void Deserialise(const YAML::Node&) override;
 		//Tree Management
 		const std::optional<Entity*>& GetParent();
@@ -61,7 +63,6 @@ namespace Spite {
 		std::vector<std::unique_ptr<Component>> components;
 		std::vector<std::unique_ptr<Entity>> children;
 		std::optional<Entity*> parent;
-		std::string name;
 	};
 
 }

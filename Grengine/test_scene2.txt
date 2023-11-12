@@ -1,0 +1,100 @@
+Name: Entity
+ID: 0
+Position: [0, 0]
+Scale: [1, 1]
+Rotation: 0
+Z: 0
+Components:
+  []
+Children:
+  - Name: Entity
+    ID: 1
+    Position: [-1.994995, 0.254341364]
+    Scale: [1, 1]
+    Rotation: 1.21456635
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 1, 1, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+    Children:
+      []
+  - Name: Entity
+    ID: 2
+    Position: [1.23496199, 0.340037346]
+    Scale: [1, 1]
+    Rotation: 3.01513124
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 1, 1, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+    Children:
+      []
+  - Name: Entity
+    ID: 3
+    Position: [-0.598834157, 1.58384967]
+    Scale: [1, 1]
+    Rotation: 5.17005634
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 1, 1, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+    Children:
+      []
+  - Name: Entity
+    ID: 4
+    Position: [0.986419201, -1.30356765]
+    Scale: [1, 1]
+    Rotation: 5.39690113
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 1, 1, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+    Children:
+      []
+  - Name: Entity
+    ID: 5
+    Position: [0.84200573, 0.0541398525]
+    Scale: [1, 1]
+    Rotation: 1.91005611
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 1, 1, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+    Children:
+      []
+  - Name: Entity
+    ID: 6
+    Position: [0, 0]
+    Scale: [1, 0.699999988]
+    Rotation: 0
+    Z: 0
+    Components:
+      - Name: SpriteComponent
+        Colour: [1, 0, 0, 1]
+        TextureRegion:
+          Path: test.png
+          Origin: [0, 0]
+          Dimensions: [16, 16]
+      - Name: PlayerComponent
+    Children:
+      []

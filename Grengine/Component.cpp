@@ -20,7 +20,7 @@ Spite::Entity& Spite::Component::GetParent() const
     return parent;
 }
 
-void Spite::Component::Serialise(YAML::Emitter& out) {
+void Spite::Component::Serialise(YAML::Emitter& out) const {
 }
 
 void Spite::Component::Deserialise(const YAML::Node&) {

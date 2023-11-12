@@ -43,15 +43,10 @@ Game::Game()
 		root.AddChild(TestFactory());
 	}
 	root.AddChild(PlayerFactory());
-	YAML::Emitter out;
-	out << YAML::Auto;
-	out << YAML::BeginMap;
-	out << YAML::Key << "Root";
-	out << YAML::Value << YAML::BeginMap;
-	root.Serialise(out);
-	out << YAML::EndMap;
-	out << YAML::EndMap;
-	std::cout << out.c_str() << std::endl;
+	Spite::core->SaveScene(root, "test_scene.txt");
+	auto loaded = Spite::core->LoadScene("test_scene.txt");
+	Spite::core->SaveScene(*loaded.get(), "test_scene2.txt");
+
 }
 
 void Game::Update(double dt)

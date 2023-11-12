@@ -20,7 +20,7 @@ Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2
 
 Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture) : TextureRegion{texture, {0,0}, texture->GetDimensions()} {}
 
-void Spite::TextureRegion::Serialise(YAML::Emitter& out) {
+void Spite::TextureRegion::Serialise(YAML::Emitter& out) const {
 	out << YAML::Key << "Path" << YAML::Value << texture->Path().value_or("Unknown");
 	out << YAML::Key << "Origin" << YAML::Value << YAML::Flow << YAML::BeginSeq << origin.x << origin.y << YAML::EndSeq;
 	out << YAML::Key << "Dimensions" << YAML::Value << YAML::Flow << YAML::BeginSeq << dimensions.x << dimensions.y << YAML::EndSeq;

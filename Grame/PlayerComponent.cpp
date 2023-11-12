@@ -31,7 +31,7 @@ void PlayerComponent::Update(double dt)
 	Spite::render->Camera().position = GetParent().position;
 }
 
-void PlayerComponent::Serialise(YAML::Emitter& out) {
+void PlayerComponent::Serialise(YAML::Emitter& out) const {
 }
 
 const std::string PlayerComponent::name = "PlayerComponent";

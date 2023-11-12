@@ -9,7 +9,7 @@ namespace Spite {
 		std::shared_ptr<Texture> texture;
 		glm::ivec2 origin;
 		glm::ivec2 dimensions;
-		void Serialise(YAML::Emitter&) override;
+		void Serialise(YAML::Emitter&) const override;
 		void Deserialise(const YAML::Node&) override;
 	};
 }

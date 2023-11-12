@@ -4,7 +4,7 @@
 namespace Spite {
 	class Serialisable {
 	public:
-		virtual void Serialise(YAML::Emitter&) = 0;
+		virtual void Serialise(YAML::Emitter&) const = 0;
 		virtual void Deserialise(const YAML::Node&) = 0;
 	};
 }
