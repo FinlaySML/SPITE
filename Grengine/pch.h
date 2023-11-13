@@ -19,6 +19,7 @@
 #include <filesystem>
 #include <GL/glew.h>
 #include <SDL/SDL.h>
+#include <yaml-cpp/yaml.h>
 #include <stb_image.h>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/ext.hpp>

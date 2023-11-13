@@ -1,9 +1,8 @@
 #pragma once
 #include "Component.h"
-#include "Serialisable.h"
 
 namespace Spite {
-	class Entity : public Serialisable
+	class Entity
 	{
 	public:
 		Entity();
@@ -21,8 +20,8 @@ namespace Spite {
 		std::string name;
 		std::uint32_t id;
 		//Serialisation
-		void Serialise(YAML::Emitter&) const override;
-		void Deserialise(const YAML::Node&) override;
+		void Serialise(YAML::Emitter&) const;
+		static std::unique_ptr<Entity> Deserialise(const YAML::Node&);
 		//Tree Management
 		const std::optional<Entity*>& GetParent();
 		const std::vector<std::unique_ptr<Entity>>& GetChildren();
@@ -30,16 +29,14 @@ namespace Spite {
 		Entity* AddChild(std::unique_ptr<Spite::Entity>&& child);
 		std::unique_ptr<Spite::Entity> RemoveChild(Spite::Entity* child);
 		//Component Management
-		template <class T>
+		template <std::derived_from<Component> T>
 		T& AddComponent() {
-			static_assert(std::is_base_of<Component, T>::value, "AddComponent<T>() requires T be derived from Component");
 			T* component{ new T(*this) };
 			components.emplace_back(component);
 			return *component;
 		}
-		template <class T>
+		template <std::derived_from<Component> T>
 		T& GetComponent() {
-			static_assert(std::is_base_of<Component, T>::value, "GetComponent<T>() requires T be derived from Component");
 			for (auto& ptr : components) {
 				if (typeid(*ptr.get()) == typeid(T)) {
 					return *(T*)ptr.get();
@@ -47,9 +44,8 @@ namespace Spite {
 			}
 			throw std::out_of_range{std::format("Cannot find component of type T where T={}", typeid(T).name())};
 		}
-		template <class T>
+		template <std::derived_from<Component> T>
 		std::vector<T&> GetComponents() {
-			static_assert(std::is_base_of<Component, T>::value, "GetComponents<T>() requires T be derived from Component");
 			std::vector<T&> vec;
 			for (auto& c : components) {
 				if (typeid(c.get()) == typeid(T)) {

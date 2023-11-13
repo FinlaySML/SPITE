@@ -12,5 +12,5 @@ public:
 	void Render(double dt) final;
 private:
 	Spite::SoundSystem::SampleID coinSample;
-	Spite::Entity root;
+	std::unique_ptr<Spite::Entity> root;
 };

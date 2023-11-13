@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CoreSystem.h"
 #include "Sprite.h"
-#include "yaml-cpp/node/parse.h"
 
 Spite::CoreSystem* Spite::core = new Spite::CoreSystem();
 
@@ -33,9 +32,7 @@ void Spite::CoreSystem::SaveScene(const Spite::Entity& root, const std::filesyst
 std::unique_ptr<Spite::Entity> Spite::CoreSystem::LoadScene(const std::filesystem::path& path) {
 	std::ifstream ofs(path);
 	YAML::Node node = YAML::LoadFile(path.string());
-	std::unique_ptr<Entity> root = std::make_unique<Entity>();
-	root->Deserialise(node);
-	return root;
+	return Spite::Entity::Deserialise(node);
 }
 
 std::uint32_t Spite::CoreSystem::GetNewID() {

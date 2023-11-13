@@ -1,15 +1,14 @@
 #pragma once
 #include "Texture.h"
-#include "Serialisable.h"
 
 namespace Spite {
-	struct TextureRegion : public Serialisable {
+	struct TextureRegion {
 		TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2 origin, glm::ivec2 dimensions);
 		TextureRegion(std::shared_ptr<Texture> texture);
 		std::shared_ptr<Texture> texture;
 		glm::ivec2 origin;
 		glm::ivec2 dimensions;
-		void Serialise(YAML::Emitter&) const override;
-		void Deserialise(const YAML::Node&) override;
+		void Serialise(YAML::Emitter&) const;
+		static TextureRegion Deserialise(const YAML::Node&);
 	};
 }

@@ -14,8 +14,8 @@ std::unique_ptr<Spite::Entity> TestFactory() {
 	auto e = std::make_unique<Spite::Entity>();
 	auto& pSprite = e->AddComponent<Spite::Sprite>();
 	pSprite.textureRegion.emplace(Spite::render->GetTexture("test.png"));
-	e->position.x = (rand() / (float)RAND_MAX) * 4.0f - 2.0f;
-	e->position.y = (rand() / (float)RAND_MAX) * 4.0f - 2.0f;
+	e->position.x = (rand() / (float)RAND_MAX) * 16.0f - 8.0f;
+	e->position.y = (rand() / (float)RAND_MAX) * 16.0f - 8.0f;
 	e->rotation = (rand() / (float)RAND_MAX) * glm::two_pi<float>();
 	return e;
 }
@@ -39,19 +39,18 @@ Game::Game()
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	
 	Spite::sound->Play(coinSample, 1.0f);
-	for(int i = 0; i < 5; i++) {
-		root.AddChild(TestFactory());
+	root = std::make_unique<Spite::Entity>();
+	for (int i = 0; i < 4; i++) {
+		root->AddChild(TestFactory());
 	}
-	root.AddChild(PlayerFactory());
-	Spite::core->SaveScene(root, "test_scene.txt");
-	auto loaded = Spite::core->LoadScene("test_scene.txt");
-	Spite::core->SaveScene(*loaded.get(), "test_scene2.txt");
-
+	root->AddChild(PlayerFactory());
+	Spite::core->SaveScene(*root, "test_scene.txt");
+	//root = Spite::core->LoadScene("test_scene.txt");
 }
 
 void Game::Update(double dt)
 {
-	root.Update(dt);
+	root->Update(dt);
 	//Toggle fullscreen
 	if(Spite::event->GetDownCount(Spite::KeyValue::KV_F11) % 2 == 1){
 		Spite::render->SetFullscreen(!Spite::render->GetFullscreen());
@@ -61,6 +60,6 @@ void Game::Update(double dt)
 void Game::Render(double dt)
 {
 	Spite::render->Clear();
-	root.Draw(dt);
+	root->Draw(dt);
 	Spite::render->Display();
 }

@@ -160,7 +160,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Serialisable.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -182,7 +181,6 @@
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Serialisable.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SoundSystem_SoLoud.h" />
     <ClInclude Include="Spite.h" />

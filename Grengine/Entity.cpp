@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Entity.h"
 #include "CoreSystem.h"
-#include "yaml-cpp/yaml.h"
 
 Spite::Entity::Entity() : Entity(Spite::core->GetNewID()) {}
 
@@ -53,26 +52,24 @@ void Spite::Entity::Serialise(YAML::Emitter& out) const {
     out << YAML::EndSeq;
 }
 
-void Spite::Entity::Deserialise(const YAML::Node& node) {
-    name = node["Name"].as<std::string>();
-    id = node["ID"].as<std::uint32_t>();
-    position.x = node["Position"][0].as<float>();
-    position.y = node["Position"][1].as<float>();
-    scale.x = node["Scale"][0].as<float>();
-    scale.y = node["Scale"][1].as<float>();
-    rotation = node["Rotation"].as<float>();
-    z = node["Z"].as<float>();
+std::unique_ptr<Spite::Entity> Spite::Entity::Deserialise(const YAML::Node& node) {
+    auto entity = std::make_unique<Spite::Entity>(node["ID"].as<std::uint32_t>());
+    entity->name = node["Name"].as<std::string>();
+    entity->position.x = node["Position"][0].as<float>();
+    entity->position.y = node["Position"][1].as<float>();
+    entity->scale.x = node["Scale"][0].as<float>();
+    entity->scale.y = node["Scale"][1].as<float>();
+    entity->rotation = node["Rotation"].as<float>();
+    entity->z = node["Z"].as<float>();
     auto& comps = node["Components"];
     for (size_t i = 0, size = comps.size(); i < size; i++) {
-        const YAML::Node& componentSubTree{ comps[i] };
-        Spite::core->AddComponentByName(*this, componentSubTree["Name"].as<std::string>()).Deserialise(componentSubTree);
+        Spite::core->AddComponentByName(*entity, comps[i]["Name"].as<std::string>()).Deserialise(comps[i]);
     }
     auto& childs = node["Children"];
     for (size_t i = 0, size = childs.size(); i < size; i++) {
-        const YAML::Node& childSubTree{ childs[i] };
-        auto* child = AddChild(std::make_unique<Spite::Entity>());
-        child->Deserialise(childs[i]);
+        entity->AddChild(Entity::Deserialise(childs[i]));
     }
+    return entity;
 }
 
 const std::optional<Spite::Entity*>& Spite::Entity::GetParent() {

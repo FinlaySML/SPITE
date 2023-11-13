@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "TextureRegion.h"
 #include "Texture.h"
+#include "RenderSystem.h"
 
 Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2 origin, glm::ivec2 dimensions) : texture{texture}, origin{origin}, dimensions{dimensions} {
 	if(!texture->IsLoaded()) {
@@ -26,4 +27,11 @@ void Spite::TextureRegion::Serialise(YAML::Emitter& out) const {
 	out << YAML::Key << "Dimensions" << YAML::Value << YAML::Flow << YAML::BeginSeq << dimensions.x << dimensions.y << YAML::EndSeq;
 }
 
-void Spite::TextureRegion::Deserialise(const YAML::Node&) {}
+Spite::TextureRegion Spite::TextureRegion::Deserialise(const YAML::Node& node) {
+	Spite::TextureRegion region{Spite::render->GetTexture(node["Path"].as<std::string>())};
+	region.origin.x = node["Origin"][0].as<int>();
+	region.origin.y = node["Origin"][1].as<int>();
+	region.dimensions.x = node["Dimensions"][0].as<int>();
+	region.dimensions.y = node["Dimensions"][1].as<int>();
+	return region;
+}
