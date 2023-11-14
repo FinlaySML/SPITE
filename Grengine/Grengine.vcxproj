@@ -154,11 +154,13 @@
     <ClCompile Include="CoreSystem.cpp" />
     <ClCompile Include="Entry_SDL.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Internal.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ResourceSystem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
@@ -176,10 +178,12 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="CoreSystem.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ResourceSystem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SoundSystem_SoLoud.h" />

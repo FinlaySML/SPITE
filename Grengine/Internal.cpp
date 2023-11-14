@@ -5,11 +5,12 @@
 #include "EventSystem.h"
 #include "SoundSystem.h"
 #include "CoreSystem.h"
+#include "ResourceSystem.h"
 
-#include "Entity.h"
 int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	//Register components
 	core->Initialise();
+	resource->Initialise();
 	render->Initialise();
 	event->Initialise();
 	sound->Initialise();
@@ -44,6 +45,7 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	sound->Shutdown();
 	event->Shutdown();
 	render->Shutdown();
+	resource->Shutdown();
 	core->Shutdown();
 	return 0;
 }

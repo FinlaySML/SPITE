@@ -24,7 +24,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/ext.hpp>
 #include <glm/gtx/matrix_transform_2d.hpp>
-#if defined(_WIN32) || defined(_WIN64)
+/*#if defined(_WIN32) || defined(_WIN64)
 #define NOMINMAX
 #include <Windows.h>
-#endif
+#endif*/
