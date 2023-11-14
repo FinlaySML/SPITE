@@ -28,29 +28,23 @@ namespace Spite {
         return 0;
     }
 
-    SoundSystem::SampleID SoundSystem_SoLoud::LoadSample(std::string file) {
-        std::unique_ptr<SoLoud::Wav> sample{new SoLoud::Wav()};
-        auto result = sample->load(file.c_str());
-        if(result != 0) {
-            std::cout << std::format("Could not load SoLoud sample: {}", GetSoLoudErrorString(result)) << std::endl;
-            return {0};
+    Sample* SoundSystem_SoLoud::LoadSample(const std::filesystem::path& path)
+    {
+        auto it = samples.find(path);
+        if (it != samples.end()) {
+            return it->second.get();
         }
-        idCount++;
-        samples.insert(std::pair{idCount, std::move(sample)});
-        return {idCount};
+        auto result = samples.insert(std::pair{ path, new Spite::Sample_SoLoud(path)});
+        return result.first->second.get();
     }
 
-    SoundSystem::StreamID SoundSystem_SoLoud::LoadStream(std::string file) {
-        return StreamID();
+    Stream* SoundSystem_SoLoud::LoadStream(const std::filesystem::path& path)
+    {
+        return nullptr;
     }
 
-    void SoundSystem_SoLoud::Play(SampleID sampleId, float volume) {
-        auto it = samples.find(sampleId.val);
-        if(it == samples.end()) {
-            std::cout << std::format("Could not find sample with ID {}", sampleId.val) << std::endl;
-            return;
-        }
-        engine.play(*it->second, volume);
+    void SoundSystem_SoLoud::Play(Sample* sample, float volume) {
+        engine.play(((Spite::Sample_SoLoud*)sample)->wav, volume);
     }
 
     std::string SoundSystem_SoLoud::GetSoLoudErrorString(SoLoud::result errorCode) {

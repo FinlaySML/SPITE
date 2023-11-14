@@ -159,12 +159,15 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="Sample_SoLoud.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteBatch_GL.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Stream.cpp" />
     <ClCompile Include="TextureRegion.cpp" />
     <ClCompile Include="Texture_GL.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
@@ -180,6 +183,8 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Sample.h" />
+    <ClInclude Include="Sample_SoLoud.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SoundSystem_SoLoud.h" />
@@ -190,6 +195,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="SpriteBatch_GL.h" />
+    <ClInclude Include="Stream.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureRegion.h" />
