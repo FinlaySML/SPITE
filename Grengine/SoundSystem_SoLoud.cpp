@@ -1,26 +1,33 @@
 #include "pch.h"
 #include "SoundSystem_SoLoud.h"
+#include "SoundSettings_SoLoud.h"
 #include <filesystem>
 
 Spite::SoundSystem* Spite::sound = new Spite::SoundSystem_SoLoud();
 
 namespace Spite {
-    SoundSystem_SoLoud::SoundSystem_SoLoud() : idCount{0} {
+    SoundSystem_SoLoud::SoundSystem_SoLoud() {
     }
 
     int SoundSystem_SoLoud::Initialise() {
         auto result = engine.init();
         if (result != 0) {
-            std::cout << std::format("Could not init SDL2 sound driver for SoLoud: {}", GetSoLoudErrorString(result)) << std::endl;
+            std::cout << std::format("Could not init SDL2 sound driver for SoLoud: {}", engine.getErrorString(result)) << std::endl;
             result = engine.init(1, SoLoud::Soloud::NULLDRIVER);
             if (result != 0) {
-                std::cout << std::format("Could not init NULL sound driver for SoLoud: {}", GetSoLoudErrorString(result)) << std::endl;
+                std::cout << std::format("Could not init NULL sound driver for SoLoud: {}", engine.getErrorString(result)) << std::endl;
                 return -1;
             }
             std::cout << "No audio device could be found" << std::endl;
             return 0;
         }
         return 0;
+    }
+
+    void SoundSystem_SoLoud::Update() {
+        std::erase_if(handles, [&](const std::unique_ptr<Spite::SoundSettings_SoLoud>& ptr){
+            return !engine.isValidVoiceHandle(ptr->handle);
+        });
     }
 
     int SoundSystem_SoLoud::Shutdown() {
@@ -40,23 +47,27 @@ namespace Spite {
 
     Stream* SoundSystem_SoLoud::LoadStream(const std::filesystem::path& path)
     {
-        return nullptr;
-    }
-
-    void SoundSystem_SoLoud::Play(Sample* sample, float volume) {
-        engine.play(((Spite::Sample_SoLoud*)sample)->wav, volume);
-    }
-
-    std::string SoundSystem_SoLoud::GetSoLoudErrorString(SoLoud::result errorCode) {
-        switch(errorCode) {
-        case SoLoud::SO_NO_ERROR: return "SO_NO_ERROR";
-        case SoLoud::INVALID_PARAMETER: return "INVALID_PARAMETER";
-        case SoLoud::FILE_NOT_FOUND: return "FILE_NOT_FOUND";
-        case SoLoud::FILE_LOAD_FAILED: return "FILE_LOAD_FAILED";
-        case SoLoud::DLL_NOT_FOUND: return "DLL_NOT_FOUND";
-        case SoLoud::OUT_OF_MEMORY: return "OUT_OF_MEMORY";
-        case SoLoud::NOT_IMPLEMENTED: return "NOT_IMPLEMENTED";
+        auto it = streams.find(path);
+        if (it != streams.end()) {
+            return it->second.get();
         }
-        return "UNKNOWN_ERROR";
+        auto result = streams.insert(std::pair{ path, new Spite::Stream_SoLoud(path) });
+        return result.first->second.get();
+    }
+
+    Spite::SoundSettings* SoundSystem_SoLoud::Play(Sample* sample, float volume) {
+        auto handle = engine.play(((Spite::Sample_SoLoud*)sample)->wav, volume);
+        handles.push_back(std::make_unique<Spite::SoundSettings_SoLoud>(handle));
+        return handles.back().get();
+    }
+
+    Spite::SoundSettings* SoundSystem_SoLoud::Play(Stream* sample, float volume) {
+        auto handle = engine.play(((Spite::Stream_SoLoud*)sample)->wav, volume);
+        handles.push_back(std::make_unique<Spite::SoundSettings_SoLoud>(handle));
+        return handles.back().get();
+    }
+
+    SoLoud::Soloud& SoundSystem_SoLoud::GetEngine() {
+        return engine;
     }
 }
