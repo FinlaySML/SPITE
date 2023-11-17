@@ -37,9 +37,9 @@ Game::Game()
 	Spite::render->Camera().unitHeight = 15.0f;
 	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
 	
-	Spite::sound->LoadSampleAndPlay("coin1.wav", 0.5f)->Speed(0.2f).Delay(0.0f);
-	Spite::sound->LoadSampleAndPlay("coin1.wav", 0.5f)->Speed(0.4f).Delay(1.0f);
-	Spite::sound->LoadSampleAndPlay("coin1.wav", 0.5f)->Speed(0.8f).Delay(2.0f);
+	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.2f).Delay(0.0f);
+	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.4f).Delay(1.0f);
+	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.8f).Delay(2.0f);
 	root = std::make_unique<Spite::Entity>();
 	for (int i = 0; i < 4; i++) {
 		root->AddChild(TestFactory());

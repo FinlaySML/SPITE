@@ -162,8 +162,7 @@
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="Sample_SoLoud.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SoundSettings.cpp" />
-    <ClCompile Include="SoundSettings_SoLoud.cpp" />
+    <ClCompile Include="SoundHandle.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="SoundSystem_SoLoud.cpp" />
     <ClCompile Include="RenderSystem_SDL.cpp" />
@@ -190,8 +189,7 @@
     <ClInclude Include="Sample.h" />
     <ClInclude Include="Sample_SoLoud.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SoundSettings.h" />
-    <ClInclude Include="SoundSettings_SoLoud.h" />
+    <ClInclude Include="SoundHandle.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="SoundSystem_SoLoud.h" />
     <ClInclude Include="Spite.h" />

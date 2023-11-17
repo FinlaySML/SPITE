@@ -23,7 +23,6 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	double frameDelta = 1.0 / 60.0;
 	//Frame Loop
 	while (true) {
-		sound->Update();
 		//Events
 		if (event->ProcessEvents() == -1) {
 			break;

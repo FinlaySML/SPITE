@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "SoundSystem_SoLoud.h"
-#include "SoundSettings_SoLoud.h"
 #include <filesystem>
 
 Spite::SoundSystem* Spite::sound = new Spite::SoundSystem_SoLoud();
@@ -22,12 +21,6 @@ namespace Spite {
             return 0;
         }
         return 0;
-    }
-
-    void SoundSystem_SoLoud::Update() {
-        std::erase_if(handles, [&](const std::unique_ptr<Spite::SoundSettings_SoLoud>& ptr){
-            return !engine.isValidVoiceHandle(ptr->handle);
-        });
     }
 
     int SoundSystem_SoLoud::Shutdown() {
@@ -55,16 +48,30 @@ namespace Spite {
         return result.first->second.get();
     }
 
-    Spite::SoundSettings* SoundSystem_SoLoud::Play(Sample* sample, float volume) {
+    Spite::SoundHandle SoundSystem_SoLoud::Play(Sample* sample, float volume) {
         auto handle = engine.play(((Spite::Sample_SoLoud*)sample)->wav, volume);
-        handles.push_back(std::make_unique<Spite::SoundSettings_SoLoud>(handle));
-        return handles.back().get();
+        return {handle};
     }
 
-    Spite::SoundSettings* SoundSystem_SoLoud::Play(Stream* sample, float volume) {
+    Spite::SoundHandle SoundSystem_SoLoud::Play(Stream* sample, float volume) {
         auto handle = engine.play(((Spite::Stream_SoLoud*)sample)->wav, volume);
-        handles.push_back(std::make_unique<Spite::SoundSettings_SoLoud>(handle));
-        return handles.back().get();
+        return {handle};
+    }
+
+    void SoundSystem_SoLoud::SetVolume(SoundHandle handle, float multiplier) {
+        engine.setVolume(handle.underlying, multiplier);
+    }
+
+    void SoundSystem_SoLoud::SetSpeed(SoundHandle handle, float multiplier) {
+        engine.setRelativePlaySpeed(handle.underlying, multiplier);
+    }
+
+    void SoundSystem_SoLoud::SetDelay(SoundHandle handle, float seconds) {
+        engine.setDelaySamples(handle.underlying, seconds * engine.getSamplerate(handle.underlying));
+    }
+
+    void SoundSystem_SoLoud::SetPlay(SoundHandle handle, bool isPlaying) {
+        engine.setPause(handle.underlying, !isPlaying);
     }
 
     SoLoud::Soloud& SoundSystem_SoLoud::GetEngine() {

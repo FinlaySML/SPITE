@@ -96,16 +96,13 @@
     <ClCompile Include="Stream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundSettings_SoLoud.cpp">
-      <Filter>Source Files\SoLoud</Filter>
-    </ClCompile>
     <ClCompile Include="Stream_SoLoud.cpp">
       <Filter>Source Files\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,17 +188,14 @@
     <ClInclude Include="Stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SoundSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSettings_SoLoud.h">
-      <Filter>Header Files\SoLoud</Filter>
-    </ClInclude>
     <ClInclude Include="Sample_SoLoud.h">
       <Filter>Header Files\SoLoud</Filter>
     </ClInclude>
     <ClInclude Include="Stream_SoLoud.h">
       <Filter>Header Files\SoLoud</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundHandle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
