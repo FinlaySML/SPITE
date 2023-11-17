@@ -5,34 +5,31 @@ using namespace std::chrono;
 using dsec = duration<double>;
 
 namespace Spite {
-	TimeSystem::TimeSystem(const int targetFramesPerSecond) : TargetTickTime{ 1.0 / 60.0 }, TargetFrameTime{ 1.0 / 60.0 }, MaxTickCount{ 8 }, MaxFrameDelta{ 1.0 / 15.0 }
+	TimeSystem::TimeSystem(const int targetFramesPerSecond) : targetTickTime{ 1.0 / targetFramesPerSecond }, maxTickCount{ 8 }, maxFrameDelta{ 1.0 / 15.0 }
 	{		
-		LastFrameTime = LastTickTime = Clock::now();
+		lastFrameTime = lastTickTime = Clock::now();
 	}
 	
 	const double TimeSystem::GetFrameDelta()
 	{
-		dsec frameDelta = Clock::now() - LastFrameTime;
-		if (frameDelta < TargetFrameTime) {
-			std::this_thread::sleep_for(TargetFrameTime - frameDelta);
-		}
-		frameDelta = Clock::now() - LastFrameTime;
-		LastFrameTime = Clock::now();
-		return std::min(MaxFrameDelta, frameDelta.count());
+		dsec frameDelta = Clock::now() - lastFrameTime;
+		frameDelta = Clock::now() - lastFrameTime;
+		lastFrameTime = Clock::now();
+		return std::min(maxFrameDelta, frameDelta.count());
 	}
 	const double TimeSystem::GetTickDelta()
 	{
-		return TargetTickTime.count();
+		return targetTickTime.count();
 	}
 	int TimeSystem::GetTickCount()
 	{
 		int tickCount = 0;
 		auto now = Clock::now();
-		while (now > LastTickTime) {
-			LastTickTime += duration_cast<nanoseconds>(TargetTickTime);
+		while (now > lastTickTime) {
+			lastTickTime += duration_cast<nanoseconds>(targetTickTime);
 			tickCount++;
-			if (tickCount == MaxTickCount) {
-				LastTickTime = now;
+			if (tickCount == maxTickCount) {
+				lastTickTime = now;
 				break;
 			}
 		}

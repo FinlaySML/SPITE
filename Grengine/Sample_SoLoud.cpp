@@ -2,8 +2,7 @@
 #include "Sample_SoLoud.h"
 #include "SoundSystem_SoLoud.h"
 
-Spite::Sample_SoLoud::Sample_SoLoud(const std::filesystem::path& path)
-{
+Spite::Sample_SoLoud::Sample_SoLoud(const std::filesystem::path& path) {
     std::string pathString = path.string();
     auto result = wav.load(pathString.c_str());
     if (result != 0) {

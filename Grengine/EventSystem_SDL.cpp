@@ -17,10 +17,8 @@ int Spite::EventSystem_SDL::Initialise()
     int numkeys = 0;
     const uint8_t* keys = SDL_GetKeyboardState(&numkeys);
     keyboardState = std::span<const uint8_t>{keys, (size_t)numkeys};
-    keyDownUpdateCount.resize(numkeys);
-    keyDownRenderCount.resize(numkeys);
-    keyUpUpdateCount.resize(numkeys);
-    keyUpRenderCount.resize(numkeys);
+    keyDownCount.resize(numkeys);
+    keyUpCount.resize(numkeys);
     //KeyValues
     keyValueToKeycode.insert({ Spite::KeyValue::KV_UNKNOWN, SDLK_UNKNOWN });
     keyValueToKeycode.insert({ Spite::KeyValue::KV_RETURN,SDLK_RETURN});
@@ -532,12 +530,9 @@ int Spite::EventSystem_SDL::Shutdown()
     return 0;
 }
 
-int Spite::EventSystem_SDL::ProcessEvents()
+void Spite::EventSystem_SDL::ProcessEvents()
 {
     SDL_Event e;
-    //While application is running
-    int returnValue = 0;
-
     //Standard SDL event system - go look at their documentation if you care!
     //Handle events on queue
     while (SDL_PollEvent(&e) != 0)
@@ -545,16 +540,13 @@ int Spite::EventSystem_SDL::ProcessEvents()
         switch (e.type)
         {
         case SDL_QUIT:
-            //User requests quit
-            returnValue = -1;
+            Quit();
             break;
         case SDL_KEYDOWN:
-            keyDownRenderCount[(size_t)e.key.keysym.scancode]++;
-            keyDownUpdateCount[(size_t)e.key.keysym.scancode]++;
+            keyDownCount[(size_t)e.key.keysym.scancode]++;
             break;
         case SDL_KEYUP:
-            keyUpRenderCount[(size_t)e.key.keysym.scancode]++;
-            keyUpUpdateCount[(size_t)e.key.keysym.scancode]++;
+            keyUpCount[(size_t)e.key.keysym.scancode]++;
             break;
         case SDL_WINDOWEVENT:
             //Here we're converting the SDL event into our generic Spite event
@@ -575,7 +567,10 @@ int Spite::EventSystem_SDL::ProcessEvents()
             break;
         }
     }
-    return returnValue;
+}
+
+void Spite::EventSystem_SDL::Quit() {
+    quit = true;
 }
 
 bool Spite::EventSystem_SDL::IsPressed(KeyValue key) {
@@ -600,74 +595,49 @@ bool Spite::EventSystem_SDL::IsPressed(KeyLocation key) {
     return keyboardState[code] > 0;
 }
 
-int Spite::EventSystem_SDL::GetDownCount(KeyValue key) {
+bool Spite::EventSystem_SDL::JustPressed(KeyValue key) {
     SDL_Scancode code = SDL_GetScancodeFromKey(ConvertToSDLKeycode(key));
     if (code == SDL_SCANCODE_UNKNOWN) {
         std::cout << std::format("Cannot get scancode of key {}", (int)key) << std::endl;
-        return 0;
+        return false;
     }
-    if(inputMode == InputMode::UPDATE) {
-        return keyDownUpdateCount[code];
-    }else {
-        return keyDownRenderCount[code];
-    }
+    return keyDownCount[code] > 0;
 }
 
-int Spite::EventSystem_SDL::GetDownCount(KeyLocation key) {
+bool Spite::EventSystem_SDL::JustPressed(KeyLocation key) {
     SDL_Scancode code = ConvertToSDLScancode(key);
     if (code == SDL_SCANCODE_UNKNOWN) {
         std::cout << std::format("Cannot get scancode of key {}", (int)key) << std::endl;
-        return 0;
+        return false;
     }
-    if (inputMode == InputMode::UPDATE) {
-        return keyDownUpdateCount[code];
-    } else {
-        return keyDownRenderCount[code];
-    }
+    return keyDownCount[code] > 0;
 }
 
-int Spite::EventSystem_SDL::GetUpCount(KeyValue key) {
+bool Spite::EventSystem_SDL::JustReleased(KeyValue key) {
     SDL_Scancode code = SDL_GetScancodeFromKey(ConvertToSDLKeycode(key));
     if (code == SDL_SCANCODE_UNKNOWN) {
         std::cout << std::format("Cannot get scancode of key {}", (int)key) << std::endl;
-        return 0;
+        return false;
     }
-    if (inputMode == InputMode::UPDATE) {
-        return keyUpUpdateCount[code];
-    } else {
-        return keyUpRenderCount[code];
-    }
+    return keyUpCount[code] > 0;
 }
 
-int Spite::EventSystem_SDL::GetUpCount(KeyLocation key) {
+bool Spite::EventSystem_SDL::JustReleased(KeyLocation key) {
     SDL_Scancode code = ConvertToSDLScancode(key);
     if (code == SDL_SCANCODE_UNKNOWN) {
         std::cout << std::format("Cannot get scancode of key {}", (int)key) << std::endl;
-        return 0;
+        return false;
     }
-    if (inputMode == InputMode::UPDATE) {
-        return keyUpUpdateCount[code];
-    } else {
-        return keyUpRenderCount[code];
-    }
+    return keyUpCount[code] > 0;
 }
 
-void Spite::EventSystem_SDL::UpdateStart() {
-    inputMode = InputMode::UPDATE;
+bool Spite::EventSystem_SDL::HasQuit() {
+    return quit;
 }
 
 void Spite::EventSystem_SDL::UpdateEnd() {
-    std::ranges::fill(keyDownUpdateCount, 0);
-    std::ranges::fill(keyUpUpdateCount, 0);
-}
-
-void Spite::EventSystem_SDL::RenderStart() {
-    inputMode = InputMode::RENDER;
-}
-
-void Spite::EventSystem_SDL::RenderEnd() {
-    std::ranges::fill(keyDownRenderCount, 0);
-    std::ranges::fill(keyUpRenderCount, 0);
+    std::ranges::fill(keyDownCount, 0);
+    std::ranges::fill(keyUpCount, 0);
 }
 
 SDL_Scancode Spite::EventSystem_SDL::ConvertToSDLScancode(Spite::KeyLocation kl) {

@@ -13,7 +13,7 @@ namespace Spite {
 	class TimeSystem
 	{
 	public:
-		TimeSystem(const int targetFramesPerSecond);
+		TimeSystem(int targetUpdatesPerSecond);
 		/// <summary>
 		/// Sleeps till the next frame 
 		/// </summary>
@@ -34,12 +34,11 @@ namespace Spite {
 		/// </returns>
 		int GetTickCount();
 	private:
-		std::chrono::time_point<Clock>	LastFrameTime;
-		std::chrono::time_point<Clock>	LastTickTime;
-		const std::chrono::duration<double>	TargetFrameTime;
-		const std::chrono::duration<double>	TargetTickTime;
+		std::chrono::time_point<Clock>	lastFrameTime;
+		std::chrono::time_point<Clock>	lastTickTime;
+		const std::chrono::duration<double>	targetTickTime;
 
-		const int MaxTickCount;
-		const double MaxFrameDelta;
+		const int maxTickCount;
+		const double maxFrameDelta;
 	};
 }

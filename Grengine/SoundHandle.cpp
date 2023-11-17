@@ -17,7 +17,15 @@ Spite::SoundHandle Spite::SoundHandle::Delay(float seconds) {
     return *this;
 }
 
-Spite::SoundHandle Spite::SoundHandle::Play(bool isPlaying) {
+Spite::SoundHandle Spite::SoundHandle::PlayOrPause(bool isPlaying) {
     Spite::sound->SetPlay(*this, isPlaying);
     return *this;
+}
+
+Spite::SoundHandle Spite::SoundHandle::Play() {
+    return PlayOrPause(true);
+}
+
+Spite::SoundHandle Spite::SoundHandle::Pause() {
+    return PlayOrPause(false);
 }

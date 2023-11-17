@@ -13,18 +13,17 @@ namespace Spite {
     public:
         int Initialise();
         int Shutdown();
-        int ProcessEvents() final;
+        void ProcessEvents() final;
+        void Quit() final;
         bool IsPressed(KeyValue) final;
         bool IsPressed(KeyLocation) final;
-        int GetDownCount(KeyValue) final;
-        int GetDownCount(KeyLocation) final;
-        int GetUpCount(KeyValue) final;
-        int GetUpCount(KeyLocation) final;
+        bool JustPressed(KeyValue) final;
+        bool JustPressed(KeyLocation) final;
+        bool JustReleased(KeyValue) final;
+        bool JustReleased(KeyLocation) final;
     protected:
-        void UpdateStart();
+        bool HasQuit();
         void UpdateEnd();
-        void RenderStart();
-        void RenderEnd();
     private:
         SDL_Scancode ConvertToSDLScancode(KeyLocation);
         SDL_Keycode ConvertToSDLKeycode(KeyValue);
@@ -33,13 +32,8 @@ namespace Spite {
         std::unordered_map<Spite::KeyLocation, SDL_Scancode> keyLocationToScancode;
         std::unordered_map<SDL_Keycode, Spite::KeyValue> keycodeToKeyValue;
         std::unordered_map<SDL_Scancode, Spite::KeyLocation> scancodeToKeyLocation;
-        std::vector<uint8_t> keyDownUpdateCount;
-        std::vector<uint8_t> keyDownRenderCount;
-        std::vector<uint8_t> keyUpUpdateCount;
-        std::vector<uint8_t> keyUpRenderCount;
-        enum InputMode {
-            UPDATE,
-            RENDER
-        }inputMode;
+        std::vector<uint8_t> keyDownCount;
+        std::vector<uint8_t> keyUpCount;
+        bool quit;
     };
 }

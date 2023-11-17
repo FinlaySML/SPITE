@@ -53,7 +53,7 @@ void Game::Update(double dt)
 {
 	root->Update(dt);
 	//Toggle fullscreen
-	if(Spite::event->GetDownCount(Spite::KeyValue::KV_F11) % 2 == 1){
+	if(Spite::event->JustPressed(Spite::KeyValue::KV_F11)){
 		Spite::render->SetFullscreen(!Spite::render->GetFullscreen());
 	}
 }
@@ -63,4 +63,12 @@ void Game::Render(double dt)
 	Spite::render->Clear();
 	root->Draw(dt);
 	Spite::render->Display();
+}
+
+int Game::GetTickRate() {
+	return 30;
+}
+
+void Game::OnQuit() {
+
 }

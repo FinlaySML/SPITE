@@ -3,6 +3,69 @@
 #include "Internal.h"
 
 namespace Spite {
+    enum class KeyValue : uint32_t;
+    enum class KeyLocation : uint32_t;
+    /// <summary>
+    /// Interface base class to our event system
+    /// </summary>
+    class EventSystem : public Subsystem
+    {
+        friend class Internal;
+    public:
+        /// <summary>
+        /// Quit the game, OnQuit() will be called after the next call to Render().
+        /// </summary>
+        virtual void Quit() = 0;
+        /// <summary>
+        /// Returns true if the given key is pressed.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool IsPressed(KeyValue) = 0;
+        /// <summary>
+        /// Returns true if the key at the given location is pressed.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool IsPressed(KeyLocation) = 0;
+        /// <summary>
+        /// Returns true if a key press was initiated since the last update. 
+        /// Note: JustPressed(...) being true does not garuntee that IsPressed(...) is also true, a key could have been pressed and released inbetween updates.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool JustPressed(KeyValue) = 0;
+        /// <summary>
+        /// Returns true if a key location press was initiated since the last update. 
+        /// Note: JustPressed(...) being true does not garuntee that IsPressed(...) is also true, a key could have been pressed and released inbetween updates.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool JustPressed(KeyLocation) = 0;
+        /// <summary>
+        /// Returns true if a key press was released since the last update.
+        /// Note: JustReleased(...) being true does not garuntee that IsPressed(...) is false, a key could have been released and pressed again inbetween updates.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool JustReleased(KeyValue) = 0;
+        /// <summary>
+        /// Returns true if a key location press was released since the last update.
+        /// Note: JustReleased(...) being true does not garuntee that IsPressed(...) is false, a key could have been released and pressed again inbetween updates.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        virtual bool JustReleased(KeyLocation) = 0;
+    protected:
+        virtual void ProcessEvents() = 0;
+        virtual bool HasQuit() = 0;
+        virtual void UpdateEnd() = 0;
+    };
+    
+    extern EventSystem* event;
+    /// <summary>
+    /// Represents a key (same as SDL_Keycode)
+    /// </summary>
     enum class KeyValue : uint32_t {
         KV_UNKNOWN,
         KV_RETURN,
@@ -16,7 +79,7 @@ namespace Spite {
         KV_PERCENT,
         KV_DOLLAR,
         KV_AMPERSAND,
-        KV_QUOTE ,
+        KV_QUOTE,
         KV_LEFTPAREN,
         KV_RIGHTPAREN,
         KV_ASTERISK,
@@ -42,9 +105,9 @@ namespace Spite {
         KV_GREATER,
         KV_QUESTION,
         KV_AT,
-        
+
         KV_LEFTBRACKET,
-        KV_BACKSLASH ,
+        KV_BACKSLASH,
         KV_RIGHTBRACKET,
         KV_CARET,
         KV_UNDERSCORE,
@@ -149,7 +212,7 @@ namespace Spite {
         KV_VOLUMEDOWN,
         KV_KP_COMMA,
         KV_KP_EQUALSAS400,
-        
+
         KV_ALTERASE,
         KV_SYSREQ,
         KV_CANCEL,
@@ -162,7 +225,7 @@ namespace Spite {
         KV_CLEARAGAIN,
         KV_CRSEL,
         KV_EXSEL,
-        
+
         KV_KP_00,
         KV_KP_000,
         KV_THOUSANDSSEPARATOR,
@@ -209,7 +272,7 @@ namespace Spite {
         KV_KP_OCTAL,
         KV_KP_DECIMAL,
         KV_KP_HEXADECIMAL,
-        
+
         KV_LCTRL,
         KV_LSHIFT,
         KV_LALT,
@@ -258,7 +321,9 @@ namespace Spite {
         KV_CALL,
         KV_ENDCALL
     };
-
+    /// <summary>
+    /// Represents a keyboard location (same as SDL_Scancode)
+    /// </summary>
     enum class KeyLocation : uint32_t {
         KL_UNKNOWN = 0,
 
@@ -650,31 +715,4 @@ namespace Spite {
         KL_NUM_KEYLOCATIONS = 512 /**< not a key, just marks the number of scancodes
                                      for array bounds */
     };
-    
-    
-    /// <summary>
-    /// Interface base class to our event system
-    /// </summary>
-    class EventSystem :
-        public Subsystem
-    {
-        friend int Internal::ExecuteGame(int argc, char** argv);
-    public:
-        virtual int ProcessEvents() = 0;
-        virtual bool IsPressed(KeyValue) = 0;
-        virtual bool IsPressed(KeyLocation) = 0;
-        virtual int GetDownCount(KeyValue) = 0;
-        virtual int GetDownCount(KeyLocation) = 0;
-        virtual int GetUpCount(KeyValue) = 0;
-        virtual int GetUpCount(KeyLocation) = 0;
-    protected:
-        virtual void UpdateStart() = 0;
-        virtual void UpdateEnd() = 0;
-        virtual void RenderStart() = 0;
-        virtual void RenderEnd() = 0;
-    };
-
-    
-
-    extern EventSystem* event;
 }

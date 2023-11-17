@@ -10,6 +10,8 @@ public:
 	Game();
 	void Update(double dt) final;
 	void Render(double dt) final;
+	int GetTickRate() final;
+	void OnQuit() final;
 private:
 	std::unique_ptr<Spite::Entity> root;
 };

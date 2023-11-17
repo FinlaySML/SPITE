@@ -7,6 +7,9 @@
 #include "CoreSystem.h"
 
 #include "Entity.h"
+
+using namespace std::chrono_literals;
+
 int Spite::Internal::ExecuteGame(int argc, char** argv) {
 	//Register components
 	core->Initialise();
@@ -16,30 +19,42 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 
 	render->OpenWindow(1280, 720);
 	render->CreateRenderer();
-
-	Spite::TimeSystem grTimeSystem{ 60 };
+	
 	std::unique_ptr<Spite::Application> app{ Spite::CreateApp(argc, argv) };
-
+	int tickRate{ app->GetTickRate() };
+#ifdef _DEBUG
+	if (tickRate <= 10) {
+		std::cout << std::format("YourApplication->GetTickRate() returned {}, which is very low. This message will only appear in debug mode.", tickRate) << std::endl;
+	}else if(tickRate >= 200) {
+		std::cout << std::format("YourApplication->GetTickRate() returned {}, which is very high. This message will only appear in debug mode.", tickRate) << std::endl;
+	}
+#endif
+	Spite::TimeSystem timeSystem{ tickRate };
 	double frameDelta = 1.0 / 60.0;
 	//Frame Loop
 	while (true) {
-		//Events
-		if (event->ProcessEvents() == -1) {
-			break;
-		}
 		//Tick
-		int tickCount = grTimeSystem.GetTickCount();
+		int tickCount = timeSystem.GetTickCount();
+		while(tickCount == 0){
+			std::this_thread::sleep_for(1ms);
+			tickCount = timeSystem.GetTickCount();
+		}
 		for (int i = 0; i < tickCount; i++) {
-			event->UpdateStart();
-			app->Update(grTimeSystem.GetTickDelta());
+			//Events
+			event->ProcessEvents();
+			//Update
+			app->Update(timeSystem.GetTickDelta());
 			event->UpdateEnd();
 		}
 		//Frame
-		event->RenderStart();
 		app->Render(frameDelta);
-		event->RenderEnd();
 		//Get next frames delta
-		frameDelta = grTimeSystem.GetFrameDelta();
+		frameDelta = timeSystem.GetFrameDelta();
+		//Quit
+		if(event->HasQuit()){
+			app->OnQuit();
+			break;
+		}
 	}
 	sound->Shutdown();
 	event->Shutdown();
