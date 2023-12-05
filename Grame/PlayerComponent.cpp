@@ -22,13 +22,14 @@ void PlayerComponent::Update(double dt)
 	if (Spite::event->IsPressed(Spite::KeyValue::KV_S)) {
 		moveDir.y--;
 	}
-	if (glm::length(moveDir) > 0) {
+	/*if (glm::length(moveDir) > 0) {
 		moveDir = glm::normalize(moveDir);
 		GetParent().rotation = std::atan2(moveDir.x, moveDir.y);
-	}
-	moveDir *= 3.0f;
-	GetParent().position += moveDir * dt;
-	Spite::render->Camera().position = GetParent().position;
+	}*/
+	moveDir *= glm::vec2{7.0f, 4.0f};
+	auto minVal = Spite::render->Camera().position - Spite::render->Camera().dimensions * 0.5f;
+	auto maxVal = Spite::render->Camera().position + Spite::render->Camera().dimensions * 0.5f;
+	GetParent().position = glm::clamp(GetParent().position + moveDir * dt, minVal, maxVal);
 }
 
 void PlayerComponent::Serialise(YAML::Emitter& out) const {

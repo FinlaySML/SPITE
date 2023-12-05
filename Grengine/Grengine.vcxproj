@@ -128,7 +128,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>yaml-cppd.lib;soloud.lib;OpenGL32.lib;glew32.lib;SDL2.lib;SDL2main.lib;Grame.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\lib\x64;$(SolutionDir)\SoLoud\contrib\out\build\x64-Debug;$(SolutionDir)\yaml-cpp\build\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\lib\x64;$(SolutionDir)\SoLoud\contrib\out\build\x64-Debug;$(SolutionDir)\yaml-cpp\build\Debug;$(SolutionDir)\yaml-cpp\out\build\x64-Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -34,19 +34,20 @@ Game::Game()
 {
 	Spite::core->Register<PlayerComponent>();
 
-	Spite::render->Camera().unitHeight = 15.0f;
-	Spite::render->BackgroundColour() = {0.7,0.5,1.0};
+	Spite::render->Camera().dimensions *= 1.7f;
+	Spite::render->BlackBars() = true;
+	Spite::render->BackgroundColour() = {0.0,0.0,0.04};
 	
 	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.2f).Delay(0.0f);
 	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.4f).Delay(1.0f);
 	Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(0.8f).Delay(2.0f);
-	root = std::make_unique<Spite::Entity>();
+	/*root = std::make_unique<Spite::Entity>();
 	for (int i = 0; i < 4; i++) {
 		root->AddChild(TestFactory());
 	}
-	root->AddChild(PlayerFactory());
-	Spite::core->SaveScene(*root, "test_scene.txt");
-	//root = Spite::core->LoadScene("test_scene.txt");
+	root->AddChild(PlayerFactory());*/
+	//Spite::core->SaveScene(*root, "test_scene.txt");
+	root = Spite::core->LoadScene("test_scene.txt");
 }
 
 void Game::Update(double dt)

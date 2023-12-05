@@ -29,9 +29,12 @@ namespace Spite {
 		Spite::Camera& Camera() final;
 		SpriteBatch* GetDefaultSpriteBatch() final;
 		glm::vec3& BackgroundColour() final;
+		bool& BlackBars() final;
 		std::shared_ptr<Texture> GetTexture(const std::string& path) final;
 
 		glm::mat4x4 CalculateCameraMatrix();
+		void SetupCameraViewPort(bool blackBars);
+		void SetupFullViewPort();
 
 		inline int	GetScreenWidth()		const { return m_ScreenWidth; };
 		inline int	GetScreenHeight()	const { return m_ScreenHeight; };
@@ -52,6 +55,7 @@ namespace Spite {
 		std::unordered_map<std::string, std::weak_ptr<Texture_GL>> textures;
 		std::unique_ptr<Spite::SpriteBatch_GL> defaultSpriteBatch;
 		glm::vec3 backgroundColour;
+		bool blackBars;
     };
 }
 

@@ -7,12 +7,12 @@
 //But maybe you think Globals are bad
 //There might be other ways to approach this.
 #ifdef RENDERSYSTEM_SDL
-    Spite::RenderSystem_SDL grRenderSystemSDL;
-    Spite::RenderSystem* Spite::render = &grRenderSystemSDL;
+Spite::RenderSystem_SDL grRenderSystemSDL;
+Spite::RenderSystem* Spite::render = &grRenderSystemSDL;
 #endif
 
 
-Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{glm::vec2{0, 0}}, backgroundColour{0,0,0}
+Spite::RenderSystem_SDL::RenderSystem_SDL() : camera{ glm::vec2{0, 0} }, backgroundColour{ 0,0,0 }, blackBars{false}
 {
 }
 
@@ -44,13 +44,14 @@ int Spite::RenderSystem_SDL::Shutdown()
 int Spite::RenderSystem_SDL::OpenWindow(int width, int height)
 {
     int result = 0;
-
     m_ScreenWidth = width;
     m_ScreenHeight = height;
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     m_Window = SDL_CreateWindow("My first video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_ScreenWidth, m_ScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (m_Window == nullptr)
     {
@@ -121,8 +122,17 @@ int Spite::RenderSystem_SDL::CreateRenderer()
 
 void Spite::RenderSystem_SDL::Clear()
 {
+    //Black bars
+    if (blackBars) {
+        glClearColor(0, 0, 0, 1.0f);
+        SetupFullViewPort();
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
+    //background color and depth
     glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1.0f);
+    SetupCameraViewPort(blackBars);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //data structures
     defaultSpriteBatch->Clear();
 }
 
@@ -149,61 +159,59 @@ void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
 {
     switch (e.event) {
     case GR_WINDOWEVENT::WINDOWEVENT_SHOWN:
-        SDL_Log("Window %d shown", e.windowID);
+        //SDL_Log("Window %d shown", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_HIDDEN:
-        SDL_Log("Window %d hidden", e.windowID);
+        //SDL_Log("Window %d hidden", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_EXPOSED:
-        SDL_Log("Window %d exposed", e.windowID);
+        //SDL_Log("Window %d exposed", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_MOVED:
-        SDL_Log("Window %d moved to %d,%d",
+        /*SDL_Log("Window %d moved to %d,%d",
             e.windowID, e.data1,
-            e.data2);
+            e.data2);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_RESIZED:
-        SDL_Log("Window %d resized to %dx%d",
+        /*SDL_Log("Window %d resized to %dx%d",
             e.windowID, e.data1,
-            e.data2);
-        glViewport(0, 0, e.data1, e.data2);
+            e.data2);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_SIZE_CHANGED:
-        SDL_Log("Window %d size changed to %dx%d",
+        /*SDL_Log("Window %d size changed to %dx%d",
             e.windowID, e.data1,
-            e.data2);
+            e.data2);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_MINIMIZED:
-        SDL_Log("Window %d minimized", e.windowID);
+        //SDL_Log("Window %d minimized", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_MAXIMIZED:
-        SDL_Log("Window %d maximized", e.windowID);
+        //SDL_Log("Window %d maximized", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_RESTORED:
-        SDL_Log("Window %d restored", e.windowID);
+        //SDL_Log("Window %d restored", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_ENTER:
-        SDL_Log("Mouse entered window %d",
-            e.windowID);
+        /*SDL_Log("Mouse entered window %d",
+            e.windowID);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_LEAVE:
-        SDL_Log("Mouse left window %d", e.windowID);
+        //SDL_Log("Mouse left window %d", e.windowID);
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_FOCUS_GAINED:
-        SDL_Log("Window %d gained keyboard focus",
-            e.windowID);
+        /*SDL_Log("Window %d gained keyboard focus",
+            e.windowID);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_FOCUS_LOST:
-        SDL_Log("Window %d lost keyboard focus",
-            e.windowID);
+        /*SDL_Log("Window %d lost keyboard focus",
+            e.windowID);*/
         break;
     case GR_WINDOWEVENT::WINDOWEVENT_CLOSE:
-        SDL_Log("Window %d closed", e.windowID);
+        //SDL_Log("Window %d closed", e.windowID);
         break;
-
     default:
-        SDL_Log("Window %d got unknown event %d",
-            e.windowID, e.event);
+        /*SDL_Log("Window %d got unknown event %d",
+            e.windowID, e.event);*/
         break;
     }
 }
@@ -228,6 +236,11 @@ glm::vec3& Spite::RenderSystem_SDL::BackgroundColour() {
     return backgroundColour;
 }
 
+bool& Spite::RenderSystem_SDL::BlackBars()
+{
+    return blackBars;
+}
+
 std::shared_ptr<Spite::Texture> Spite::RenderSystem_SDL::GetTexture(const std::string& path) {
     auto it = textures.find(path);
     if(it != textures.end() && !it->second.expired()) {
@@ -243,13 +256,59 @@ glm::mat4x4 Spite::RenderSystem_SDL::CalculateCameraMatrix() {
     //Window size
     int w, h;
     SDL_GetWindowSize(m_Window, &w, &h);
-    float aspect = w / (float)h;
+    float winAspect = w / (float)h;
+    float camAspect = camera.dimensions.x / camera.dimensions.y;
     //View Projection
-    glm::mat4 vp = glm::ortho<float>(-aspect, aspect, -1, 1);
-    vp = glm::scale(vp, glm::vec3{ 2 / camera.unitHeight });
+    glm::mat4 vp = glm::ortho<float>(-1, 1, -1, 1);
+    if (blackBars) {
+        vp = glm::scale(vp, 1.0f / glm::vec3{ camera.dimensions.x * 0.5f, camera.dimensions.y * 0.5f, 1 });
+    }
+    else {
+        if (winAspect > camAspect) {
+            vp = glm::scale(vp, 1.0f / glm::vec3{ camera.dimensions.y * winAspect * 0.5f, camera.dimensions.y * 0.5f, 1 });
+        }
+        else {
+            vp = glm::scale(vp, 1.0f / glm::vec3{ camera.dimensions.x * 0.5f, camera.dimensions.x * (1.0f / winAspect) * 0.5f, 1 });
+        }
+    }
     vp = glm::rotate(vp, camera.rotation, glm::vec3{ 0,0,1 });
     vp = glm::translate(vp, glm::vec3{ -camera.position, 0 });
     return vp;
+}
+
+void Spite::RenderSystem_SDL::SetupCameraViewPort(bool blackBars)
+{
+    int w, h;
+    SDL_GetWindowSize(m_Window, &w, &h);
+    float winAspect = w / (float)h;
+    float camAspect = camera.dimensions.x / camera.dimensions.y;
+    if (blackBars) {
+        glEnable(GL_SCISSOR_TEST);
+        if (winAspect > camAspect) {
+            //Side bars
+            int bar = (w - camAspect * h) / 2;
+            glViewport(bar, 0, w - 2 * bar, h);
+            glScissor(bar, 0, w - 2 * bar, h);
+        }
+        else {
+            //Top and bottom bars
+            int bar = (h - w / camAspect) / 2;
+            glViewport(0, bar, w, h - 2 * bar);
+            glScissor(0, bar, w, h - 2 * bar);
+
+        }
+    } else {
+        glDisable(GL_SCISSOR_TEST);
+        glViewport(0, 0, w, h);
+    }
+}
+
+void Spite::RenderSystem_SDL::SetupFullViewPort()
+{
+    int w, h;
+    SDL_GetWindowSize(m_Window, &w, &h);
+    glDisable(GL_SCISSOR_TEST);
+    glViewport(0, 0, w, h);
 }
 
 
