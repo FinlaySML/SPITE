@@ -7,15 +7,16 @@ namespace Spite {
 	class Application
 	{
 	public:
+		virtual ~Application() {};
 		/// <summary>
 		/// Game logic, executed before Render
 		/// </summary>
 		/// <param name="dt"> (delta time) Time since the last Update</param>
-		virtual void Update(double dt) = 0;
+		virtual void Update(float dt) = 0;
 		/// <summary>
 		/// Render logic
 		/// </summary>
-		virtual void Render(double dt) = 0;
+		virtual void Render(float dt) = 0;
 		/// <summary>
 		/// The game will Update this many times a second
 		/// The game will also Render this many times a second (or at the refresh-rate, whichever is lower)

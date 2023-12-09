@@ -1,23 +1,24 @@
 #include "pch.h"
 #include "Component.h"
+#include "Entity.h"
+#include "Scene.h"
 
-Spite::Component::Component(Entity& entity) : parent{entity} {}
-
-Spite::Component::~Component()
-{
+Spite::Component::Component(Entity* parent, ComponentID id) : entity{parent}, transform{}, id{id} {
+    parent->GetScene()->AddComponent(this);
 }
 
-void Spite::Component::Update(double dt) {
-
+Spite::Component::~Component() {
+    entity->GetScene()->RemoveComponent(id);
 }
 
-void Spite::Component::Draw(double dt) {
-
+void Spite::Component::Update(float dt) {
 }
 
-Spite::Entity& Spite::Component::GetParent() const
-{
-    return parent;
+void Spite::Component::Draw(const glm::mat3x3& worldTransform) {
+}
+
+Spite::Entity* Spite::Component::GetEntity() const {
+    return entity;
 }
 
 void Spite::Component::Serialise(YAML::Emitter& out) const {

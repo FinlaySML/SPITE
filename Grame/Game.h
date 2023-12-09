@@ -2,16 +2,16 @@
 #include <Spite.h>
 #include "SoundSystem.h"
 #include "SpriteBatch.h"
-#include "Entity.h"
+#include "Scene.h"
 
 class Game : public Spite::Application
 {
 public:
 	Game();
-	void Update(double dt) final;
-	void Render(double dt) final;
+	void Update(float dt) final;
+	void Render(float dt) final;
 	int GetTickRate() final;
 	void OnQuit() final;
 private:
-	std::unique_ptr<Spite::Entity> root;
+	Spite::Scene scene;
 };

@@ -8,7 +8,7 @@ namespace Spite {
 	public:
 		SpriteBatch_GL(RenderSystem_SDL*);
 		~SpriteBatch_GL() final;
-		void Add(const Sprite&) final;
+		void Add(const glm::mat3x3& worldTransform, const SpriteComponent& sprite) final;
 		void Clear() final;
 		void Draw() final;
 	private:

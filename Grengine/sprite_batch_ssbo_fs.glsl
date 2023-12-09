@@ -8,5 +8,9 @@ uniform sampler2D tex;
 
 void main()
 {
-    FragColor = texelFetch(tex, ivec2(uv), 0) * colour;
+    vec4 c = texelFetch(tex, ivec2(uv), 0) * colour;
+    if(c.a < 0.1) {
+        discard;
+    }
+    FragColor = c;
 } 

@@ -2,7 +2,7 @@
 #include "pch.h"
 #include "Subsystem.h"
 #include <cstdint>
-#include "Sprite.h"
+#include "SpriteComponent.h"
 #include "Camera.h"
 #include "SpriteBatch.h"
 #include "Atlas.h"

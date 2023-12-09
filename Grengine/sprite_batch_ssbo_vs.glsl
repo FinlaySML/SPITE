@@ -24,6 +24,6 @@ void main()
     vec3 p =  vec3(aPos, 1) * data.transform;
     p /= p.z; 
     gl_Position = viewProjection * vec4(p.xy, data.z, 1);
-    uv = data.uvOrigin + data.uvDimension * (aPos+0.5);
+    uv = (data.uvOrigin + 0.125) + (data.uvDimension - 0.25) * (aPos+0.5);
     colour = data.colour;
 }

@@ -3,11 +3,9 @@
 
 class PlayerComponent : public Spite::Component
 {
+	int bulletCooldown;
 public:
-	PlayerComponent(Spite::Entity&);
-	void Update(double dt) override;
-	void Serialise(YAML::Emitter&) const override;
-	const std::string& GetName() override;
-	static const std::string name;
+	PlayerComponent(Spite::Entity* parent, Spite::ComponentID id);
+	void Update(float dt) override;
 };
 
