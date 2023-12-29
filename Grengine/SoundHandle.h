@@ -25,7 +25,7 @@ namespace Spite {
 		/// <returns></returns>
 		SoundHandle Delay(float seconds);
 		/// <summary>
-		/// Play the sound
+		/// Play or pause the sound
 		/// </summary>
 		/// <param name="isPlaying">True = Play; False = Pause</param>
 		/// <returns></returns>
@@ -40,5 +40,10 @@ namespace Spite {
 		/// </summary>
 		/// <returns></returns>
 		SoundHandle Pause();
+		/// <summary>
+		/// Set wether the sound should loop when it gets to the end
+		/// </summary>
+		/// <returns></returns>
+		SoundHandle Loop(bool looping = true);
 	};
 }

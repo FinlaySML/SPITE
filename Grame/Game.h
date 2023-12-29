@@ -13,5 +13,8 @@ public:
 	int GetTickRate() final;
 	void OnQuit() final;
 private:
+	void SpawnWave(Spite::Entity* parent, int waveNumber);
 	Spite::Scene scene;
+	Spite::Entity* waveParent;
+	int currentWave;
 };

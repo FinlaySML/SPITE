@@ -2,13 +2,13 @@
 #include "Texture_GL.h"
 #include "TextureRegion.h"
 
-unsigned int CreateGLTexture(unsigned char* pixelData, unsigned x, unsigned y) {
+unsigned int CreateGLTexture(unsigned char* pixelData, glm::ivec2 dimensions) {
     unsigned int tex{0};
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, dimensions.x, dimensions.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
     glBindTexture(GL_TEXTURE_2D, 0);
     return tex;
 }
@@ -28,24 +28,28 @@ void Spite::Texture_GL::LoadFromFile(const std::string& file) {
         std::cout << std::format("Texture failed to load: {}", file) << std::endl;
         return;
     }
-    handle = CreateGLTexture(pixelData, x, y);
+    handle = CreateGLTexture(pixelData, {x, y});
     stbi_image_free(pixelData);
     dimensions = { x, y };
     loaded = true;
     path = file;
 }
 
-void Spite::Texture_GL::LoadFromData(std::span<unsigned char> data, unsigned x, unsigned y) {
+void Spite::Texture_GL::LoadFromData(std::span<unsigned char> data, glm::ivec2 dataDimensions) {
     if (IsLoaded()) {
-        std::cout << "Can't load texture again, texture has already been loaded!" << std::endl;
+        std::cout << "Texture failed to load, texture has already been loaded!" << std::endl;
         return;
     }
-    if (data.size() != x * y * 4) {
-        std::cout << std::format("Texture failed to load, there is {} bytes of texture data but {} was needed", data.size(), x * y * 4) << std::endl;
+    if(dataDimensions.x <= 0 || dataDimensions.y <= 0) {
+        std::cout << std::format("Texture failed to load, dimensions must be greater than 0 (x={},y={})", dataDimensions.x, dataDimensions.y) << std::endl;
         return;
     }
-    handle = CreateGLTexture(data.data(), x, y);
-    dimensions = { x, y };
+    if (data.size() != dataDimensions.x * dataDimensions.y * 4) {
+        std::cout << std::format("Texture failed to load, there is {} bytes of texture data but {} was needed (x={},y={})", data.size(), dataDimensions.x * dataDimensions.y * 4, dataDimensions.x, dataDimensions.y) << std::endl;
+        return;
+    }
+    handle = CreateGLTexture(data.data(), dataDimensions);
+    dimensions = dataDimensions;
     loaded = true;
 }
 
@@ -61,7 +65,7 @@ void Spite::Texture_GL::Resize(glm::ivec2 newDimensions) {
     std::vector<unsigned char> data(newDimensions.x * newDimensions.y * 4, 0xff);
     unsigned int oldHandle = handle;
     glm::ivec2 oldDimensions = dimensions;
-    handle = CreateGLTexture(data.data(), newDimensions.x, newDimensions.y);
+    handle = CreateGLTexture(data.data(), newDimensions);
     dimensions = newDimensions;
     glCopyImageSubData(oldHandle, GL_TEXTURE_2D, 0, 0, 0, 0, handle, GL_TEXTURE_2D, 0, 0, 0, 0, oldDimensions.x, oldDimensions.y, 1);
     glDeleteTextures(1, &oldHandle);

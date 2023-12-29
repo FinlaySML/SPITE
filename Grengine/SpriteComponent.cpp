@@ -10,11 +10,13 @@ namespace Spite {
 	}
 	void SpriteComponent::Serialise(YAML::Emitter& out) const {
 		out << YAML::Key << "Colour" << YAML::Value << YAML::Flow << YAML::BeginSeq << colour.r << colour.g << colour.b << colour.a << YAML::EndSeq;
+		out << YAML::Key << "TextureRegion";
 		if (textureRegion) {
-			out << YAML::Key << "TextureRegion";
 			out << YAML::Value << YAML::BeginMap;
 			textureRegion->Serialise(out);
 			out << YAML::EndMap;
+		}else {
+			out << YAML::Value << "None";
 		}
 	}
 	void SpriteComponent::Deserialise(const YAML::Node& node) {
@@ -22,7 +24,7 @@ namespace Spite {
 		colour.g = node["Colour"][1].as<float>();
 		colour.b = node["Colour"][2].as<float>();
 		colour.a = node["Colour"][3].as<float>();
-		if(node["TextureRegion"]) {
+		if(node["TextureRegion"].as<std::string>() != "None") {
 			textureRegion = TextureRegion::Deserialise(node["TextureRegion"]);
 		}
 	}

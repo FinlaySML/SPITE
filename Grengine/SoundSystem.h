@@ -18,6 +18,7 @@ namespace Spite {
         virtual void SetSpeed(SoundHandle handle, float multiplier) = 0;
         virtual void SetDelay(SoundHandle handle, float seconds) = 0;
         virtual void SetPlay(SoundHandle handle, bool isPlaying) = 0;
+        virtual void SetLoop(SoundHandle handle, bool isLooping) = 0;
     };
     extern SoundSystem* sound;
 }

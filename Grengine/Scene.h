@@ -18,6 +18,7 @@ namespace Spite {
 		std::vector<Entity*> GetEntitiesByTag(const std::string& tag);
 		std::vector<Entity*> GetEntitiesByName(const std::string& name);
 		Component* GetComponent(ComponentID id);
+		template <std::derived_from<Component> T> T* GetComponent(ComponentID id);
 		template <std::derived_from<Component> T> std::vector<T*> GetComponents();
 		std::unique_ptr<Entity> CreateEntity();
 		void Save(const std::filesystem::path& path);
@@ -36,11 +37,19 @@ namespace Spite {
 		std::unique_ptr<Entity> root;
 	};
 	template <std::derived_from<Component> T>
+	T* Scene::GetComponent(ComponentID id) {
+		auto it = components.find(id);
+		if(it == components.end()) return nullptr;
+		if(typeid(*it->second) != typeid(T)) return nullptr;
+		return (T*)it->second;
+	}
+
+	template <std::derived_from<Component> T>
 	std::vector<T*> Scene::GetComponents() {
 		std::vector<T*> result;
 		for (auto& [id, component] : components) {
 			if (typeid(*component) == typeid(T)) {
-				result.push_back(component);
+				result.push_back((T*)component);
 			}
 		}
 		return result;

@@ -2,12 +2,14 @@
 #include "CoreSystem.h"
 #include "SpriteComponent.h"
 #include "FunctionComponent.h"
+#include "AnimatorComponent.h"
 
 Spite::CoreSystem* Spite::core = new Spite::CoreSystem();
 
 int Spite::CoreSystem::Initialise() {
 	Register<Spite::SpriteComponent>("SpriteComponent");
 	Register<Spite::FunctionComponent>("FunctionComponent");
+	Register<Spite::AnimatorComponent>("AnimatorComponent");
 	return 0;
 }
 

@@ -132,6 +132,7 @@ void Spite::RenderSystem_SDL::Clear()
     glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1.0f);
     SetupCameraViewPort(blackBars);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
     //data structures
     defaultSpriteBatch->Clear();
 }
@@ -242,12 +243,15 @@ bool& Spite::RenderSystem_SDL::BlackBars()
 }
 
 std::shared_ptr<Spite::Texture> Spite::RenderSystem_SDL::GetTexture(const std::string& path) {
+    //Try and get the existing texture if it is already loaded
     auto it = textures.find(path);
     if(it != textures.end() && !it->second.expired()) {
         return it->second.lock();
     }
+    //Load texture from file
     std::shared_ptr<Spite::Texture_GL> texture = std::make_shared<Spite::Texture_GL>();
     texture->LoadFromFile(path);
+    //Add to cache
     textures.insert({path, std::weak_ptr(texture)});
     return texture;
 }
@@ -259,7 +263,7 @@ glm::mat4x4 Spite::RenderSystem_SDL::CalculateCameraMatrix() {
     float winAspect = w / (float)h;
     float camAspect = camera.dimensions.x / camera.dimensions.y;
     //View Projection
-    glm::mat4 vp = glm::ortho<float>(-1, 1, -1, 1);
+    glm::mat4 vp = glm::ortho<float>(-1, 1, -1, 1, -1024.0f, 1024.0f);
     if (blackBars) {
         vp = glm::scale(vp, 1.0f / glm::vec3{ camera.dimensions.x * 0.5f, camera.dimensions.y * 0.5f, 1 });
     }

@@ -14,7 +14,10 @@ Spite::TextureRegion::TextureRegion(std::shared_ptr<Texture> texture, glm::ivec2
 	}
 	auto tDim = texture->GetDimensions();
 	if(dimensions.x + origin.x > tDim.x || dimensions.y + origin.y > tDim.y) {
-		std::cout << "Cannot create texture region, origin plus dimension is greater than texture size" << std::endl;
+		std::cout << std::format("Cannot create texture region, origin plus dimension is greater than texture size: ({},{}) + ({},{}) > ({},{})\n",
+		origin.x, origin.y,
+		dimensions.x, dimensions.y,
+			tDim.x, tDim.y);
 		return;
 	}
 }

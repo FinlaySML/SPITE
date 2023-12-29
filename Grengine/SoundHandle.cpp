@@ -29,3 +29,8 @@ Spite::SoundHandle Spite::SoundHandle::Play() {
 Spite::SoundHandle Spite::SoundHandle::Pause() {
     return PlayOrPause(false);
 }
+
+Spite::SoundHandle Spite::SoundHandle::Loop(bool isLooping) {
+    Spite::sound->SetLoop(*this, isLooping);
+    return *this;
+}

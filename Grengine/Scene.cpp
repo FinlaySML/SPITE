@@ -56,8 +56,8 @@ namespace Spite {
 		//Serialise
 		YAML::Emitter out;
 		out << YAML::BeginMap;
-		out << YAML::Key << "UsedEntityIDS" << YAML::Value << usedEntityIds;
-		out << YAML::Key << "UsedComponentIDS" << YAML::Value << usedComponentIds;
+		out << YAML::Key << "UsedEntityIDs" << YAML::Value << usedEntityIds;
+		out << YAML::Key << "UsedComponentIDs" << YAML::Value << usedComponentIds;
 		out << YAML::Key << "Root" << YAML::Value << YAML::BeginMap;
 		root->Serialise(out);
 		out << YAML::EndMap;
@@ -75,8 +75,8 @@ namespace Spite {
 	void Scene::Load(const std::filesystem::path& path) {
 		std::ifstream ofs(path);
 		YAML::Node node = YAML::LoadFile(path.string());
-		usedEntityIds = node["UsedEntityIDS"].as<decltype(usedEntityIds)>();
-		usedEntityIds = node["UsedComponentIDS"].as<decltype(usedComponentIds)>();
+		usedEntityIds = node["UsedEntityIDs"].as<decltype(usedEntityIds)>();
+		usedEntityIds = node["UsedComponentIDs"].as<decltype(usedComponentIds)>();
 		root = Spite::Entity::Deserialise(this, node["Root"]);
 	}
 

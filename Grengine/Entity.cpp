@@ -122,6 +122,10 @@ std::vector<Spite::EntityID> Spite::Entity::GetChildren() const {
     return result;
 }
 
+size_t Spite::Entity::GetChildCount() const {
+    return children.size();
+}
+
 std::vector<Spite::ComponentID> Spite::Entity::GetComponents() const {
     std::vector<Spite::ComponentID> result(components.size(), 0);
     for (size_t i{ 0 }; i < components.size(); i++) {

@@ -37,6 +37,7 @@ namespace Spite {
 		Entity* GetParent();
 		Scene* GetScene();
 		std::vector<EntityID> GetChildren() const;
+		size_t GetChildCount() const;
 		std::vector<ComponentID> GetComponents() const;
 		void MoveChild(Spite::Entity* child );
 		Entity* AddChild(std::unique_ptr<Spite::Entity>&& child);
@@ -44,7 +45,7 @@ namespace Spite {
 		//Component Management
 		template <std::derived_from<Component> T> T& AddComponent(std::optional<ComponentID> id = {});
 		template <std::derived_from<Component> T> T& GetComponent();
-		template <std::derived_from<Component> T> std::vector<T&> GetComponents();
+		template <std::derived_from<Component> T> std::vector<T*> GetComponents();
 		void RemoveComponent(Component&);
 	};
 	template <std::derived_from<Component> T>
@@ -57,11 +58,11 @@ namespace Spite {
 		throw std::out_of_range{ std::format("Cannot find component of type T where T={}", typeid(T).name()) };
 	}
 	template <std::derived_from<Component> T>
-	std::vector<T&> Entity::GetComponents() {
-		std::vector<T&> vec;
+	std::vector<T*> Entity::GetComponents() {
+		std::vector<T*> vec;
 		for (auto& c : components) {
-			if (typeid(c.get()) == typeid(T)) {
-				vec.push_back(*c);
+			if (typeid(*c.get()) == typeid(T)) {
+				vec.push_back((T*)c.get());
 			}
 		}
 		return vec;

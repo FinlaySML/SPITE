@@ -74,6 +74,10 @@ namespace Spite {
         engine.setPause(handle.underlying, !isPlaying);
     }
 
+    void SoundSystem_SoLoud::SetLoop(SoundHandle handle, bool isLooping) {
+        engine.setLooping(handle.underlying, isLooping);
+    }
+
     SoLoud::Soloud& SoundSystem_SoLoud::GetEngine() {
         return engine;
     }

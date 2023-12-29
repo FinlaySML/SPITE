@@ -145,10 +145,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="EntityFactories.h" />
+    <ClInclude Include="LivingComponent.h" />
+    <ClInclude Include="EyeballComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="PlayerComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BulletComponent.cpp" />
+    <ClCompile Include="EntityFactories.cpp" />
+    <ClCompile Include="LivingComponent.cpp" />
+    <ClCompile Include="EyeballComponent.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
   </ItemGroup>
