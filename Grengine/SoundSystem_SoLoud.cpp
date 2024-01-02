@@ -78,6 +78,14 @@ namespace Spite {
         engine.setLooping(handle.underlying, isLooping);
     }
 
+    void SoundSystem_SoLoud::SetSeek(SoundHandle handle, float seconds) {
+        engine.seek(handle.underlying, seconds);
+    }
+
+    void SoundSystem_SoLoud::SetGlobalVolume(float fraction) {
+        engine.setGlobalVolume(fraction);
+    }
+
     SoLoud::Soloud& SoundSystem_SoLoud::GetEngine() {
         return engine;
     }

@@ -1,8 +1,10 @@
 #pragma once
 #include "Subsystem.h"
 #include "Internal.h"
+#undef MB_RIGHT
 
 namespace Spite {
+    enum class MouseButton : uint32_t;
     enum class KeyValue : uint32_t;
     enum class KeyLocation : uint32_t;
     /// <summary>
@@ -56,13 +58,22 @@ namespace Spite {
         /// <param name=""></param>
         /// <returns></returns>
         virtual bool JustReleased(KeyLocation) = 0;
+        virtual bool IsPressed(MouseButton) = 0;
+        virtual bool JustPressed(MouseButton) = 0;
+        virtual bool JustReleased(MouseButton) = 0;
+        virtual glm::ivec2 GetMousePosition() = 0;
     protected:
-        virtual void ProcessEvents() = 0;
         virtual bool HasQuit() = 0;
+        virtual void UpdateBegin() = 0;
         virtual void UpdateEnd() = 0;
     };
     
     extern EventSystem* event;
+    enum class MouseButton : uint32_t {
+        MB_LEFT,
+        MB_RIGHT,
+        MB_MIDDLE
+    };
     /// <summary>
     /// Represents a key (same as SDL_Keycode)
     /// </summary>

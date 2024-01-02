@@ -3,6 +3,7 @@
 #include "SoundSystem.h"
 #include "SpriteBatch.h"
 #include "Scene.h"
+#include "SoundHandle.h"
 
 class Game : public Spite::Application
 {
@@ -13,8 +14,11 @@ public:
 	int GetTickRate() final;
 	void OnQuit() final;
 private:
+	void Setup();
 	void SpawnWave(Spite::Entity* parent, int waveNumber);
 	Spite::Scene scene;
-	Spite::Entity* waveParent;
+	Spite::EntityID playerEntityId;
+	Spite::Entity* waveEntity;
+	Spite::SoundHandle music;
 	int currentWave;
 };

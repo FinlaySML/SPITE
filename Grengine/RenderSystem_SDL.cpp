@@ -245,15 +245,23 @@ bool& Spite::RenderSystem_SDL::BlackBars()
 std::shared_ptr<Spite::Texture> Spite::RenderSystem_SDL::GetTexture(const std::string& path) {
     //Try and get the existing texture if it is already loaded
     auto it = textures.find(path);
-    if(it != textures.end() && !it->second.expired()) {
-        return it->second.lock();
+    if(it != textures.end()) {
+        return it->second;
     }
     //Load texture from file
     std::shared_ptr<Spite::Texture_GL> texture = std::make_shared<Spite::Texture_GL>();
     texture->LoadFromFile(path);
     //Add to cache
-    textures.insert({path, std::weak_ptr(texture)});
+    textures.insert({path, texture});
     return texture;
+}
+
+void Spite::RenderSystem_SDL::ClearTextures() {
+    std::erase_if(textures, [] (auto& pair) {
+        if (pair.second.use_count() == 1) {
+            return true;
+        }
+    });
 }
 
 glm::mat4x4 Spite::RenderSystem_SDL::CalculateCameraMatrix() {

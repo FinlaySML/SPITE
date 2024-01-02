@@ -9,7 +9,7 @@
 #include "AnimatorComponent.h"
 #include "LivingComponent.h"
 #include "EyeballComponent.h"
-#include "EntityFactories.h"
+#include "EntityFactory.h"
 
 Spite::Application* Spite::CreateApp(int argc, char** argv)
 {
@@ -24,7 +24,7 @@ Spite::Application* Spite::CreateApp(int argc, char** argv)
 
 Game::Game() :
 currentWave{ 0 },
-waveParent{ scene.GetRoot()->AddChild(scene.CreateEntity())} {
+waveEntity{ nullptr } {
 	Spite::core->Register<PlayerComponent>("PlayerComponent");
 	Spite::core->Register<BulletComponent>("BulletComponent");
 	Spite::core->Register<LivingComponent>("LivingComponent");
@@ -33,33 +33,45 @@ waveParent{ scene.GetRoot()->AddChild(scene.CreateEntity())} {
 	Spite::render->Camera().dimensions = {32, 18};
 	Spite::render->BlackBars() = true;
 	Spite::render->BackgroundColour() = {0.0,0.0,0.04};
+	Spite::sound->SetGlobalVolume(0.25f);
+	music = Spite::sound->LoadStreamAndPlay("song.ogg", 1.0f).Loop();
 	
-	Spite::sound->LoadStreamAndPlay("song.ogg", 1.0f).Loop();
-	
+	Setup();
+}
+
+void Game::Setup() {
+	srand(999);
+	currentWave = 8;
 	auto* root{ scene.GetRoot() };
+	for(auto c : root->GetChildren()) {
+		root->RemoveChild(scene.GetEntity(c));
+	}
+	music.Seek(0.0f);
+	waveEntity = scene.GetRoot()->AddChild(scene.CreateEntity());
 	for (int i = 0; i < 16; i++) {
-		root->AddChild(EntityFactories::StarFactory(&scene, 1.0f, 0.5f, 0.2f));
+		root->AddChild(EntityFactory::Star(&scene, 1.0f, 0.5f, 0.2f));
 	}
 	for (int i = 0; i < 32; i++) {
-		root->AddChild(EntityFactories::StarFactory(&scene, 0.5f, 0.25f, 0.1f));
+		root->AddChild(EntityFactory::Star(&scene, 0.5f, 0.25f, 0.1f));
 	}
 	for (int i = 0; i < 64; i++) {
-		root->AddChild(EntityFactories::StarFactory(&scene, 0.25f, 0.125f, 0.0f));
+		root->AddChild(EntityFactory::Star(&scene, 0.25f, 0.125f, 0.0f));
 	}
-	root->AddChild(EntityFactories::PlayerFactory(&scene));
-	SpawnWave(waveParent, 0);
-	scene.Save("test_scene.txt");
+	playerEntityId = root->AddChild(EntityFactory::Player(&scene))->GetID();
+	SpawnWave(waveEntity, currentWave);
 }
+
 
 void Game::Update(float dt)
 {
-	if(waveParent->GetChildCount() == 0) {
+	if(waveEntity->GetChildCount() == 0) {
 		currentWave++;
-		if(currentWave < 4) {
-			SpawnWave(waveParent, currentWave);
+		if(currentWave < 9) {
+			SpawnWave(waveEntity, currentWave);
 		}
+	}else if(!scene.GetEntity(playerEntityId)) {
+		Setup();
 	}
-	
 	scene.Update(dt);
 	//Toggle fullscreen
 	if(Spite::event->JustPressed(Spite::KeyValue::KV_F11)){
@@ -82,27 +94,22 @@ void Game::OnQuit() {
 
 }
 
+
 void Game::SpawnWave(Spite::Entity* parent, int waveNumber) {
 	switch(waveNumber) {
 	case 0: {
-		auto eyeball0{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
-		eyeball0->transform.position = { 18.0f, 0 };
-		parent->AddChild(std::move(eyeball0));
-		break;
-	}
-	case 1: {
-		auto eyeball0{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
-		auto eyeball1{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.5f) };
+		auto eyeball0{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
+		auto eyeball1{ EntityFactory::Eyeball(&scene, 11.0f, 0.5f) };
 		eyeball0->transform.position = { 18.0f, -3 };
 		eyeball1->transform.position = { 18.0f, 3 };
 		parent->AddChild(std::move(eyeball0));
 		parent->AddChild(std::move(eyeball1));
 		break;
 	}
-	case 2: {
-		auto eyeball0{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
-		auto eyeball1{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 9.0f, 0.0f) };
-		auto eyeball2{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
+	case 1: {
+		auto eyeball0{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
+		auto eyeball1{ EntityFactory::Eyeball(&scene, 9.0f, 0.0f) };
+		auto eyeball2{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
 		eyeball0->transform.position = { 18.0f, -5 };
 		eyeball1->transform.position = { 18.0f, 0 };
 		eyeball2->transform.position = { 18.0f, 5 };
@@ -111,13 +118,12 @@ void Game::SpawnWave(Spite::Entity* parent, int waveNumber) {
 		parent->AddChild(std::move(eyeball2));
 		break;
 	}
-	case 3:
-	{
-		auto eyeball0{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
-		auto eyeball1{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 9.0f, 0.0f) };
-		auto eyeball2{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 7.0f, 0.0f) };
-		auto eyeball3{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 9.0f, 0.0f) };
-		auto eyeball4{ EntityFactories::EyeballFactory(&scene, 2.0f, 0.7f, 11.0f, 0.0f) };
+	case 2: {
+		auto eyeball0{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
+		auto eyeball1{ EntityFactory::Eyeball(&scene, 9.0f, 0.0f) };
+		auto eyeball2{ EntityFactory::Eyeball(&scene, 7.0f, 0.0f) };
+		auto eyeball3{ EntityFactory::Eyeball(&scene, 9.0f, 0.0f) };
+		auto eyeball4{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
 		eyeball0->transform.position = { 18.0f, -5.0f };
 		eyeball1->transform.position = { 18.0f, -2.5f };
 		eyeball2->transform.position = { 18.0f, 0.0f };
@@ -128,6 +134,62 @@ void Game::SpawnWave(Spite::Entity* parent, int waveNumber) {
 		parent->AddChild(std::move(eyeball2));
 		parent->AddChild(std::move(eyeball3));
 		parent->AddChild(std::move(eyeball4));
+		break;
+	}
+	case 3: {
+		auto eyeball0{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
+		auto eyeball1{ EntityFactory::EyeballSpray(&scene, 9.0f, 0.0f) };
+		auto eyeball2{ EntityFactory::Eyeball(&scene, 11.0f, 0.0f) };
+		eyeball0->transform.position = { 18.0f, -5 };
+		eyeball1->transform.position = { 18.0f, 0 };
+		eyeball2->transform.position = { 18.0f, 5 };
+		parent->AddChild(std::move(eyeball0));
+		parent->AddChild(std::move(eyeball1));
+		parent->AddChild(std::move(eyeball2));
+		break;
+	}
+	case 4: {
+		auto eyeball0{ EntityFactory::EyeballSpray(&scene, 11.0f, 0.0f) };
+		auto eyeball1{ EntityFactory::EyeballSpray(&scene, 11.0f, 0.5f) };
+		eyeball0->transform.position = { 18.0f, -3 };
+		eyeball1->transform.position = { 18.0f, 3 };
+		parent->AddChild(std::move(eyeball0));
+		parent->AddChild(std::move(eyeball1));
+		break;
+	}
+	case 5: {
+		auto eyeball0{ EntityFactory::EyeballWheel(&scene, 9.0f) };
+		eyeball0->transform.position = { 18.0f, 0 };
+		parent->AddChild(std::move(eyeball0));
+		break;
+	}
+	case 6: {
+		auto eyeball0{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 12, 2.1f, 3.0f) };
+		eyeball0->transform.position = { 18.0f, 0 };
+		parent->AddChild(std::move(eyeball0));
+		break;
+	}
+	case 7:
+	{
+		auto eyeball0{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 12, 2.1f, 3.0f, false) };
+		auto eyeball1{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 12, 2.1f, 3.0f, true) };
+		eyeball0->transform.position = { 18.0f, -4 };
+		eyeball1->transform.position = { 18.0f, 4 };
+		parent->AddChild(std::move(eyeball0));
+		parent->AddChild(std::move(eyeball1));
+		break;
+	}
+	case 8:
+	{
+		auto eyeball0{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 6, 1.1f, 3.0f, false) };
+		auto eyeball1{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 12, 2.1f, 3.0f, true) };
+		auto eyeball2{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 18, 3.1f, 3.0f, false) };
+		eyeball0->transform.position = { 18.0f, 0 };
+		eyeball1->transform.position = { 18.0f, 0 };
+		eyeball2->transform.position = { 18.0f, 0 };
+		parent->AddChild(std::move(eyeball0));
+		parent->AddChild(std::move(eyeball1));
+		parent->AddChild(std::move(eyeball2));
 		break;
 	}
 	}

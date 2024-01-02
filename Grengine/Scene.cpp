@@ -23,14 +23,8 @@ namespace Spite {
 		return it == entities.end() ? nullptr : it->second;
 	}
 
-	std::vector<Entity*> Scene::GetEntitiesByTag(const std::string& tag) {
-		std::vector<Entity*> result;
-		for(auto& [id, entity] : entities) {
-			if(entity->HasTag(tag)) {
-				result.push_back(entity);
-			}
-		}
-		return result;
+	const std::unordered_set<Entity*>& Scene::GetEntitiesByTag(const std::string& tag) {
+		return cachedTagList[tag];
 	}
 
 	std::vector<Entity*> Scene::GetEntitiesByName(const std::string& name) {
@@ -84,16 +78,28 @@ namespace Spite {
 		entities.insert({entity->id, entity});
 	}
 
-	void Scene::RemoveEntity(EntityID id) {
-		entities.erase(id);
+	void Scene::RemoveEntity(Entity* entity) {
+		entities.erase(entity->id);
+	}
+
+	void Scene::AddTag(Entity* entity, const std::string& tag) {
+		cachedTagList[tag].insert(entity);
+	}
+
+	void Scene::RemoveTag(Entity* entity, const std::string& tag) {
+		cachedTagList[tag].erase(entity);
 	}
 
 	void Scene::AddComponent(Component* component) {
+		auto index{ std::type_index(typeid(*component)) };
+		cachedComponentList[index].insert(component);
 		components.insert({ component->id, component });
 	}
 
-	void Scene::RemoveComponent(ComponentID id) {
-		components.erase(id);
+	void Scene::RemoveComponent(Component* component) {
+		auto index{ std::type_index(typeid(*component)) };
+		cachedComponentList[index].erase(component);
+		components.erase(component->id);
 	}
 
 	EntityID Scene::GetNewEntityID() {

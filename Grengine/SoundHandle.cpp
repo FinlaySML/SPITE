@@ -34,3 +34,8 @@ Spite::SoundHandle Spite::SoundHandle::Loop(bool isLooping) {
     Spite::sound->SetLoop(*this, isLooping);
     return *this;
 }
+
+Spite::SoundHandle Spite::SoundHandle::Seek(float seconds) {
+    Spite::sound->SetSeek(*this, seconds);
+    return *this;
+}

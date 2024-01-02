@@ -30,7 +30,7 @@
     <ClInclude Include="EyeballComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityFactories.h">
+    <ClInclude Include="EntityFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClCompile Include="EyeballComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EntityFactories.cpp">
+    <ClCompile Include="EntityFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

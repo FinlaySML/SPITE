@@ -46,7 +46,6 @@ namespace Spite {
 			WINDOWEVENT_ICCPROF_CHANGED,/**< The ICC profile of the window's display has changed. */
 			WINDOWEVENT_DISPLAY_CHANGED /**< Window has been moved to display data1. */
 		};
-
 	public:
 		//RenderSystem interface
 		virtual int OpenWindow(int width, int height) = 0;
@@ -64,6 +63,11 @@ namespace Spite {
 		virtual glm::vec3& BackgroundColour() = 0;
 		virtual bool& BlackBars() = 0;
 		virtual std::shared_ptr<Texture> GetTexture(const std::string& path) = 0;
+		/// <summary>
+		/// Clears all the textures that are not currently in use from memory
+		/// </summary>
+		/// <param name="path"></param>
+		virtual void ClearTextures() = 0;
 	};
 
 	//Global pointer to the RenderSystem

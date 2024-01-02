@@ -18,6 +18,8 @@ int Spite::EventSystem_SDL::Initialise()
     keyboardState = std::span<const uint8_t>{keys, (size_t)numkeys};
     keyDownCount.resize(numkeys);
     keyUpCount.resize(numkeys);
+    glm::ivec2 mousePosition;
+    mouseState = SDL_GetMouseState(&mousePosition.x, &mousePosition.y);
     //KeyValues
     keyValueToKeycode.insert({ Spite::KeyValue::KV_UNKNOWN, SDLK_UNKNOWN });
     keyValueToKeycode.insert({ Spite::KeyValue::KV_RETURN,SDLK_RETURN});
@@ -513,12 +515,20 @@ int Spite::EventSystem_SDL::Initialise()
     keyLocationToScancode.insert({Spite::KeyLocation::KL_CALL, SDL_SCANCODE_CALL});
     keyLocationToScancode.insert({Spite::KeyLocation::KL_ENDCALL, SDL_SCANCODE_ENDCALL});
 
+    mouseButtonToButton.insert({ Spite::MouseButton::MB_LEFT, SDL_BUTTON_LEFT });
+    mouseButtonToButton.insert({ Spite::MouseButton::MB_RIGHT, SDL_BUTTON_RIGHT });
+    mouseButtonToButton.insert({ Spite::MouseButton::MB_MIDDLE, SDL_BUTTON_MIDDLE });
+
     for(const auto& pair : keyValueToKeycode) {
-        keycodeToKeyValue.insert({pair.second, pair.first});
+        keycodeToKeyValue.insert({ pair.second, pair.first });
     }
 
     for (const auto& pair : keyLocationToScancode) {
         scancodeToKeyLocation.insert({ pair.second, pair.first });
+    }
+
+    for(const auto& pair : mouseButtonToButton) {
+        buttonToMouseButton.insert({ pair.second, pair.first });
     }
 
     return 0;
@@ -527,45 +537,6 @@ int Spite::EventSystem_SDL::Initialise()
 int Spite::EventSystem_SDL::Shutdown()
 {
     return 0;
-}
-
-void Spite::EventSystem_SDL::ProcessEvents()
-{
-    SDL_Event e;
-    //Standard SDL event system - go look at their documentation if you care!
-    //Handle events on queue
-    while (SDL_PollEvent(&e) != 0)
-    {
-        switch (e.type)
-        {
-        case SDL_QUIT:
-            Quit();
-            break;
-        case SDL_KEYDOWN:
-            keyDownCount[(size_t)e.key.keysym.scancode]++;
-            break;
-        case SDL_KEYUP:
-            keyUpCount[(size_t)e.key.keysym.scancode]++;
-            break;
-        case SDL_WINDOWEVENT:
-            //Here we're converting the SDL event into our generic Spite event
-            //so that we can keep things nice and abstract
-            GR_WindowEvent we;
-            {                
-                we.event = static_cast<RenderSystem::GR_WINDOWEVENT>(e.window.event);
-                we.data1 = e.window.data1;
-                we.data2 = e.window.data2;
-                we.padding1 = e.window.padding1;
-                we.padding2 = e.window.padding2;
-                we.padding3 = e.window.padding3;
-                we.timestamp = e.window.timestamp;
-                we.type = e.window.type;
-                we.windowID = e.window.windowID;
-            }
-            Spite::render->HandleWindowEvent(we);
-            break;
-        }
-    }
 }
 
 void Spite::EventSystem_SDL::Quit() {
@@ -594,6 +565,15 @@ bool Spite::EventSystem_SDL::IsPressed(KeyLocation key) {
     return keyboardState[code] > 0;
 }
 
+bool Spite::EventSystem_SDL::IsPressed(MouseButton mb) {
+    auto button = ConvertToSDLButton(mb);
+    if(button == 0 || button > 32) {
+        std::cout << std::format("Cannot get mouse button state for button {}, must be in range [1,32]", (int)button) << std::endl;
+        return false;
+    }
+    return mouseState & SDL_BUTTON(button);
+}
+
 bool Spite::EventSystem_SDL::JustPressed(KeyValue key) {
     SDL_Scancode code = SDL_GetScancodeFromKey(ConvertToSDLKeycode(key));
     if (code == SDL_SCANCODE_UNKNOWN) {
@@ -610,6 +590,15 @@ bool Spite::EventSystem_SDL::JustPressed(KeyLocation key) {
         return false;
     }
     return keyDownCount[code] > 0;
+}
+
+bool Spite::EventSystem_SDL::JustPressed(MouseButton mb) {
+    auto button = ConvertToSDLButton(mb);
+    if (button == 0 || button > 32) {
+        std::cout << std::format("Cannot get mouse button state for button {}, must be in range [1,32]", (int)button) << std::endl;
+        return false;
+    }
+    return buttonDownCount[button-1] > 0;
 }
 
 bool Spite::EventSystem_SDL::JustReleased(KeyValue key) {
@@ -630,13 +619,72 @@ bool Spite::EventSystem_SDL::JustReleased(KeyLocation key) {
     return keyUpCount[code] > 0;
 }
 
+bool Spite::EventSystem_SDL::JustReleased(MouseButton mb) {
+    auto button = ConvertToSDLButton(mb);
+    if (button == 0 || button > 32) {
+        std::cout << std::format("Cannot get mouse button state for button {}, must be in range [1,32]", (int)button) << std::endl;
+        return false;
+    }
+    return buttonUpCount[button-1] > 0;
+}
+
+glm::ivec2 Spite::EventSystem_SDL::GetMousePosition() {
+    return mousePosition;
+}
+
 bool Spite::EventSystem_SDL::HasQuit() {
     return quit;
 }
 
+void Spite::EventSystem_SDL::UpdateBegin() {
+    SDL_Event e;
+    //Standard SDL event system - go look at their documentation if you care!
+    //Handle events on queue
+    while (SDL_PollEvent(&e) != 0) {
+        switch (e.type) {
+        case SDL_QUIT:
+            Quit();
+            break;
+        case SDL_KEYDOWN:
+            keyDownCount[(size_t)e.key.keysym.scancode]++;
+            break;
+        case SDL_KEYUP:
+            keyUpCount[(size_t)e.key.keysym.scancode]++;
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            buttonDownCount[(size_t)e.button.button]++;
+            break;
+        case SDL_MOUSEBUTTONUP:
+            buttonUpCount[(size_t)e.button.button]++;
+            break;
+        case SDL_WINDOWEVENT:
+            //Here we're converting the SDL event into our generic Spite event
+            //so that we can keep things nice and abstract
+            GR_WindowEvent we;
+            {
+                we.event = static_cast<RenderSystem::GR_WINDOWEVENT>(e.window.event);
+                we.data1 = e.window.data1;
+                we.data2 = e.window.data2;
+                we.padding1 = e.window.padding1;
+                we.padding2 = e.window.padding2;
+                we.padding3 = e.window.padding3;
+                we.timestamp = e.window.timestamp;
+                we.type = e.window.type;
+                we.windowID = e.window.windowID;
+            }
+            Spite::render->HandleWindowEvent(we);
+            break;
+        }
+    }
+    mouseState = SDL_GetMouseState(&mousePosition.x, &mousePosition.y);
+}
+
 void Spite::EventSystem_SDL::UpdateEnd() {
+    //Clear inputs after update to make sure they are not used in render
     std::ranges::fill(keyDownCount, 0);
     std::ranges::fill(keyUpCount, 0);
+    std::ranges::fill(buttonDownCount, 0);
+    std::ranges::fill(buttonUpCount, 0);
 }
 
 SDL_Scancode Spite::EventSystem_SDL::ConvertToSDLScancode(Spite::KeyLocation kl) {
@@ -653,6 +701,15 @@ SDL_Keycode Spite::EventSystem_SDL::ConvertToSDLKeycode(Spite::KeyValue kv) {
     if (it == keyValueToKeycode.end()) {
         std::cout << "Could not find SDL Keycode for KeyValue" << std::endl;
         return SDLK_UNKNOWN;
+    }
+    return it->second;
+}
+
+uint8_t Spite::EventSystem_SDL::ConvertToSDLButton(MouseButton mb) {
+    auto it = mouseButtonToButton.find(mb);
+    if (it == mouseButtonToButton.end()) {
+        std::cout << "Could not find SDL_BUTTON for MouseButton" << std::endl;
+        return 0;
     }
     return it->second;
 }

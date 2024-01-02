@@ -3,12 +3,26 @@
 #include "CoreSystem.h"
 #include "Scene.h"
 
-Spite::Entity::Entity(Scene* scene, EntityID id) : z{ 0.0f }, name{ "Entity" }, id{id}, scene{ scene }, parent{nullptr} {
+void Spite::Entity::SetDepthAndRootID(int newDepth, EntityID newRootID) {
+    depth = newDepth;
+    rootId = newRootID;
+    for(auto& child : children) {
+        child->SetDepthAndRootID(newDepth + 1, newRootID);
+    }
+}
+
+Spite::Entity::Entity(Scene* scene, EntityID id) : parent{ nullptr }, scene{ scene }, depth{ 0 }, id{ id }, rootId{ id }, z{ 0.0f }, name{ "Entity" } {
     scene->AddEntity(this);
 }
 
 Spite::Entity::~Entity() {
-    scene->RemoveEntity(id);
+    scene->RemoveEntity(this);
+    for(const auto& tag : tags) {
+        scene->RemoveTag(this, tag);
+    }
+    for(const auto& c : components) {
+        scene->RemoveComponent(c.get());
+    }
 }
 
 void Spite::Entity::Update(float dt) {
@@ -27,21 +41,29 @@ void Spite::Entity::Update(float dt) {
 
 void Spite::Entity::Draw(const glm::mat3x3& worldTransform) {
     glm::mat3x3 tf{worldTransform * transform.GetMatrix()};
-    for (ComponentID c : GetComponents()) {
-        if (auto ptr = scene->GetComponent(c)) {
-            ptr->Draw(tf);
-        }
+    for (auto& c : components) {
+        c->Draw(tf);
     }
-    for (EntityID e : GetChildren()) {
-        auto ptr = scene->GetEntity(e);
-        if (ptr && ptr->GetParent() == this) {
-            ptr->Draw(tf);
-        }
+    for(auto& c : children) {
+        c->Draw(tf);
     }
+}
+
+int Spite::Entity::GetDepth() const {
+    return depth;
+}
+
+Spite::EntityID Spite::Entity::GetID() const {
+    return id;
+}
+
+Spite::EntityID Spite::Entity::GetRootID() const {
+    return rootId;
 }
 
 bool Spite::Entity::AddTag(const std::string& tag) {
     if(!HasTag(tag)){
+        scene->AddTag(this, tag);
         tags.push_back(tag);
         return true;
     }
@@ -91,10 +113,10 @@ void Spite::Entity::Serialise(YAML::Emitter& out) const {
 }
 
 std::unique_ptr<Spite::Entity> Spite::Entity::Deserialise(Scene* scene, const YAML::Node& node) {
-    auto entity = std::make_unique<Spite::Entity>(scene, node["ID"].as<std::uint32_t>());
-    entity->name = node["Name"].as<std::string>();
+    auto entity = std::make_unique<Spite::Entity>(scene, node["ID"].as<decltype(Entity::id)>());
+    entity->name = node["Name"].as<decltype(Entity::name)>();
     entity->transform = Transform::Deserialise(node["Transform"]);
-    entity->z = node["Z"].as<float>();
+    entity->z = node["Z"].as<decltype(Entity::z)>();
     auto& comps = node["Components"];
     for (size_t i = 0, size = comps.size(); i < size; i++) {
         Spite::core->AddComponentByName(*entity, comps[i]["Name"].as<std::string>(), comps[i]["ID"].as<ComponentID>()).Deserialise(comps[i]);
@@ -152,6 +174,7 @@ Spite::Entity* Spite::Entity::AddChild(std::unique_ptr<Spite::Entity>&& child) {
         throw new std::exception("Cannot add or move a child from a different scene!");
     }
     child->parent = this;
+    child->SetDepthAndRootID(depth + 1, rootId);
     children.push_back(std::move(child));
     return children.back().get();
 }
@@ -163,13 +186,40 @@ std::unique_ptr<Spite::Entity> Spite::Entity::RemoveChild(Spite::Entity* child) 
     }
     std::unique_ptr<Spite::Entity> entity{std::move(*it)};
     children.erase(it);
+    entity->parent = nullptr;
+    entity->SetDepthAndRootID(0, entity->id);
     return entity;
 }
+
+glm::vec2 Spite::Entity::TransformPoint(glm::vec2 point, Entity* target) {
+    if (target->GetScene() != GetScene()) {
+        throw new std::exception("Could not transform point; the provided source and target entities are not part of the same scene.");
+    }
+    if(target->GetRootID() != GetRootID()){
+        throw new std::exception("Could not transform point; the provided source and target entities are not part of the same tree.");
+    }
+    Entity* upper{this};
+    Entity* downer{target};
+    glm::mat3x3 downMatrix{1};
+    glm::mat3x3 upMatrix{1};
+    while(upper != downer) {
+        if(upper->GetDepth() > downer->GetDepth()) {
+            upMatrix = upper->transform.GetMatrix() * upMatrix;
+            upper = upper->GetParent();
+        }else{
+            downMatrix = downer->transform.GetMatrix() * downMatrix;
+            downer = downer->GetParent();
+        }
+    }
+    return glm::inverse(downMatrix) * (upMatrix * glm::vec3(point, 1));
+}
+
 
 void Spite::Entity::RemoveComponent(Component& toRemove)
 {
     for (auto it = components.begin(); it != components.end(); ++it) {
         if (it->get() == &toRemove) {
+            scene->RemoveComponent(it->get());
             components.erase(it);
             break;
         }

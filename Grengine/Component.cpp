@@ -4,11 +4,9 @@
 #include "Scene.h"
 
 Spite::Component::Component(Entity* parent, ComponentID id) : entity{parent}, transform{}, id{id} {
-    parent->GetScene()->AddComponent(this);
 }
 
 Spite::Component::~Component() {
-    entity->GetScene()->RemoveComponent(id);
 }
 
 void Spite::Component::Update(float dt) {

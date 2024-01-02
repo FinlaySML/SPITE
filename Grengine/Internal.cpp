@@ -40,9 +40,8 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 			tickCount = timeSystem.GetTickCount();
 		}
 		for (int i = 0; i < tickCount; i++) {
-			//Events
-			event->ProcessEvents();
 			//Update
+			event->UpdateBegin();
 			app->Update(timeSystem.GetTickDelta());
 			event->UpdateEnd();
 		}

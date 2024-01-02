@@ -5,9 +5,11 @@
 #include "BulletComponent.h"
 #include "Scene.h"
 #include "SoundSystem.h"
-#include "EntityFactories.h"
+#include "EntityFactory.h"
 
-PlayerComponent::PlayerComponent(Spite::Entity* entity, Spite::ComponentID id) : Component(entity, id), bulletCooldown{0} {
+PlayerComponent::PlayerComponent(Spite::Entity* entity, Spite::ComponentID id) : 
+Component(entity, id), 
+bulletCooldown{0} {
 }
 
 void PlayerComponent::Update(float dt) {
@@ -34,11 +36,10 @@ void PlayerComponent::Update(float dt) {
 	//Shooting
 	if(bulletCooldown > 0) {
 		bulletCooldown -= dt;
-	}else if(Spite::event->IsPressed(Spite::KeyLocation::KL_SPACE)) {
-		bulletCooldown = 0.5f;
-		auto bullet{ EntityFactories::PlayerBulletFactory(GetEntity()->GetScene()) };
+	}else if(Spite::event->IsPressed(Spite::KeyLocation::KL_SPACE) || Spite::event->IsPressed(Spite::MouseButton::MB_LEFT)) {
+		bulletCooldown = 0.25f;
+		auto bullet{ EntityFactory::PlayerBullet(GetEntity()->GetScene()) };
 		bullet->transform.position = GetEntity()->transform.position + glm::vec2{ 0.5f, 0.0f };
 		GetEntity()->GetScene()->GetRoot()->AddChild(std::move(bullet));
-		Spite::sound->LoadSampleAndPlay("coin1.wav", 1.0f).Speed(2.0f);
 	}
 }

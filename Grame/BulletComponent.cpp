@@ -12,14 +12,13 @@ void BulletComponent::Update(float dt) {
 	Spite::Entity* e{ GetEntity() };
 	auto& p{e->transform.position};
 	p += dt * velocity;
-	if(p.x > 15.0f || p.x < -15.0f || p.y > 8.0f || p.y < -8.0f) {
+	if(p.x > 17.0f || p.x < -17.0f || p.y > 10.0f || p.y < -10.0f) {
 		e->GetParent()->RemoveChild(e);
 		return;
 	}
-	std::vector<LivingComponent*> enemies{GetEntity()->GetScene()->GetComponents<LivingComponent>()};
 	float minDistance{std::numeric_limits<float>::max()};
 	LivingComponent* closestEnemy{nullptr};
-	for(LivingComponent* ec : enemies) {
+	for(LivingComponent* ec : GetEntity()->GetScene()->GetComponents<LivingComponent>()) {
 		bool hasTag{false};
 		for(const std::string& tag : targetTags) {
 			if(ec->GetEntity()->HasTag(tag)){
@@ -28,7 +27,7 @@ void BulletComponent::Update(float dt) {
 			}
 		}
 		if(hasTag) {
-			float distance{ glm::distance(ec->GetEntity()->transform.position, p) };
+			float distance{ glm::distance(ec->GetEntity()->TransformPoint({0,0}, GetEntity()), {0, 0})};
 			if(distance < minDistance && distance < ec->hitRadius) {
 				minDistance = distance;
 				closestEnemy = ec;

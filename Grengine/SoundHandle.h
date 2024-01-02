@@ -45,5 +45,11 @@ namespace Spite {
 		/// </summary>
 		/// <returns></returns>
 		SoundHandle Loop(bool looping = true);
+		/// <summary>
+		/// Go to a (absolute) point in time in the sound,  
+		/// </summary>
+		/// <param name="seconds"></param>
+		/// <returns></returns>
+		SoundHandle Seek(float seconds);
 	};
 }

@@ -20,6 +20,8 @@ namespace Spite {
 		void SetDelay(SoundHandle handle, float seconds) final;
 		void SetPlay(SoundHandle handle, bool isPlaying) final;
 		void SetLoop(SoundHandle handle, bool isLooping) final;
+		void SetSeek(SoundHandle handle, float seconds) final;
+		void SetGlobalVolume(float fraction) final;
 		SoLoud::Soloud& GetEngine();
 	private:
 		std::unordered_map<std::filesystem::path, std::unique_ptr<Sample_SoLoud>> samples;

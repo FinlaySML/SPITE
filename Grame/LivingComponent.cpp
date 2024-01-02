@@ -1,6 +1,7 @@
 #include "LivingComponent.h"
 #include "SpriteComponent.h"
 #include "Entity.h"
+#include "SoundSystem.h"
 
 LivingComponent::LivingComponent(Spite::Entity* parent, Spite::ComponentID id) : 
 Component(parent, id),
@@ -26,11 +27,13 @@ void LivingComponent::Update(float dt) {
 
 void LivingComponent::Hit(float damage) {
 	if(invulnerable) return;
-	if(damageCooldown <= 0) {
+	if(damageCooldown <= 0 || damage < 0.0f) {
 		damageCooldown = damageCooldownTime;
 		health = glm::clamp(health - damage, 0.0f, maxHealth);
+		bool isDead{health == 0.0f};
+		if (damageCallback) damageCallback(this, damage, isDead);
 		auto* e{ GetEntity() };
-		if (health <= 0.0f) {
+		if (isDead) {
 			e->GetParent()->RemoveChild(e);
 		}
 	}

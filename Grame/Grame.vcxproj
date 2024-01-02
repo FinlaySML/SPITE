@@ -47,7 +47,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -84,6 +84,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\lib</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,6 +137,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)yaml-cpp\include;$(SolutionDir)Grengine;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,7 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BulletComponent.h" />
-    <ClInclude Include="EntityFactories.h" />
+    <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="LivingComponent.h" />
     <ClInclude Include="EyeballComponent.h" />
     <ClInclude Include="Game.h" />
@@ -154,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BulletComponent.cpp" />
-    <ClCompile Include="EntityFactories.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="LivingComponent.cpp" />
     <ClCompile Include="EyeballComponent.cpp" />
     <ClCompile Include="Game.cpp" />
