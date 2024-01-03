@@ -12,6 +12,10 @@ namespace Spite {
 	protected:
 		Component(Entity* parent, ComponentID id);
 	public:
+		Component(Component&) = delete;
+		Component& operator=(Component&) = delete;
+		Component(Component&&) = delete;
+		Component& operator=(Component&&) = delete;
 		ComponentID id;
 		Transform transform;
 		virtual ~Component();

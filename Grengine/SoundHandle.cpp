@@ -39,3 +39,7 @@ Spite::SoundHandle Spite::SoundHandle::Seek(float seconds) {
     Spite::sound->SetSeek(*this, seconds);
     return *this;
 }
+
+bool Spite::SoundHandle::IsValid() {
+    return Spite::sound->IsValid(*this);
+}

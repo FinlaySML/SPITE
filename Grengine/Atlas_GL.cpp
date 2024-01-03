@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "Atlas_GL.h"
 
-const unsigned int MAX_ATLAS_SIZE{4096};
-
 Spite::Atlas_GL::Atlas_GL() : atlasSize{32}, texture{std::make_shared<Spite::Texture_GL>()} {
 	std::vector<unsigned char> data(atlasSize * atlasSize * 4, 0xff);
 	texture->LoadFromData(data, {atlasSize, atlasSize});
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxAtlasSize);
 }
 
 Spite::Atlas_GL::~Atlas_GL() {}
@@ -25,7 +24,7 @@ Spite::TextureRegion Spite::Atlas_GL::ConvertRegion(const TextureRegion& region)
         while (!opt) {
             //Could not find free space in the atlas, make it bigger
             auto newAtlasSize{atlasSize * 2};
-            if(newAtlasSize > MAX_ATLAS_SIZE) {
+            if(newAtlasSize > maxAtlasSize) {
                 std::cout << "Max atlas size reached, can't make room" << std::endl;
                 return { texture, region.origin, region.dimensions };
             }

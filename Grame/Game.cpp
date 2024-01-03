@@ -41,12 +41,13 @@ waveEntity{ nullptr } {
 
 void Game::Setup() {
 	srand(999);
-	currentWave = 8;
+	currentWave = 0;
 	auto* root{ scene.GetRoot() };
 	for(auto c : root->GetChildren()) {
 		root->RemoveChild(scene.GetEntity(c));
 	}
 	music.Seek(0.0f);
+	music.Play();
 	waveEntity = scene.GetRoot()->AddChild(scene.CreateEntity());
 	for (int i = 0; i < 16; i++) {
 		root->AddChild(EntityFactory::Star(&scene, 1.0f, 0.5f, 0.2f));
@@ -58,21 +59,39 @@ void Game::Setup() {
 		root->AddChild(EntityFactory::Star(&scene, 0.25f, 0.125f, 0.0f));
 	}
 	playerEntityId = root->AddChild(EntityFactory::Player(&scene))->GetID();
+	root->AddChild(EntityFactory::UIHealth(&scene));
 	SpawnWave(waveEntity, currentWave);
 }
 
 
 void Game::Update(float dt)
 {
-	if(waveEntity->GetChildCount() == 0) {
-		currentWave++;
-		if(currentWave < 9) {
-			SpawnWave(waveEntity, currentWave);
+	if(scene.GetEntitiesByTag("endscreen").size() > 0) {
+		if (Spite::event->JustPressed(Spite::KeyValue::KV_R)) {
+			Setup();
 		}
-	}else if(!scene.GetEntity(playerEntityId)) {
-		Setup();
+	}else{
+		//In game
+		if (waveEntity->GetChildCount() == 0) {
+			currentWave++;
+			if (currentWave < 9) {
+				SpawnWave(waveEntity, currentWave);
+			} else {
+				//Won
+				scene.GetRoot()->AddChild(EntityFactory::UIEndScreen(&scene, true));
+				music.Pause();
+				Spite::sound->LoadSampleAndPlay("player_win.wav");
+			}
+		}
+		if (!scene.GetEntity(playerEntityId)) {
+			//Lost
+			scene.GetRoot()->AddChild(EntityFactory::UIEndScreen(&scene, false));
+			music.Pause();
+			Spite::sound->LoadSampleAndPlay("player_lose.wav");
+		}
+		scene.Update(dt);
 	}
-	scene.Update(dt);
+	
 	//Toggle fullscreen
 	if(Spite::event->JustPressed(Spite::KeyValue::KV_F11)){
 		Spite::render->SetFullscreen(!Spite::render->GetFullscreen());

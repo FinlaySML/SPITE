@@ -5,6 +5,8 @@
 class EntityFactory {
 public:
 	static std::unique_ptr<Spite::Entity> Player(Spite::Scene* scene);
+	static std::unique_ptr<Spite::Entity> UIHealth(Spite::Scene* scene);
+	static std::unique_ptr<Spite::Entity> UIEndScreen(Spite::Scene* scene, bool won);
 	static std::unique_ptr<Spite::Entity> Eyeball(Spite::Scene* scene, float targetX, float offset);
 	static std::unique_ptr<Spite::Entity> EyeballSpray(Spite::Scene* scene, float targetX, float offset);
 	static std::unique_ptr<Spite::Entity> EyeballSpin(Spite::Scene* scene, float targetX, float offset);

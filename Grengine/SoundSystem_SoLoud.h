@@ -21,6 +21,7 @@ namespace Spite {
 		void SetPlay(SoundHandle handle, bool isPlaying) final;
 		void SetLoop(SoundHandle handle, bool isLooping) final;
 		void SetSeek(SoundHandle handle, float seconds) final;
+		bool IsValid(SoundHandle handle) final;
 		void SetGlobalVolume(float fraction) final;
 		SoLoud::Soloud& GetEngine();
 	private:

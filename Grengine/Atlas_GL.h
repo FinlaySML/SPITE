@@ -18,6 +18,7 @@ namespace Spite {
 		std::optional<glm::vec2> FindFreeAtlasRegion(glm::vec2 dimensions);
 		std::unordered_map<Texture*, TextureInAtlas> atlassed;
 		std::shared_ptr<Texture_GL> texture;
-		unsigned int atlasSize;
+		int atlasSize;
+		int maxAtlasSize;
 	};
 }

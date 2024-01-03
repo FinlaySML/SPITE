@@ -82,6 +82,10 @@ namespace Spite {
         engine.seek(handle.underlying, seconds);
     }
 
+    bool SoundSystem_SoLoud::IsValid(SoundHandle handle) {
+        return engine.isValidVoiceHandle(handle.underlying);
+    }
+
     void SoundSystem_SoLoud::SetGlobalVolume(float fraction) {
         engine.setGlobalVolume(fraction);
     }

@@ -51,5 +51,10 @@ namespace Spite {
 		/// <param name="seconds"></param>
 		/// <returns></returns>
 		SoundHandle Seek(float seconds);
+		/// <summary>
+		/// Returns true if this SoundHandle is valid
+		/// </summary>
+		/// <returns></returns>
+		bool IsValid();
 	};
 }
