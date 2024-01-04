@@ -97,6 +97,9 @@ void Spite::Entity::Serialise(YAML::Emitter& out) const {
         out << YAML::BeginMap;
         out << YAML::Key << "Name" << YAML::Value << Spite::core->GetName(c.get());
         out << YAML::Key << "ID" << YAML::Value << c->id;
+        out << YAML::Key << "Transform" << YAML::Value << YAML::BeginMap;
+        c->transform.Serialise(out);
+        out << YAML::EndMap;
         c->Serialise(out);
         out << YAML::EndMap;
     }
@@ -119,7 +122,9 @@ std::unique_ptr<Spite::Entity> Spite::Entity::Deserialise(Scene* scene, const YA
     entity->z = node["Z"].as<decltype(Entity::z)>();
     auto& comps = node["Components"];
     for (size_t i = 0, size = comps.size(); i < size; i++) {
-        Spite::core->AddComponentByName(*entity, comps[i]["Name"].as<std::string>(), comps[i]["ID"].as<ComponentID>()).Deserialise(comps[i]);
+        auto& c{Spite::core->AddComponentByName(*entity, comps[i]["Name"].as<std::string>(), comps[i]["ID"].as<ComponentID>())};
+        c.transform = Transform::Deserialise(comps[i]["Transform"]);
+        c.Deserialise(comps[i]);
     }
     auto& childs = node["Children"];
     for (size_t i = 0, size = childs.size(); i < size; i++) {

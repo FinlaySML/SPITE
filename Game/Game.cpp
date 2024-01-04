@@ -203,9 +203,9 @@ void Game::SpawnWave(Spite::Entity* parent, int waveNumber) {
 		auto eyeball0{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 6, 1.1f, 3.0f, false) };
 		auto eyeball1{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 12, 2.1f, 3.0f, true) };
 		auto eyeball2{ EntityFactory::EyeballWheel(&scene, 9.0f, 0.1f, 18, 3.1f, 3.0f, false) };
-		eyeball0->transform.position = { 18.0f, 0 };
-		eyeball1->transform.position = { 18.0f, 0 };
-		eyeball2->transform.position = { 18.0f, 0 };
+		eyeball0->transform.position = { 28.0f, 0 };
+		eyeball1->transform.position = { 28.0f, 0 };
+		eyeball2->transform.position = { 28.0f, 0 };
 		parent->AddChild(std::move(eyeball0));
 		parent->AddChild(std::move(eyeball1));
 		parent->AddChild(std::move(eyeball2));

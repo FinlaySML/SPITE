@@ -20,10 +20,11 @@ void Spite::Texture_GL::LoadFromFile(const std::string& file) {
         std::cout << "Can't load texture again, texture has already been loaded!" << std::endl;
         return;
     }
+    auto filePath{"Assets/"+file};
     //Texture
     stbi_set_flip_vertically_on_load(true);
     int x, y, n;
-    unsigned char* pixelData = stbi_load(file.c_str(), &x, &y, &n, 4);
+    unsigned char* pixelData = stbi_load(filePath.c_str(), &x, &y, &n, 4);
     if (pixelData == nullptr) {
         std::cout << std::format("Texture failed to load: {}", file) << std::endl;
         return;

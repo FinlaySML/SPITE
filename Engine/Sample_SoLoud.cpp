@@ -3,7 +3,7 @@
 #include "SoundSystem_SoLoud.h"
 
 Spite::Sample_SoLoud::Sample_SoLoud(const std::filesystem::path& path) {
-    std::string pathString = path.string();
+    std::string pathString = "Assets/"+path.string();
     auto result = wav.load(pathString.c_str());
     if (result != 0) {
         

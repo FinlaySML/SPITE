@@ -51,8 +51,8 @@ Spite::SpriteBatch_GL::SpriteBatch_GL(Spite::RenderSystem_SDL* render) : dataCha
     }
     if (program == 0) {
         //Shader
-        auto vs = LoadShader("sprite_batch_ssbo_vs.glsl", GL_VERTEX_SHADER);
-        auto fs = LoadShader("sprite_batch_ssbo_fs.glsl", GL_FRAGMENT_SHADER);
+        auto vs = LoadShader("Assets/Engine/sprite_batch_ssbo_vs.glsl", GL_VERTEX_SHADER);
+        auto fs = LoadShader("Assets/Engine/sprite_batch_ssbo_fs.glsl", GL_FRAGMENT_SHADER);
         program = glCreateProgram();
         glAttachShader(program, vs);
         glAttachShader(program, fs);
