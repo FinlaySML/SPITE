@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/lib/Game.lib
+/lib/Game.pdb
+/lib/Game.idb

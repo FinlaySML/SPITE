@@ -1,0 +1,2232 @@
+UsedEntityIDs: 117
+UsedComponentIDs: 237
+Root:
+  Name: Root
+  ID: 1
+  Transform:
+    Position: [0, 0]
+    Scale: [1, 1]
+    Rotation: 0
+  Z: 0
+  Components:
+    []
+  Children:
+    - Name: Entity
+      ID: 2
+      Transform:
+        Position: [0, 0]
+        Scale: [1, 1]
+        Rotation: 0
+      Z: 0
+      Components:
+        []
+      Children:
+        - Name: Entity
+          ID: 116
+          Transform:
+            Position: [18, -3]
+            Scale: [1, 1]
+            Rotation: 0
+          Z: 2
+          Components:
+            - Name: SpriteComponent
+              ID: 228
+              Colour: [1, 1, 1, 1]
+              TextureRegion: None
+            - Name: AnimatorComponent
+              ID: 229
+              Target: 228
+              SpriteSheet:
+                Path: eyeball.png
+                Origin: [0, 0]
+                Dimensions: [128, 16]
+              Slices: [8, 1]
+              Frame: 0
+              FPS: 5.5999999
+            - Name: LivingComponent
+              ID: 230
+            - Name: EyeballComponent
+              ID: 231
+            - Name: FunctionComponent
+              ID: 232
+          Children:
+            []
+        - Name: Entity
+          ID: 117
+          Transform:
+            Position: [18, 3]
+            Scale: [1, 1]
+            Rotation: 0
+          Z: 2
+          Components:
+            - Name: SpriteComponent
+              ID: 233
+              Colour: [1, 1, 1, 1]
+              TextureRegion: None
+            - Name: AnimatorComponent
+              ID: 234
+              Target: 233
+              SpriteSheet:
+                Path: eyeball.png
+                Origin: [0, 0]
+                Dimensions: [128, 16]
+              Slices: [8, 1]
+              Frame: 4
+              FPS: 5.5999999
+            - Name: LivingComponent
+              ID: 235
+            - Name: EyeballComponent
+              ID: 236
+            - Name: FunctionComponent
+              ID: 237
+          Children:
+            []
+    - Name: Entity
+      ID: 3
+      Transform:
+        Position: [-16.4587078, 1.14453602]
+        Scale: [0.5, 0.5]
+        Rotation: 1.21456635
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 1
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 2
+      Children:
+        []
+    - Name: Entity
+      ID: 4
+      Transform:
+        Position: [10.1884365, 1.53016853]
+        Scale: [0.5, 0.5]
+        Rotation: 3.01513124
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 3
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 4
+      Children:
+        []
+    - Name: Entity
+      ID: 5
+      Transform:
+        Position: [-4.940382, 7.12732315]
+        Scale: [0.5, 0.5]
+        Rotation: 5.17005634
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 5
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 6
+      Children:
+        []
+    - Name: Entity
+      ID: 6
+      Transform:
+        Position: [8.13795853, -5.86605406]
+        Scale: [0.5, 0.5]
+        Rotation: 5.39690113
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 7
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 8
+      Children:
+        []
+    - Name: Entity
+      ID: 7
+      Transform:
+        Position: [6.94654655, 0.243629456]
+        Scale: [0.5, 0.5]
+        Rotation: 1.91005611
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 9
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 10
+      Children:
+        []
+    - Name: Entity
+      ID: 8
+      Transform:
+        Position: [-16.0055084, -7.3547473]
+        Scale: [0.5, 0.5]
+        Rotation: 2.28991961
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 11
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 12
+      Children:
+        []
+    - Name: Entity
+      ID: 9
+      Transform:
+        Position: [-11.6386757, -6.01382494]
+        Scale: [0.5, 0.5]
+        Rotation: 6.21108627
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 13
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 14
+      Children:
+        []
+    - Name: Entity
+      ID: 10
+      Transform:
+        Position: [-1.79215431, -6.85650206]
+        Scale: [0.5, 0.5]
+        Rotation: 0.0293382779
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 15
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 16
+      Children:
+        []
+    - Name: Entity
+      ID: 11
+      Transform:
+        Position: [-16.2059231, -2.19815683]
+        Scale: [0.5, 0.5]
+        Rotation: 3.34053683
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 17
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 18
+      Children:
+        []
+    - Name: Entity
+      ID: 12
+      Transform:
+        Position: [2.34908485, 1.83175087]
+        Scale: [0.5, 0.5]
+        Rotation: 3.81493497
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 19
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 20
+      Children:
+        []
+    - Name: Entity
+      ID: 13
+      Transform:
+        Position: [-11.014267, 2.93481159]
+        Scale: [0.5, 0.5]
+        Rotation: 2.83239031
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 21
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 22
+      Children:
+        []
+    - Name: Entity
+      ID: 14
+      Transform:
+        Position: [-4.87995529, -7.97329617]
+        Scale: [0.5, 0.5]
+        Rotation: 3.81819487
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 23
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 24
+      Children:
+        []
+    - Name: Entity
+      ID: 15
+      Transform:
+        Position: [9.34951401, 5.44691277]
+        Scale: [0.5, 0.5]
+        Rotation: 3.26652002
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 25
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 26
+      Children:
+        []
+    - Name: Entity
+      ID: 16
+      Transform:
+        Position: [-6.53564548, 6.76750946]
+        Scale: [0.5, 0.5]
+        Rotation: 4.56584167
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 27
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 28
+      Children:
+        []
+    - Name: Entity
+      ID: 17
+      Transform:
+        Position: [15.0447235, 7.66292381]
+        Scale: [0.5, 0.5]
+        Rotation: 3.3888588
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 29
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 30
+      Children:
+        []
+    - Name: Entity
+      ID: 18
+      Transform:
+        Position: [-11.8028355, -0.682546616]
+        Scale: [0.5, 0.5]
+        Rotation: 1.47861087
+      Z: 0.200000003
+      Components:
+        - Name: SpriteComponent
+          ID: 31
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 32
+      Children:
+        []
+    - Name: Entity
+      ID: 19
+      Transform:
+        Position: [11.9539013, -5.22717953]
+        Scale: [0.25, 0.25]
+        Rotation: 4.89872551
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 33
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 34
+      Children:
+        []
+    - Name: Entity
+      ID: 20
+      Transform:
+        Position: [11.3405724, 8.94231987]
+        Scale: [0.25, 0.25]
+        Rotation: 6.28126812
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 35
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 36
+      Children:
+        []
+    - Name: Entity
+      ID: 21
+      Transform:
+        Position: [3.6794796, -1.9361248]
+        Scale: [0.25, 0.25]
+        Rotation: 1.67266548
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 37
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 38
+      Children:
+        []
+    - Name: Entity
+      ID: 22
+      Transform:
+        Position: [-6.68973351, 6.12259293]
+        Scale: [0.25, 0.25]
+        Rotation: 0.149184182
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 39
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 40
+      Children:
+        []
+    - Name: Entity
+      ID: 23
+      Transform:
+        Position: [-4.09642315, -7.33277416]
+        Scale: [0.25, 0.25]
+        Rotation: 4.25500917
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 41
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 42
+      Children:
+        []
+    - Name: Entity
+      ID: 24
+      Transform:
+        Position: [-14.6449022, -8.84179211]
+        Scale: [0.25, 0.25]
+        Rotation: 5.77292919
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 43
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 44
+      Children:
+        []
+    - Name: Entity
+      ID: 25
+      Transform:
+        Position: [-7.39571762, -4.08786297]
+        Scale: [0.25, 0.25]
+        Rotation: 3.69393849
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 45
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 46
+      Children:
+        []
+    - Name: Entity
+      ID: 26
+      Transform:
+        Position: [6.30904579, 6.07699871]
+        Scale: [0.25, 0.25]
+        Rotation: 4.56469107
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 47
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 48
+      Children:
+        []
+    - Name: Entity
+      ID: 27
+      Transform:
+        Position: [-0.497009277, -5.30353689]
+        Scale: [0.25, 0.25]
+        Rotation: 4.67303181
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 49
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 50
+      Children:
+        []
+    - Name: Entity
+      ID: 28
+      Transform:
+        Position: [-1.04084873, -0.756706238]
+        Scale: [0.25, 0.25]
+        Rotation: 5.96372414
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 51
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 52
+      Children:
+        []
+    - Name: Entity
+      ID: 29
+      Transform:
+        Position: [8.06645393, -7.05096579]
+        Scale: [0.25, 0.25]
+        Rotation: 3.76392865
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 53
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 54
+      Children:
+        []
+    - Name: Entity
+      ID: 30
+      Transform:
+        Position: [-3.78724098, 4.23013973]
+        Scale: [0.25, 0.25]
+        Rotation: 3.82624865
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 55
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 56
+      Children:
+        []
+    - Name: Entity
+      ID: 31
+      Transform:
+        Position: [2.38936996, -2.49589539]
+        Scale: [0.25, 0.25]
+        Rotation: 0.95224762
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 57
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 58
+      Children:
+        []
+    - Name: Entity
+      ID: 32
+      Transform:
+        Position: [-9.07155037, -1.34723997]
+        Scale: [0.25, 0.25]
+        Rotation: 5.04465008
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 59
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 60
+      Children:
+        []
+    - Name: Entity
+      ID: 33
+      Transform:
+        Position: [0.56448555, 8.8198185]
+        Scale: [0.25, 0.25]
+        Rotation: 4.72212076
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 61
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 62
+      Children:
+        []
+    - Name: Entity
+      ID: 34
+      Transform:
+        Position: [-5.09648418, -5.95834255]
+        Scale: [0.25, 0.25]
+        Rotation: 4.12998629
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 63
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 64
+      Children:
+        []
+    - Name: Entity
+      ID: 35
+      Transform:
+        Position: [-0.26738739, -7.85628843]
+        Scale: [0.25, 0.25]
+        Rotation: 4.39671469
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 65
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 66
+      Children:
+        []
+    - Name: Entity
+      ID: 36
+      Transform:
+        Position: [0.158618927, -6.34507275]
+        Scale: [0.25, 0.25]
+        Rotation: 5.96640873
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 67
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 68
+      Children:
+        []
+    - Name: Entity
+      ID: 37
+      Transform:
+        Position: [-11.8280125, 7.29212189]
+        Scale: [0.25, 0.25]
+        Rotation: 4.35357046
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 69
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 70
+      Children:
+        []
+    - Name: Entity
+      ID: 38
+      Transform:
+        Position: [-6.49938965, -1.32196999]
+        Scale: [0.25, 0.25]
+        Rotation: 0.442183465
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 71
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 72
+      Children:
+        []
+    - Name: Entity
+      ID: 39
+      Transform:
+        Position: [15.3982201, 3.29737282]
+        Scale: [0.25, 0.25]
+        Rotation: 0.962794125
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 73
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 74
+      Children:
+        []
+    - Name: Entity
+      ID: 40
+      Transform:
+        Position: [12.4493999, 5.79024696]
+        Scale: [0.25, 0.25]
+        Rotation: 3.6571219
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 75
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 76
+      Children:
+        []
+    - Name: Entity
+      ID: 41
+      Transform:
+        Position: [-10.1854153, -5.79793692]
+        Scale: [0.25, 0.25]
+        Rotation: 5.13458204
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 77
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 78
+      Children:
+        []
+    - Name: Entity
+      ID: 42
+      Transform:
+        Position: [-0.816263199, -6.20004845]
+        Scale: [0.25, 0.25]
+        Rotation: 3.16623306
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 79
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 80
+      Children:
+        []
+    - Name: Entity
+      ID: 43
+      Transform:
+        Position: [7.6565609, -1.69936228]
+        Scale: [0.25, 0.25]
+        Rotation: 1.75665331
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 81
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 82
+      Children:
+        []
+    - Name: Entity
+      ID: 44
+      Transform:
+        Position: [2.26851654, 3.28034306]
+        Scale: [0.25, 0.25]
+        Rotation: 4.74915791
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 83
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 84
+      Children:
+        []
+    - Name: Entity
+      ID: 45
+      Transform:
+        Position: [7.32320786, -0.444684982]
+        Scale: [0.25, 0.25]
+        Rotation: 0.772958159
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 85
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 86
+      Children:
+        []
+    - Name: Entity
+      ID: 46
+      Transform:
+        Position: [-4.36229992, 6.02426147]
+        Scale: [0.25, 0.25]
+        Rotation: 0.220516488
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 87
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 88
+      Children:
+        []
+    - Name: Entity
+      ID: 47
+      Transform:
+        Position: [0.56146431, 2.93371296]
+        Scale: [0.25, 0.25]
+        Rotation: 2.67802858
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 89
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 90
+      Children:
+        []
+    - Name: Entity
+      ID: 48
+      Transform:
+        Position: [-13.0456104, 8.08810616]
+        Scale: [0.25, 0.25]
+        Rotation: 5.78922844
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 91
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 92
+      Children:
+        []
+    - Name: Entity
+      ID: 49
+      Transform:
+        Position: [1.6350441, -2.77221012]
+        Scale: [0.25, 0.25]
+        Rotation: 2.96393323
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 93
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 94
+      Children:
+        []
+    - Name: Entity
+      ID: 50
+      Transform:
+        Position: [-4.12562943, 6.24564362]
+        Scale: [0.25, 0.25]
+        Rotation: 1.9909761
+      Z: 0.100000001
+      Components:
+        - Name: SpriteComponent
+          ID: 95
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 96
+      Children:
+        []
+    - Name: Entity
+      ID: 51
+      Transform:
+        Position: [-1.44872856, -4.10599089]
+        Scale: [0.125, 0.125]
+        Rotation: 6.17618704
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 97
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 98
+      Children:
+        []
+    - Name: Entity
+      ID: 52
+      Transform:
+        Position: [-6.67261219, 4.30539799]
+        Scale: [0.125, 0.125]
+        Rotation: 3.56431317
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 99
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 100
+      Children:
+        []
+    - Name: Entity
+      ID: 53
+      Transform:
+        Position: [-10.0323343, 4.70366573]
+        Scale: [0.125, 0.125]
+        Rotation: 5.27437067
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 101
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 102
+      Children:
+        []
+    - Name: Entity
+      ID: 54
+      Transform:
+        Position: [-3.37734604, 0.016204834]
+        Scale: [0.125, 0.125]
+        Rotation: 5.59306479
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 103
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 104
+      Children:
+        []
+    - Name: Entity
+      ID: 55
+      Transform:
+        Position: [-15.5936003, 8.9033165]
+        Scale: [0.125, 0.125]
+        Rotation: 3.59767818
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 105
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 106
+      Children:
+        []
+    - Name: Entity
+      ID: 56
+      Transform:
+        Position: [-14.8332319, 0.563890457]
+        Scale: [0.125, 0.125]
+        Rotation: 1.21936023
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 107
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 108
+      Children:
+        []
+    - Name: Entity
+      ID: 57
+      Transform:
+        Position: [11.3204308, 2.28165531]
+        Scale: [0.125, 0.125]
+        Rotation: 4.13190365
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 109
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 110
+      Children:
+        []
+    - Name: Entity
+      ID: 58
+      Transform:
+        Position: [-9.97090054, 6.15884876]
+        Scale: [0.125, 0.125]
+        Rotation: 0.7748757
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 111
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 112
+      Children:
+        []
+    - Name: Entity
+      ID: 59
+      Transform:
+        Position: [-12.8723869, 4.37626266]
+        Scale: [0.125, 0.125]
+        Rotation: 1.97333491
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 113
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 114
+      Children:
+        []
+    - Name: Entity
+      ID: 60
+      Transform:
+        Position: [14.5552692, -3.85055065]
+        Scale: [0.125, 0.125]
+        Rotation: 2.11312294
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 115
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 116
+      Children:
+        []
+    - Name: Entity
+      ID: 61
+      Transform:
+        Position: [-11.8713188, 4.19553185]
+        Scale: [0.125, 0.125]
+        Rotation: 5.24407339
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 117
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 118
+      Children:
+        []
+    - Name: Entity
+      ID: 62
+      Transform:
+        Position: [6.86396217, 1.8042841]
+        Scale: [0.125, 0.125]
+        Rotation: 4.69489193
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 119
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 120
+      Children:
+        []
+    - Name: Entity
+      ID: 63
+      Transform:
+        Position: [-8.16011524, -6.39945698]
+        Scale: [0.125, 0.125]
+        Rotation: 0.0101629328
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 121
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 122
+      Children:
+        []
+    - Name: Entity
+      ID: 64
+      Transform:
+        Position: [-14.4867859, 5.51228428]
+        Scale: [0.125, 0.125]
+        Rotation: 5.35720825
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 123
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 124
+      Children:
+        []
+    - Name: Entity
+      ID: 65
+      Transform:
+        Position: [-9.55093575, -6.91912556]
+        Scale: [0.125, 0.125]
+        Rotation: 3.47591472
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 125
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 126
+      Children:
+        []
+    - Name: Entity
+      ID: 66
+      Transform:
+        Position: [-16.0296783, -6.95208597]
+        Scale: [0.125, 0.125]
+        Rotation: 2.85578418
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 127
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 128
+      Children:
+        []
+    - Name: Entity
+      ID: 67
+      Transform:
+        Position: [8.32326698, 3.35065746]
+        Scale: [0.125, 0.125]
+        Rotation: 3.41455364
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 129
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 130
+      Children:
+        []
+    - Name: Entity
+      ID: 68
+      Transform:
+        Position: [-14.0617847, -1.13904238]
+        Scale: [0.125, 0.125]
+        Rotation: 1.26883268
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 131
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 132
+      Children:
+        []
+    - Name: Entity
+      ID: 69
+      Transform:
+        Position: [6.47521782, -3.77364445]
+        Scale: [0.125, 0.125]
+        Rotation: 2.74380016
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 133
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 134
+      Children:
+        []
+    - Name: Entity
+      ID: 70
+      Transform:
+        Position: [-8.82984352, 1.40162373]
+        Scale: [0.125, 0.125]
+        Rotation: 3.34628963
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 135
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 136
+      Children:
+        []
+    - Name: Entity
+      ID: 71
+      Transform:
+        Position: [4.24648285, -6.11655045]
+        Scale: [0.125, 0.125]
+        Rotation: 3.16757536
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 137
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 138
+      Children:
+        []
+    - Name: Entity
+      ID: 72
+      Transform:
+        Position: [15.2803879, 3.5236969]
+        Scale: [0.125, 0.125]
+        Rotation: 5.81070471
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 139
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 140
+      Children:
+        []
+    - Name: Entity
+      ID: 73
+      Transform:
+        Position: [-10.2317429, -2.95294046]
+        Scale: [0.125, 0.125]
+        Rotation: 1.12060714
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 141
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 142
+      Children:
+        []
+    - Name: Entity
+      ID: 74
+      Transform:
+        Position: [16.3408775, -0.76604557]
+        Scale: [0.125, 0.125]
+        Rotation: 6.27072144
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 143
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 144
+      Children:
+        []
+    - Name: Entity
+      ID: 75
+      Transform:
+        Position: [-13.2822809, 2.2530899]
+        Scale: [0.125, 0.125]
+        Rotation: 0.593093455
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 145
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 146
+      Children:
+        []
+    - Name: Entity
+      ID: 76
+      Transform:
+        Position: [-2.05500984, 7.76729584]
+        Scale: [0.125, 0.125]
+        Rotation: 0.304312736
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 147
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 148
+      Children:
+        []
+    - Name: Entity
+      ID: 77
+      Transform:
+        Position: [13.0224457, -3.77968693]
+        Scale: [0.125, 0.125]
+        Rotation: 1.42817974
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 149
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 150
+      Children:
+        []
+    - Name: Entity
+      ID: 78
+      Transform:
+        Position: [8.87919235, -1.60707378]
+        Scale: [0.125, 0.125]
+        Rotation: 1.26902437
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 151
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 152
+      Children:
+        []
+    - Name: Entity
+      ID: 79
+      Transform:
+        Position: [4.22634125, 1.87459946]
+        Scale: [0.125, 0.125]
+        Rotation: 2.83756757
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 153
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 154
+      Children:
+        []
+    - Name: Entity
+      ID: 80
+      Transform:
+        Position: [-1.11033916, 1.76088715]
+        Scale: [0.125, 0.125]
+        Rotation: 3.98808837
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 155
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 156
+      Children:
+        []
+    - Name: Entity
+      ID: 81
+      Transform:
+        Position: [11.708168, 5.91824055]
+        Scale: [0.125, 0.125]
+        Rotation: 3.92557669
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 157
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 158
+      Children:
+        []
+    - Name: Entity
+      ID: 82
+      Transform:
+        Position: [7.28997231, 1.18353844]
+        Scale: [0.125, 0.125]
+        Rotation: 2.35703349
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 159
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 160
+      Children:
+        []
+    - Name: Entity
+      ID: 83
+      Transform:
+        Position: [-10.4190655, 4.2823267]
+        Scale: [0.125, 0.125]
+        Rotation: 3.48799539
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 161
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 162
+      Children:
+        []
+    - Name: Entity
+      ID: 84
+      Transform:
+        Position: [13.3678837, -4.62840652]
+        Scale: [0.125, 0.125]
+        Rotation: 1.18714559
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 163
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 164
+      Children:
+        []
+    - Name: Entity
+      ID: 85
+      Transform:
+        Position: [3.4559021, 3.57313824]
+        Scale: [0.125, 0.125]
+        Rotation: 3.67322898
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 165
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 166
+      Children:
+        []
+    - Name: Entity
+      ID: 86
+      Transform:
+        Position: [-4.90714741, -0.0997037888]
+        Scale: [0.125, 0.125]
+        Rotation: 0.505078614
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 167
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 168
+      Children:
+        []
+    - Name: Entity
+      ID: 87
+      Transform:
+        Position: [7.94459343, 2.01687622]
+        Scale: [0.125, 0.125]
+        Rotation: 3.89796448
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 169
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 170
+      Children:
+        []
+    - Name: Entity
+      ID: 88
+      Transform:
+        Position: [6.30703163, 5.48152161]
+        Scale: [0.125, 0.125]
+        Rotation: 0.936907351
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 171
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 172
+      Children:
+        []
+    - Name: Entity
+      ID: 89
+      Transform:
+        Position: [2.50921631, 6.61919022]
+        Scale: [0.125, 0.125]
+        Rotation: 5.72748423
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 173
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 174
+      Children:
+        []
+    - Name: Entity
+      ID: 90
+      Transform:
+        Position: [3.78522682, 4.09830093]
+        Scale: [0.125, 0.125]
+        Rotation: 0.27152288
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 175
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 176
+      Children:
+        []
+    - Name: Entity
+      ID: 91
+      Transform:
+        Position: [5.53659248, 8.57756233]
+        Scale: [0.125, 0.125]
+        Rotation: 1.97927928
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 177
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 178
+      Children:
+        []
+    - Name: Entity
+      ID: 92
+      Transform:
+        Position: [2.28362274, -3.49513245]
+        Scale: [0.125, 0.125]
+        Rotation: 1.09280288
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 179
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 180
+      Children:
+        []
+    - Name: Entity
+      ID: 93
+      Transform:
+        Position: [-12.9177065, 6.64281178]
+        Scale: [0.125, 0.125]
+        Rotation: 5.34838724
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 181
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 182
+      Children:
+        []
+    - Name: Entity
+      ID: 94
+      Transform:
+        Position: [8.06242561, -6.21213436]
+        Scale: [0.125, 0.125]
+        Rotation: 2.05406308
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 183
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 184
+      Children:
+        []
+    - Name: Entity
+      ID: 95
+      Transform:
+        Position: [-13.8815117, -7.62117386]
+        Scale: [0.125, 0.125]
+        Rotation: 4.02739763
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 185
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 186
+      Children:
+        []
+    - Name: Entity
+      ID: 96
+      Transform:
+        Position: [10.5600605, 0.811639786]
+        Scale: [0.125, 0.125]
+        Rotation: 2.81647468
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 187
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 188
+      Children:
+        []
+    - Name: Entity
+      ID: 97
+      Transform:
+        Position: [-3.00370789, -3.62257767]
+        Scale: [0.125, 0.125]
+        Rotation: 2.92519903
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 189
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 190
+      Children:
+        []
+    - Name: Entity
+      ID: 98
+      Transform:
+        Position: [0.0397815704, -6.25223541]
+        Scale: [0.125, 0.125]
+        Rotation: 2.02971029
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 191
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 192
+      Children:
+        []
+    - Name: Entity
+      ID: 99
+      Transform:
+        Position: [7.85395432, -3.35010862]
+        Scale: [0.125, 0.125]
+        Rotation: 5.19421768
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 193
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 194
+      Children:
+        []
+    - Name: Entity
+      ID: 100
+      Transform:
+        Position: [15.1494637, 6.7202673]
+        Scale: [0.125, 0.125]
+        Rotation: 4.55548668
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 195
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 196
+      Children:
+        []
+    - Name: Entity
+      ID: 101
+      Transform:
+        Position: [-6.59808636, 7.99197388]
+        Scale: [0.125, 0.125]
+        Rotation: 0.799420178
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 197
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 198
+      Children:
+        []
+    - Name: Entity
+      ID: 102
+      Transform:
+        Position: [-14.3306837, 5.12939835]
+        Scale: [0.125, 0.125]
+        Rotation: 3.29605031
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 199
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 200
+      Children:
+        []
+    - Name: Entity
+      ID: 103
+      Transform:
+        Position: [3.61804581, 8.21006012]
+        Scale: [0.125, 0.125]
+        Rotation: 0.454072177
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 201
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 202
+      Children:
+        []
+    - Name: Entity
+      ID: 104
+      Transform:
+        Position: [12.3960228, 2.76946354]
+        Scale: [0.125, 0.125]
+        Rotation: 2.02395773
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 203
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 204
+      Children:
+        []
+    - Name: Entity
+      ID: 105
+      Transform:
+        Position: [-13.0415821, 0.0909147263]
+        Scale: [0.125, 0.125]
+        Rotation: 1.42683744
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 205
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 206
+      Children:
+        []
+    - Name: Entity
+      ID: 106
+      Transform:
+        Position: [-6.92036247, 7.55964851]
+        Scale: [0.125, 0.125]
+        Rotation: 3.46306729
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 207
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 208
+      Children:
+        []
+    - Name: Entity
+      ID: 107
+      Transform:
+        Position: [5.37243271, -6.93835258]
+        Scale: [0.125, 0.125]
+        Rotation: 3.09470892
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 209
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 210
+      Children:
+        []
+    - Name: Entity
+      ID: 108
+      Transform:
+        Position: [-3.98866272, -0.0574054718]
+        Scale: [0.125, 0.125]
+        Rotation: 4.98482275
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 211
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 212
+      Children:
+        []
+    - Name: Entity
+      ID: 109
+      Transform:
+        Position: [0.30565834, -2.11740446]
+        Scale: [0.125, 0.125]
+        Rotation: 4.32384872
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 213
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 214
+      Children:
+        []
+    - Name: Entity
+      ID: 110
+      Transform:
+        Position: [1.06098938, 1.91305256]
+        Scale: [0.125, 0.125]
+        Rotation: 2.48301554
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 215
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 216
+      Children:
+        []
+    - Name: Entity
+      ID: 111
+      Transform:
+        Position: [-16.3056278, 3.74178219]
+        Scale: [0.125, 0.125]
+        Rotation: 0.632211149
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 217
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 218
+      Children:
+        []
+    - Name: Entity
+      ID: 112
+      Transform:
+        Position: [4.06117439, 6.53843784]
+        Scale: [0.125, 0.125]
+        Rotation: 3.08818936
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 219
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 220
+      Children:
+        []
+    - Name: Entity
+      ID: 113
+      Transform:
+        Position: [8.16213036, -0.0557575226]
+        Scale: [0.125, 0.125]
+        Rotation: 2.38828921
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 221
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 222
+      Children:
+        []
+    - Name: Entity
+      ID: 114
+      Transform:
+        Position: [9.41699028, 0.950620651]
+        Scale: [0.125, 0.125]
+        Rotation: 2.24370718
+      Z: 0
+      Components:
+        - Name: SpriteComponent
+          ID: 223
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: star.png
+            Origin: [0, 0]
+            Dimensions: [7, 7]
+        - Name: FunctionComponent
+          ID: 224
+      Children:
+        []
+    - Name: Entity
+      ID: 115
+      Transform:
+        Position: [0, 0]
+        Scale: [1, 1]
+        Rotation: 0
+      Z: 3
+      Components:
+        - Name: SpriteComponent
+          ID: 225
+          Colour: [1, 1, 1, 1]
+          TextureRegion:
+            Path: ship.png
+            Origin: [0, 0]
+            Dimensions: [16, 16]
+        - Name: LivingComponent
+          ID: 226
+        - Name: PlayerComponent
+          ID: 227
+      Children:
+        []
