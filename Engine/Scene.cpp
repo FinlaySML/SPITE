@@ -2,16 +2,27 @@
 #include "Scene.h"
 
 namespace Spite {
-	Scene::Scene() : usedEntityIds{ 0 }, usedComponentIds{0}, root{ CreateEntity() } {
+	Scene::Scene() : usedEntityIds{ 0 }, usedComponentIds{0}, root{ CreateEntity() }, inUpdate{ false } {
 		root->name = "Root";
 	}
 
 	void Scene::Update(float dt) {
-		root->Update(dt);
+		if(loadDeferredPath) {
+			Load(*loadDeferredPath);
+			loadDeferredPath = {};
+		}else if(loadDeferredSceneProvider){
+			Load(*loadDeferredSceneProvider);
+			loadDeferredSceneProvider = {};
+		}
+		inUpdate = true;
+		root->Update(dt, false);
+		inUpdate = false;
 	}
 
 	void Scene::Draw() {
+		inUpdate = true;
 		root->Draw(glm::mat3x3{1.0f});
+		inUpdate = false;
 	}
 
 	Entity* Scene::GetRoot() {
@@ -67,11 +78,43 @@ namespace Spite {
 	}
 
 	void Scene::Load(const std::filesystem::path& path) {
+		if(inUpdate) {
+			throw new std::exception("You can not overwrite a scene while it is being updated, use LoadDeferred(...) instead");
+		}
 		std::ifstream ofs(path);
 		YAML::Node node = YAML::LoadFile(path.string());
 		usedEntityIds = node["UsedEntityIDs"].as<decltype(usedEntityIds)>();
 		usedEntityIds = node["UsedComponentIDs"].as<decltype(usedComponentIds)>();
 		root = Spite::Entity::Deserialise(this, node["Root"]);
+	}
+
+	void Scene::Load(std::function<void(Scene&)> sceneProvider) {
+		if (inUpdate) {
+			throw new std::exception("You can not overwrite a scene while it is being updated, use LoadDeferred(...) instead");
+		}
+		this->Clear();
+		sceneProvider(*this);
+	}
+
+	void Scene::LoadDeferred(const std::filesystem::path& path) {
+		loadDeferredSceneProvider = {};
+		loadDeferredPath = path;
+	}
+
+	void Scene::LoadDeferred(std::function<void(Scene&)> sceneProvider) {
+		loadDeferredPath = {};
+		loadDeferredSceneProvider = sceneProvider;
+	}
+
+	void Scene::Clear() {
+		if(inUpdate) {
+			throw new std::exception("You can not clear a scene while it is being updated, use LoadDeferred(...) instead");
+		}
+		root.reset(nullptr); 
+		usedEntityIds = 0;
+		usedComponentIds = 0;
+		root = CreateEntity();
+		root->name = "Root";
 	}
 
 	void Scene::AddEntity(Entity* entity) {

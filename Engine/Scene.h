@@ -13,6 +13,10 @@ namespace Spite {
 		friend class Component;
 	public:
 		Scene();
+		Scene(Scene&) = delete;
+		Scene& operator=(Scene&) = delete;
+		Scene(Scene&&) = delete;
+		Scene& operator=(Scene&&) = delete;
 		void Update(float dt);
 		void Draw();
 		Entity* GetRoot();
@@ -25,6 +29,10 @@ namespace Spite {
 		std::unique_ptr<Entity> CreateEntity();
 		void Save(const std::filesystem::path& path);
 		void Load(const std::filesystem::path& path);
+		void Load(std::function<void(Scene&)> sceneProvider);
+		void LoadDeferred(const std::filesystem::path& path);
+		void LoadDeferred(std::function<void(Scene&)> sceneProvider);
+		void Clear();
 	private:
 		void AddEntity(Entity* entity);
 		void RemoveEntity(Entity* entity);
@@ -41,6 +49,9 @@ namespace Spite {
 		ComponentID GetNewComponentID();
 		ComponentID usedComponentIds;
 		std::unique_ptr<Entity> root;
+		bool inUpdate;
+		std::optional<std::filesystem::path> loadDeferredPath;
+		std::optional<std::function<void(Scene&)>> loadDeferredSceneProvider;
 	};
 	template <std::derived_from<Component> T>
 	T* Scene::GetComponent(ComponentID id) {

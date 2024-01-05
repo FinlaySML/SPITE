@@ -153,7 +153,10 @@
     <ClInclude Include="LivingComponent.h" />
     <ClInclude Include="EyeballComponent.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="ManagerComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="SceneFactory.h" />
+    <ClInclude Include="WaveComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BulletComponent.cpp" />
@@ -161,7 +164,10 @@
     <ClCompile Include="LivingComponent.cpp" />
     <ClCompile Include="EyeballComponent.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="ManagerComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="SceneFactory.cpp" />
+    <ClCompile Include="WaveComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

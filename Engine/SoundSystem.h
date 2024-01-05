@@ -22,6 +22,7 @@ namespace Spite {
         virtual void SetSeek(SoundHandle handle, float seconds) = 0;
         virtual bool IsValid(SoundHandle handle) = 0;
         virtual void SetGlobalVolume(float fraction) = 0;
+        virtual void PrintDebugInfo() = 0;
     };
     extern SoundSystem* sound;
 }

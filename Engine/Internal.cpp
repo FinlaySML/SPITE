@@ -46,7 +46,9 @@ int Spite::Internal::ExecuteGame(int argc, char** argv) {
 			event->UpdateEnd();
 		}
 		//Frame
+		render->Clear();
 		app->Render(frameDelta);
+		render->Display();
 		//Get next frames delta
 		frameDelta = timeSystem.GetFrameDelta();
 		//Quit

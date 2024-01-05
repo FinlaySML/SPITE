@@ -162,6 +162,7 @@
     <ClCompile Include="FunctionComponent.cpp" />
     <ClCompile Include="Internal.cpp" />
     <ClCompile Include="EventSystem_SDL.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -194,6 +195,7 @@
     <ClInclude Include="Internal.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventSystem_SDL.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sample.h" />
     <ClInclude Include="Sample_SoLoud.h" />

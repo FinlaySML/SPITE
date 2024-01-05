@@ -11,7 +11,7 @@ void Spite::Entity::SetDepthAndRootID(int newDepth, EntityID newRootID) {
     }
 }
 
-Spite::Entity::Entity(Scene* scene, EntityID id) : parent{ nullptr }, scene{ scene }, depth{ 0 }, id{ id }, rootId{ id }, z{ 0.0f }, name{ "Entity" } {
+Spite::Entity::Entity(Scene* scene, EntityID id) : parent{ nullptr }, scene{ scene }, depth{ 0 }, id{ id }, rootId{ id }, z{ 0.0f }, name{ "Entity" }, paused{PauseState::INHERIT} {
     scene->AddEntity(this);
 }
 
@@ -25,16 +25,19 @@ Spite::Entity::~Entity() {
     }
 }
 
-void Spite::Entity::Update(float dt) {
+void Spite::Entity::Update(float dt, bool parentPaused) {
+    bool ePaused{IsPaused(paused, parentPaused)};
     for (ComponentID cId : GetComponents()) {
         if(auto ptr = scene->GetComponent(cId)) {
-            ptr->Update(dt);
+            if(!IsPaused(ptr->paused, ePaused)) {
+                ptr->Update(dt);
+            }
         }
     }
     for(EntityID eId: GetChildren()) {
         auto ptr = scene->GetEntity(eId);
         if(ptr && ptr->GetParent() == this) {
-            ptr->Update(dt);
+            ptr->Update(dt, ePaused);
         }
     }
 }
@@ -89,6 +92,7 @@ void Spite::Entity::Serialise(YAML::Emitter& out) const {
     out << YAML::Key << "Transform" << YAML::Value << YAML::BeginMap;
     transform.Serialise(out);
     out << YAML::EndMap;
+    out << YAML::Key << "Paused" << YAML::Value << PauseToString(paused);
     out << YAML::Key << "Z" << YAML::Value << z;
     //Components
     out << YAML::Key << "Components";
@@ -100,6 +104,7 @@ void Spite::Entity::Serialise(YAML::Emitter& out) const {
         out << YAML::Key << "Transform" << YAML::Value << YAML::BeginMap;
         c->transform.Serialise(out);
         out << YAML::EndMap;
+        out << YAML::Key << "Paused" << YAML::Value << PauseToString(c->paused);
         c->Serialise(out);
         out << YAML::EndMap;
     }
@@ -119,11 +124,13 @@ std::unique_ptr<Spite::Entity> Spite::Entity::Deserialise(Scene* scene, const YA
     auto entity = std::make_unique<Spite::Entity>(scene, node["ID"].as<decltype(Entity::id)>());
     entity->name = node["Name"].as<decltype(Entity::name)>();
     entity->transform = Transform::Deserialise(node["Transform"]);
+    entity->paused = StringToPause(node["Paused"].as<std::string>());
     entity->z = node["Z"].as<decltype(Entity::z)>();
     auto& comps = node["Components"];
     for (size_t i = 0, size = comps.size(); i < size; i++) {
         auto& c{Spite::core->AddComponentByName(*entity, comps[i]["Name"].as<std::string>(), comps[i]["ID"].as<ComponentID>())};
         c.transform = Transform::Deserialise(comps[i]["Transform"]);
+        c.paused = StringToPause(comps[i]["Paused"].as<std::string>());
         c.Deserialise(comps[i]);
     }
     auto& childs = node["Children"];

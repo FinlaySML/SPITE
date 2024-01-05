@@ -660,9 +660,9 @@ void Spite::EventSystem_SDL::UpdateBegin() {
         case SDL_WINDOWEVENT:
             //Here we're converting the SDL event into our generic Spite event
             //so that we can keep things nice and abstract
-            GR_WindowEvent we;
+            WindowEvent we;
             {
-                we.event = static_cast<RenderSystem::GR_WINDOWEVENT>(e.window.event);
+                we.event = static_cast<WindowEvent::Type>(e.window.event);
                 we.data1 = e.window.data1;
                 we.data2 = e.window.data2;
                 we.padding1 = e.window.padding1;

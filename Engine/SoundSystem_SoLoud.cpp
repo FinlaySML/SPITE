@@ -90,6 +90,12 @@ namespace Spite {
         engine.setGlobalVolume(fraction);
     }
 
+    void SoundSystem_SoLoud::PrintDebugInfo() {
+        std::cout << "SoundSystem Debug Info" << std::endl;
+        std::cout << "Voice Count: " << engine.getVoiceCount() << std::endl;
+        std::cout << "Active Voice Count: " << engine.getActiveVoiceCount() << std::endl;
+    }
+
     SoLoud::Soloud& SoundSystem_SoLoud::GetEngine() {
         return engine;
     }

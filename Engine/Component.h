@@ -1,5 +1,6 @@
 #pragma once
 #include "Transform.h"
+#include "PauseState.h"
 
 namespace Spite {
 	class Entity;
@@ -18,6 +19,7 @@ namespace Spite {
 		Component& operator=(Component&&) = delete;
 		ComponentID id;
 		Transform transform;
+		PauseState paused;
 		virtual ~Component();
 		virtual void Update(float dt);
 		virtual void Draw(const glm::mat3x3& worldTransform);

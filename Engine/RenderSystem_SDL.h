@@ -23,7 +23,7 @@ namespace Spite {
 		std::unique_ptr<Texture> CreateTexture() final;
 		std::unique_ptr<Atlas> CreateAtlas() final;
 		void		Display() final;
-		void		HandleWindowEvent(GR_WindowEvent& e) final;
+		void		HandleWindowEvent(WindowEvent& e) final;
 		void SetFullscreen(bool) final;
 		bool GetFullscreen() final;
 		Spite::Camera& Camera() final;

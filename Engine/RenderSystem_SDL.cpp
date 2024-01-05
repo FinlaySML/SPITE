@@ -156,58 +156,58 @@ void Spite::RenderSystem_SDL::Display()
     SDL_GL_SwapWindow(m_Window);
 }
 
-void Spite::RenderSystem_SDL::HandleWindowEvent(GR_WindowEvent& e)
+void Spite::RenderSystem_SDL::HandleWindowEvent(WindowEvent& e)
 {
     switch (e.event) {
-    case GR_WINDOWEVENT::WINDOWEVENT_SHOWN:
+    case WindowEvent::Type::WE_SHOWN:
         //SDL_Log("Window %d shown", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_HIDDEN:
+    case WindowEvent::Type::WE_HIDDEN:
         //SDL_Log("Window %d hidden", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_EXPOSED:
+    case WindowEvent::Type::WE_EXPOSED:
         //SDL_Log("Window %d exposed", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_MOVED:
+    case WindowEvent::Type::WE_MOVED:
         /*SDL_Log("Window %d moved to %d,%d",
             e.windowID, e.data1,
             e.data2);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_RESIZED:
+    case WindowEvent::Type::WE_RESIZED:
         /*SDL_Log("Window %d resized to %dx%d",
             e.windowID, e.data1,
             e.data2);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_SIZE_CHANGED:
+    case WindowEvent::Type::WE_SIZE_CHANGED:
         /*SDL_Log("Window %d size changed to %dx%d",
             e.windowID, e.data1,
             e.data2);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_MINIMIZED:
+    case WindowEvent::Type::WE_MINIMIZED:
         //SDL_Log("Window %d minimized", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_MAXIMIZED:
+    case WindowEvent::Type::WE_MAXIMIZED:
         //SDL_Log("Window %d maximized", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_RESTORED:
+    case WindowEvent::Type::WE_RESTORED:
         //SDL_Log("Window %d restored", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_ENTER:
+    case WindowEvent::Type::WE_ENTER:
         /*SDL_Log("Mouse entered window %d",
             e.windowID);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_LEAVE:
+    case WindowEvent::Type::WE_LEAVE:
         //SDL_Log("Mouse left window %d", e.windowID);
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_FOCUS_GAINED:
+    case WindowEvent::Type::WE_FOCUS_GAINED:
         /*SDL_Log("Window %d gained keyboard focus",
             e.windowID);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_FOCUS_LOST:
+    case WindowEvent::Type::WE_FOCUS_LOST:
         /*SDL_Log("Window %d lost keyboard focus",
             e.windowID);*/
         break;
-    case GR_WINDOWEVENT::WINDOWEVENT_CLOSE:
+    case WindowEvent::Type::WE_CLOSE:
         //SDL_Log("Window %d closed", e.windowID);
         break;
     default:

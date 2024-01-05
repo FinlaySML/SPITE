@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "Scene.h"
 
-Spite::Component::Component(Entity* parent, ComponentID id) : entity{parent}, transform{}, id{id} {
+Spite::Component::Component(Entity* parent, ComponentID id) : entity{parent}, transform{}, id{id}, paused{PauseState::INHERIT} {
 }
 
 Spite::Component::~Component() {

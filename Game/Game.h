@@ -15,10 +15,5 @@ public:
 	void OnQuit() final;
 private:
 	void Setup();
-	void SpawnWave(Spite::Entity* parent, int waveNumber);
 	Spite::Scene scene;
-	Spite::EntityID playerEntityId;
-	Spite::Entity* waveEntity;
-	Spite::SoundHandle music;
-	int currentWave;
 };

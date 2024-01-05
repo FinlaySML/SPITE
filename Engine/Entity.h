@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Transform.h"
+#include "PauseState.h"
 #include <iosfwd>
 namespace Spite {
 	class Scene;
@@ -25,11 +26,12 @@ namespace Spite {
 		Entity& operator=(Entity&) = delete;
 		Entity(Entity&&) = delete;
 		Entity& operator=(Entity&&) = delete;
-		void Update(float dt);
+		void Update(float dt, bool parentPaused);
 		void Draw(const glm::mat3x3& worldTransform);
 		Transform transform;
 		float z;
 		std::string name;
+		PauseState paused;
 		//ID
 		int GetDepth() const;
 		EntityID GetID() const;

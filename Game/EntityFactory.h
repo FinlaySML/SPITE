@@ -1,10 +1,12 @@
 #pragma once
 #include "Scene.h"
 #include "Entity.h"
+#include "ManagerComponent.h"
 
 class EntityFactory {
 public:
-	static std::unique_ptr<Spite::Entity> Player(Spite::Scene* scene);
+	static std::unique_ptr<Spite::Entity> Wave(Spite::Scene* scene, ManagerComponent& manager);
+	static std::unique_ptr<Spite::Entity> Player(Spite::Scene* scene, ManagerComponent& manager);
 	static std::unique_ptr<Spite::Entity> UIHealth(Spite::Scene* scene);
 	static std::unique_ptr<Spite::Entity> UIEndScreen(Spite::Scene* scene, bool won);
 	static std::unique_ptr<Spite::Entity> Eyeball(Spite::Scene* scene, float targetX, float offset);

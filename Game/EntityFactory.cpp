@@ -9,6 +9,13 @@
 #include "FunctionComponent.h"
 #include "RenderSystem.h"
 #include "SoundSystem.h"
+#include "WaveComponent.h"
+
+//Layers
+//[0,1) Background
+//[1,2) Bullet
+//[2,3) Enemy
+//[3,4) Player
 
 std::unique_ptr<Spite::Entity> EntityFactory::Star(Spite::Scene* scene, float speed, float scale, float z) {
 	auto e = scene->CreateEntity();
@@ -232,7 +239,14 @@ std::unique_ptr<Spite::Entity> EntityFactory::EyeballWheel(Spite::Scene* scene, 
 	return base;
 }
 
-std::unique_ptr<Spite::Entity> EntityFactory::Player(Spite::Scene* scene) {
+std::unique_ptr<Spite::Entity> EntityFactory::Wave(Spite::Scene* scene, ManagerComponent& manager) {
+	auto e{ scene->CreateEntity() };
+	auto& cWave{ e->AddComponent<WaveComponent>() };
+	manager.waveComponentId = cWave.id;
+	return e;
+}
+
+std::unique_ptr<Spite::Entity> EntityFactory::Player(Spite::Scene* scene, ManagerComponent& manager) {
 	auto e = scene->CreateEntity();
 	e->z = 3.0f;
 	e->AddTag("player");
@@ -247,6 +261,7 @@ std::unique_ptr<Spite::Entity> EntityFactory::Player(Spite::Scene* scene) {
 		Spite::sound->LoadSampleAndPlay("player_damage.wav");
 	};
 	auto& cPlayer{ e->AddComponent<PlayerComponent>() };
+	manager.playerComponentId = cPlayer.id;
 	return e;
 }
 
